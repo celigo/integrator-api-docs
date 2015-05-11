@@ -1,5 +1,5 @@
-# Welcome to the Integrator API!
-The Integrator is built from the ground up as an API first platform whereby every new feature is first exposed in the API, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON to pass around data, and is secured by different types of tokens.  The main audience for this API are developers that wish to build pre-built integrations between specific applications and then list those pre-integrations in the Integrator App Marketplace.  The Integrator combined with the API provides extremely rich functionality to dynamically deploy, configure, and run complex integrations in a fully managed (App type) manner.  Enjoy!
+# Integrator API
+The Integrator is an API first platform.  Every new feature is developed and exposed in the API first.  The API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers that wish to use the Integrator to build fully featured, fully managed integrations between popular software applications.  Any integrations built can be listed in the Integrator Marketplace for easy install by any other Integrator user. Complementing the API nicely, the Integrator platform supports a very rich customization framework.  The integrations that you build can include an installer, a settings page, along with any number of custom integration hooks (whereby code can be used to implement the really challenging requirements).  Enjoy!
 
 ## Authentication
 ### Bearer Tokens
