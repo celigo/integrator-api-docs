@@ -18,7 +18,7 @@ Every Integrator account is
 ## Mapping
 The mapping resource is used to describe the data transformation that should take place between a source document (perhaps from an export) and the document to be imported into a destination system.  
 
-Note that a mapping resource is an optional feature of an [Import](#Import). By default, if no explicit mapping is defined imports will simply pass along the source document to the destination system.
+Note that a mapping resource is an optional feature of an [Import](#import). By default, if no explicit mapping is defined imports will simply pass along the source document to the destination system.
 
 ### Field Mapping
 The most basic transformation possible is mapping fields from one name to another.
@@ -51,7 +51,7 @@ The mapping above would generate the document below:
   lastName: 'Hancock'
 }
 ```
-Note that if an import has a mapping defined, only the fields explicitly defined in the mapping will be included in the document passed to the destination system.
+Note that if an [Import](#import) has a mapping defined, only the fields explicitly defined in the mapping will be included in the document passed to the destination system.
 
 The simple example above can be enhanced in several ways. First, the values of the _eField_ and _gField_ respect JSON dot-notation. This allows the mapping to traverse the source document when extracting values, and likewise generate a complex document.  It is also possible to add hardcoded fields to the generated document.  Finally, simple data type conversions are available. Supported types are _string, number, boolean_. The example below demonstrates these additional features:
 
