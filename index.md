@@ -37,9 +37,9 @@ If the destination system required only the first and last names, and used the p
 ```javascript
 {
   name: 'example-mapping-1',
-  fieldMapping: [
-    {eField: 'first', gField: 'firstName'},
-    {eField: 'last', gField: 'lastName'},
+  fields: [
+    {extract: 'first', generate: 'firstName'},
+    {extract: 'last', generate: 'lastName'},
   ]
 }
 ```
@@ -53,17 +53,17 @@ The mapping above would generate the document below:
 ```
 Note that if an [Import](#import) has a mapping defined, only the fields explicitly defined in the mapping will be included in the document passed to the destination system.
 
-The simple example above can be enhanced in several ways. First, the values of the _eField_ and _gField_ respect JSON dot-notation. This allows the mapping to traverse the source document when extracting values, and likewise generate a complex document.  It is also possible to add hardcoded fields to the generated document.  Finally, simple data type conversions are available. Supported types are _string, number, boolean_. The example below demonstrates these additional features:
+The simple example above can be enhanced in several ways. First, the values of the _extract_ and _generate_ fields respect JSON dot-notation. This allows the mapping to traverse the source document when extracting values, and likewise generate a complex document.  It is also possible to add hardcoded fields to the generated document.  Finally, simple data type conversions are available. Supported types are _string, number, boolean_. The example below demonstrates these additional features:
 
 ```javascript
 var mapping = {
   name: 'example-mapping-2',
-  fieldMapping: [
-    {eField: 'first', gField: 'contact.firstName'},
-    {eField: 'last', gField: 'contact.lastName'},
-    {eField: 'age', gField: 'contact.age', dataType: 'number'},
-    {eField: 'isLocal', gField: 'isLocal', dataType: 'boolean'},
-    {gField: 'isNew', hardCodedValue: true}
+  fields: [
+    {extract: 'first', generate: 'contact.firstName'},
+    {extract: 'last', generate: 'contact.lastName'},
+    {extract: 'age', generate: 'contact.age', dataType: 'number'},
+    {extract: 'isLocal', generate: 'isLocal', dataType: 'boolean'},
+    {generate: 'isNew', hardCodedValue: true}
   ]
 }
 
@@ -82,9 +82,9 @@ Note that when type conversion is specified, the following rules apply:
 * number: null, undefined, NaN, and any non-numeric string value resolve to 0.
 * string: simply the string equivalent of the value.
 
-There is one final field mapping feature. The use of simple expressions as the eField value. Using eFiedl expression is a way to combine any number of source fields into a single field in the generated document.
+There is one final field mapping feature. The use of simple expressions as the _extract_ value. Using an expression as an 'extract' value is a way to combine any number of source fields into a single field in the generated document.
 
-The example below will demonstrate the use and syntax of an eField expression:
+The example below will demonstrate the use and syntax of an _extract_ expression:
 ```javascript
 var issue = {
   id: 10002,
@@ -95,9 +95,9 @@ var issue = {
 
 var mapping = {
   name: 'example-mapping-3',
-  fieldMapping: [
-    {eField: 'Issue-{id}: *{name}*  {message}', gField: 'message'},
-    {eField: 'first', gField: 'contact.firstName'},
+  fields: [
+    {extract: 'Issue-{id}: *{name}*  {message}', generate: 'message'},
+    {extract: 'first', generate: 'contact.firstName'},
   ]
 }
 
