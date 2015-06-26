@@ -16,10 +16,10 @@ Every Integrator account is
 #### HTTP Endpoints
 | Method        | Relative URI  | Success Code  |
 | ------------- | ------------- | -------------: |
-| POST | exports | 201 |
-| PUT | exports/{_id} | 200 |
-| GET | exports/{_id} | 200 |
-| DELETE | exports/{_id} | 204 |
+| POST | /exports | 201 |
+| PUT | /exports/{_id} | 200 |
+| GET | /exports/{_id} | 200 |
+| DELETE | /exports/{_id} | 204 |
 
 
 #### Sample Request JSON
@@ -41,8 +41,8 @@ Every Integrator account is
 #### HTTP Endpoints
 | Method        | Relative URI  | Success Code  |
 | ------------- | ------------- | -------------: |
-| PUT | exports/{_id}/distributed | 200 |
-| GET | exports/{_id}/distributed | 200 |
+| PUT | /exports/{_id}/distributed | 200 |
+| GET | /exports/{_id}/distributed | 200 |
 
 ### NetSuite Realtime Export
 #### Sample Request JSON
