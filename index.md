@@ -13,7 +13,7 @@ Every Integrator account is
 # Resources
 ## Connection
 ## Export
-#### HTTP Endpoints
+##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | ----: | :---- |
 | /exports | POST | 201 | Create new export. |
@@ -22,7 +22,7 @@ Every Integrator account is
 | /exports/{_id} | DELETE | 204 | Delete existing export. |
 
 
-#### Sample Export Request JSON
+##### Sample Export Request
 ```javascript
 {
   "name": "My Export",
@@ -36,7 +36,7 @@ Every Integrator account is
   }
 }
 ```
-#### Sample Export Response JSON
+##### Sample Export Response
 ```javascript
 {
   "_id": "507f1f77bcf86cd799439011",
@@ -53,7 +53,7 @@ Every Integrator account is
 }
 ```
 ### Distributed Exports
-#### Sample Export JSON
+##### Sample Export Request
 ```javascript
 {
   "name": "Realtime Item Export",
@@ -68,14 +68,14 @@ Every Integrator account is
   }
 }
 ```
-#### HTTP Endpoints
+##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | ----: | :---- |
 | /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
 | /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
 
-### NetSuite Realtime Export
-#### Sample Distributed Request JSON
+#### NetSuite Realtime Exports
+##### Sample Distributed Request
 ```javascript
 {
   "recordType": "salesorder",
@@ -83,7 +83,7 @@ Every Integrator account is
   "qualifier": "['total', '>=', '1000']"
 }
 ```
-#### Sample Distributed Response JSON
+##### Sample Distributed Response
 ```javascript
 {
   "recordType": "salesorder",
@@ -92,7 +92,7 @@ Every Integrator account is
 }
 ```
 ## Import
-#### HTTP Endpoints
+##### HTTP Endpoints
 | Relative URI | Method | Success Code | Summary |
 | ---- | ---- | ----: | ---- |
 | /imports | POST | 201 | Create new imports. |
@@ -101,7 +101,7 @@ Every Integrator account is
 | /imports/{_id} | DELETE | 204 | Delete existing import. |
 
 
-#### Sample Import Request JSON
+##### Sample Import Request
 ```javascript
 {
   "name": "My Import",
@@ -117,7 +117,7 @@ Every Integrator account is
   }
 }
 ```
-#### Sample Import Response JSON
+##### Sample Import Response
 ```javascript
 {
   "_id": "507f1f77bcf86cd799439032",
@@ -136,7 +136,7 @@ Every Integrator account is
 }
 ```
 ### Distributed Imports
-#### Sample Import JSON
+##### Sample Import Request
 ```javascript
 {
   "name": "My Distributed Import",
@@ -149,14 +149,14 @@ Every Integrator account is
   }
 }
 ```
-#### HTTP Endpoints
+##### HTTP Endpoints
 | Relative URI | Method | Success Code | Summary |
 | ---- | ---- | ----: | ---- |
 | /imports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing import. |
 | /imports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing import. |
 
-### NetSuite Distributed Import
-#### Sample Distributed Request JSON
+#### NetSuite Distributed Imports
+##### Sample Distributed Request
 ```javascript
 {
   "recordType": "customer",
@@ -191,7 +191,7 @@ Every Integrator account is
   }
 }
 ```
-#### Sample Response JSON
+#### Sample Response
 ```javascript
 
 ```
