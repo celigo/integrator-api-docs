@@ -16,28 +16,57 @@ Every Integrator account is
 #### HTTP Endpoints
 | Relative URI | Method | Success Code | Summary |
 | ---- | ---- | ----: | ---- |
-| /exports | POST | 201 | Create new exports. |
-| /exports/{_id} | PUT | 200 | Update existing exports. |
-| /exports/{_id} | GET | 200 | Retrieve existing exports.  |
-| /exports/{_id} | DELETE | 204 | Delete existing exports. |
+| /exports | POST | 201 | Create new export. |
+| /exports/{_id} | PUT | 200 | Update existing export. |
+| /exports/{_id} | GET | 200 | Retrieve existing export.  |
+| /exports/{_id} | DELETE | 204 | Delete existing export. |
 
 
-#### Sample Request JSON
+#### Sample Export Request JSON
 ```javascript
 {
   "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a"
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "GET"
+  },
+  "hooks": {
+    "preSavePage": "5587092fd78228000000000b"
+  }
 }
 ```
-#### Sample Response JSON
+#### Sample Export Response JSON
 ```javascript
 {
   "_id": "507f1f77bcf86cd799439011",
+  "apiIdentifier": "e53ec313",
   "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a"
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "GET"
+  },
+  "hooks": {
+    "preSavePage": "5587092fd78228000000000b"
+  }
 }
 ```
-### Distributed Exports
+### Sample Distributed Export JSON
+```javascript
+{
+  "name": "Realtime Item Export",
+  "_connectionId": "5587092ed78128000000000a",
+  "type": "distributed",
+  "distributed": {
+    "bearerToken": "********",
+  }
+  "hooks": {
+    "preDistributedSend": "5567a92fd7822800bb00000f",
+    "preSavePage": "5587092fd78228000000000a"
+  }
+}
+```
 #### HTTP Endpoints
 | Relative URI | Method | Success Code | Summary |
 | ---- | ---- | ----: | ---- |
@@ -62,10 +91,70 @@ Every Integrator account is
 }
 ```
 ## Import
-#### POST /imports
-#### GET+PUT+DELETE /imports/:_id
-#### GET+PUT /imports/:_id/distributed
-NetSuite Distributed Import Schema:
+#### HTTP Endpoints
+| Relative URI | Method | Success Code | Summary |
+| ---- | ---- | ----: | ---- |
+| /imports | POST | 201 | Create new imports. |
+| /imports/{_id} | PUT | 200 | Update existing import. |
+| /imports/{_id} | GET | 200 | Retrieve existing import.  |
+| /imports/{_id} | DELETE | 204 | Delete existing import. |
+
+
+#### Sample Request JSON
+```javascript
+{
+  "name": "My Import",
+  "_connectionId": "5587092ed78228000000000a",
+  "_mappingId": "5587092ed21228003300000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "POST"
+  },
+  "hooks": {
+    "preMapping": "5587092fd78228000000000a",
+    "postMapping": "5561092fd78228000000010b"
+  }
+}
+```
+#### Sample Response JSON
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439032",
+  "apiIdentifier": "i66ec314",
+  "name": "My Import",
+  "_connectionId": "5587092ed78228000000000a",
+  "_mappingId": "5587092ed21228003300000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "POST"
+  },
+  "hooks": {
+    "preMapping": "5587092fd78228000000000a",
+    "postMapping": "5561092fd78228000000010b"
+  }
+}
+```
+### Distributed Imports
+```javascript
+{
+  "name": "My Distributed Import",
+  "_connectionId": "5587092ed78228000000000a",
+  "distributed": "true",
+  "hooks": {
+    "preDistribute": "5587092fd78228000000e01f",
+    "preMapping": "5587092fd78228000000000a",
+    "postMapping": "5561092fd78228000000010b"
+  }
+}
+```
+#### HTTP Endpoints
+| Relative URI | Method | Success Code | Summary |
+| ---- | ---- | ----: | ---- |
+| /imports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing import. |
+| /imports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing import. |
+
+### NetSuite Distributed Import
+#### Sample Request JSON
 ```javascript
 {
   "recordType": "customer",
@@ -100,7 +189,10 @@ NetSuite Distributed Import Schema:
   }
 }
 ```
+#### Sample Response JSON
+```javascript
 
+```
 ## Mapping
 The mapping resource is used to describe the data transformation that should take place between a source document (perhaps from an export) and the document to be imported into a destination system.  
 
