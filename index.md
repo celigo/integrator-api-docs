@@ -52,7 +52,8 @@ Every Integrator account is
   }
 }
 ```
-### Sample Distributed Export JSON
+### Distributed Exports
+#### Sample Export JSON
 ```javascript
 {
   "name": "Realtime Item Export",
@@ -74,7 +75,7 @@ Every Integrator account is
 | /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
 
 ### NetSuite Realtime Export
-#### Sample Request JSON
+#### Sample Distributed Request JSON
 ```javascript
 {
   "recordType": "salesorder",
@@ -82,7 +83,7 @@ Every Integrator account is
   "qualifier": "['total', '>=', '1000']"
 }
 ```
-#### Sample Response JSON
+#### Sample Distributed Response JSON
 ```javascript
 {
   "recordType": "salesorder",
@@ -100,7 +101,7 @@ Every Integrator account is
 | /imports/{_id} | DELETE | 204 | Delete existing import. |
 
 
-#### Sample Request JSON
+#### Sample Import Request JSON
 ```javascript
 {
   "name": "My Import",
@@ -116,7 +117,7 @@ Every Integrator account is
   }
 }
 ```
-#### Sample Response JSON
+#### Sample Import Response JSON
 ```javascript
 {
   "_id": "507f1f77bcf86cd799439032",
@@ -135,6 +136,7 @@ Every Integrator account is
 }
 ```
 ### Distributed Imports
+#### Sample Import JSON
 ```javascript
 {
   "name": "My Distributed Import",
@@ -154,7 +156,7 @@ Every Integrator account is
 | /imports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing import. |
 
 ### NetSuite Distributed Import
-#### Sample Request JSON
+#### Sample Distributed Request JSON
 ```javascript
 {
   "recordType": "customer",
