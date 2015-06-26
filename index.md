@@ -93,8 +93,8 @@ Every Integrator account is
 ```
 ## Import
 ##### HTTP Endpoints
-| Relative URI | Method | Success Code | Summary |
-| ---- | ---- | ----: | ---- |
+| Relative URI | Method | Success Code | Description |
+| :---- | :---- | ----: | :---- |
 | /imports | POST | 201 | Create new imports. |
 | /imports/{_id} | PUT | 200 | Update existing import. |
 | /imports/{_id} | GET | 200 | Retrieve existing import.  |
@@ -150,8 +150,8 @@ Every Integrator account is
 }
 ```
 ##### HTTP Endpoints
-| Relative URI | Method | Success Code | Summary |
-| ---- | ---- | ----: | ---- |
+| Relative URI | Method | Success Code | Description |
+| :---- | :---- | ----: | :---- |
 | /imports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing import. |
 | /imports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing import. |
 
