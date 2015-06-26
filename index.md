@@ -13,7 +13,56 @@ Every Integrator account is
 # Resources
 ## Connection
 ## Export
+### POST /v1/exports
+### GET+PUT+DELETE /v1/exports/:_id
+### GET+PUT /v1/exports/:_id/distributed
+NetSuite Distributed Export Schema:
+```javascript
+{
+  "recordType": "salesorder",
+  "executionContext": ["userinterface", "webservices", "webstore"],
+  "qualifier": "['total', '>=', '1000']"
+}
+```
 ## Import
+### POST /v1/imports
+### GET+PUT+DELETE /v1/imports/:_id
+### GET+PUT /v1/imports/:_id/distributed
+NetSuite Distributed Import Schema:
+```javascript
+{
+  "recordType": "customer",
+  "mapping": {
+    "fields": [
+      {"extract": "campaign", "generate": "leadSource", "lookup": "lookup1" },
+      {"extract": "company", "generate": "customer", "lookup": "lookup2" },
+      {"generate": "transaction", "lookup": "lookup3" }
+    ],
+    "lookups": {
+      "lookup1": {
+        "map": {
+          "key1": "value1",
+          "key2": "value2"
+        },
+        "allowFailures": ""
+      },
+      "lookup2": {
+        "recordType": "",
+        "searchField": "",
+        "resultField": "",
+        "allowFailures": "",
+        "pickFirstMatch": ""
+      },
+      "lookup3": {
+        "recordType": "",
+        "expression": "[['tranid', 'is', '{OrderNumber}']]",
+        "allowFailures": "",
+        "pickFirstMatch": ""
+      }
+    }
+  }
+}
+```
 
 ## Mapping
 The mapping resource is used to describe the data transformation that should take place between a source document (perhaps from an export) and the document to be imported into a destination system.  
