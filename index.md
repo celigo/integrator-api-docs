@@ -13,10 +13,47 @@ Every Integrator account is
 # Resources
 ## Connection
 ## Export
-### POST /v1/exports
-### GET+PUT+DELETE /v1/exports/:_id
-### GET+PUT /v1/exports/:_id/distributed
-NetSuite Distributed Export Schema:
+#### HTTP Endpoints
+| Method        | Relative URI  | Success Code  |
+| ------------- | ------------- | -------------: |
+| POST | exports | 201 |
+| PUT | exports/{_id} | 200 |
+| GET | exports/{_id} | 200 |
+| DELETE | exports/{_id} | 204 |
+
+
+#### Sample Request JSON
+```javascript
+{
+  "name": "My Export",
+  "_connectionId": "5587092ed78228000000000a"
+}
+```
+#### Sample Response JSON
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "name": "My Export",
+  "_connectionId": "5587092ed78228000000000a"
+}
+```
+### Distributed Exports
+#### HTTP Endpoints
+| Method        | Relative URI  | Success Code  |
+| ------------- | ------------- | -------------: |
+| PUT | exports/{_id}/distributed | 200 |
+| GET | exports/{_id}/distributed | 200 |
+
+### NetSuite Realtime Export
+#### Sample Request JSON
+```javascript
+{
+  "recordType": "salesorder",
+  "executionContext": ["userinterface", "webservices", "webstore"],
+  "qualifier": "['total', '>=', '1000']"
+}
+```
+#### Sample Response JSON
 ```javascript
 {
   "recordType": "salesorder",
@@ -25,11 +62,11 @@ NetSuite Distributed Export Schema:
 }
 ```
 ## Import
-#### POST /v1/imports
-#### GET+PUT+DELETE /v1/imports/:_id
-#### GET+PUT /v1/imports/:_id/distributed
+#### POST /imports
+#### GET+PUT+DELETE /imports/:_id
+#### GET+PUT /imports/:_id/distributed
 NetSuite Distributed Import Schema:
-```json
+```javascript
 {
   "recordType": "customer",
   "mapping": {
