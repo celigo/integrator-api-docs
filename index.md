@@ -15,7 +15,7 @@ Every Integrator account is
 ## Export
 #### HTTP Endpoints
 | Relative URI | Method | Success Code | Summary |
-| ---- | ---- | ----: | ---- |
+| :---- | :---- | ----: | :---- |
 | /exports | POST | 201 | Create new export. |
 | /exports/{_id} | PUT | 200 | Update existing export. |
 | /exports/{_id} | GET | 200 | Retrieve existing export.  |
@@ -69,7 +69,7 @@ Every Integrator account is
 ```
 #### HTTP Endpoints
 | Relative URI | Method | Success Code | Summary |
-| ---- | ---- | ----: | ---- |
+| :---- | :---- | ----: | :---- |
 | /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
 | /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
 
