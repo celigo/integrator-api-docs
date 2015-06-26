@@ -14,12 +14,12 @@ Every Integrator account is
 ## Connection
 ## Export
 #### HTTP Endpoints
-| Method        | Relative URI  | Success Code  |
-| ------------- | ------------- | -------------: |
-| POST | /exports | 201 |
-| PUT | /exports/{_id} | 200 |
-| GET | /exports/{_id} | 200 |
-| DELETE | /exports/{_id} | 204 |
+| Relative URI | Method | Success Code | Summary |
+| ---- | ---- | ----: | ---- |
+| /exports | POST | 201 | Create new exports. |
+| /exports/{_id} | PUT | 200 | Update existing exports. |
+| /exports/{_id} | GET | 200 | Retrieve existing exports.  |
+| /exports/{_id} | DELETE | 204 | Delete existing exports. |
 
 
 #### Sample Request JSON
@@ -39,10 +39,10 @@ Every Integrator account is
 ```
 ### Distributed Exports
 #### HTTP Endpoints
-| Method        | Relative URI  | Success Code  |
-| ------------- | ------------- | -------------: |
-| PUT | /exports/{_id}/distributed | 200 |
-| GET | /exports/{_id}/distributed | 200 |
+| Relative URI | Method | Success Code | Summary |
+| ---- | ---- | ----: | ---- |
+| /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
+| /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
 
 ### NetSuite Realtime Export
 #### Sample Request JSON
