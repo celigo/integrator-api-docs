@@ -25,11 +25,11 @@ NetSuite Distributed Export Schema:
 }
 ```
 ## Import
-### POST /v1/imports
-### GET+PUT+DELETE /v1/imports/:_id
-### GET+PUT /v1/imports/:_id/distributed
+#### POST /v1/imports
+#### GET+PUT+DELETE /v1/imports/:_id
+#### GET+PUT /v1/imports/:_id/distributed
 NetSuite Distributed Import Schema:
-```javascript
+```json
 {
   "recordType": "customer",
   "mapping": {
