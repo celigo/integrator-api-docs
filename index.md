@@ -143,7 +143,6 @@ Every Integrator account is
   "_connectionId": "5587092ed78228000000000a",
   "distributed": "true",
   "hooks": {
-    "preDistribute": "5587092fd78228000000e01f",
     "preMapping": "5587092fd78228000000000a",
     "postMapping": "5561092fd78228000000010b"
   }
