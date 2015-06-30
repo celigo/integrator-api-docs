@@ -74,6 +74,7 @@ Every Integrator account is
 ##### Sample Distributed Request
 ```javascript
 {
+  "type": "realtime",
   "recordType": "salesorder",
   "executionContext": ["userinterface", "webservices", "webstore"],
   "qualifier": "['total', '>=', '1000']",
@@ -87,6 +88,23 @@ Every Integrator account is
 ```
 ##### Sample Distributed Response
 ```javascript
+```
+#### NetSuite Batch Exports
+##### Sample Distributed Request
+```javascript
+{
+  "type": "batch",
+  "recordType": "salesorder",
+  "searchId": "internal id or script id, should we rename this field?",
+  "dateField": "lastmodifieddate",
+  "otherfields": "???", // export once, timezone, etc...  need to ask Ankush too how this is working currently.
+  "hooks": {
+    "preSendData": {
+      "fileInternalId": "1234",
+      "functionName": "myPreSendLogic"
+    }
+  }
+}
 ```
 ## Import
 ##### HTTP Endpoints
