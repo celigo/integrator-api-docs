@@ -62,10 +62,6 @@ Every Integrator account is
   "distributed": {
     "bearerToken": "********",
   }
-  "hooks": {
-    "preDistributedSend": "5567a92fd7822800bb00000f",
-    "preSavePage": "5587092fd78228000000000a"
-  }
 }
 ```
 ##### HTTP Endpoints
@@ -80,16 +76,17 @@ Every Integrator account is
 {
   "recordType": "salesorder",
   "executionContext": ["userinterface", "webservices", "webstore"],
-  "qualifier": "['total', '>=', '1000']"
+  "qualifier": "['total', '>=', '1000']",
+  "hooks": {
+    "preSendData": {
+      "fileInternalId": "1234",
+      "functionName": "myPreSendLogic"
+    }
+  }
 }
 ```
 ##### Sample Distributed Response
 ```javascript
-{
-  "recordType": "salesorder",
-  "executionContext": ["userinterface", "webservices", "webstore"],
-  "qualifier": "['total', '>=', '1000']"
-}
 ```
 ## Import
 ##### HTTP Endpoints
@@ -141,11 +138,7 @@ Every Integrator account is
 {
   "name": "My Distributed Import",
   "_connectionId": "5587092ed78228000000000a",
-  "distributed": "true",
-  "hooks": {
-    "preMapping": "5587092fd78228000000000a",
-    "postMapping": "5561092fd78228000000010b"
-  }
+  "distributed": "true"
 }
 ```
 ##### HTTP Endpoints
@@ -162,8 +155,7 @@ Every Integrator account is
   "mapping": {
     "fields": [
       {"extract": "campaign", "generate": "leadSource", "lookup": "lookup1" },
-      {"extract": "company", "generate": "customer", "lookup": "lookup2" },
-      {"generate": "transaction", "lookup": "lookup3" }
+      {"generate": "transaction", "lookup": "lookup2" }
     ],
     "lookups": {
       "lookup1": {
@@ -171,21 +163,23 @@ Every Integrator account is
           "key1": "value1",
           "key2": "value2"
         },
-        "allowFailures": ""
+        "allowFailures": "false"
       },
       "lookup2": {
-        "recordType": "",
-        "searchField": "",
-        "resultField": "",
-        "allowFailures": "",
-        "pickFirstMatch": ""
-      },
-      "lookup3": {
-        "recordType": "",
+        "recordType": "salesorder",
         "expression": "[['tranid', 'is', '{OrderNumber}']]",
-        "allowFailures": "",
-        "pickFirstMatch": ""
+        "allowFailures": "true"
       }
+    }
+  },
+  "hooks": {
+    "preMapping": {
+      "fileInternalId": "1234",
+      "functionName": "myPreMappingLogic"
+    },
+    "postMapping": {
+      "fileInternalId": "1234",
+      "functionName": "myPostMappingLogic"
     }
   }
 }
