@@ -97,7 +97,7 @@ Every Integrator account is
   "recordType": "salesorder",
   "searchId": "internal id or script id, should we rename this field?",
   "dateField": "lastmodifieddate",
-  "otherfields": "???", // export once, timezone, etc...  need to ask Ankush too how this is working currently.
+  "otherfields": "???", // export once, etc...  need to ask Ankush too how this is working currently.
   "hooks": {
     "preSendData": {
       "fileInternalId": "1234",
@@ -106,6 +106,7 @@ Every Integrator account is
   }
 }
 ```
+# TODO: mapping schemas are not compaitble.  solve this!
 ## Import
 ##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
@@ -170,10 +171,11 @@ Every Integrator account is
 ```javascript
 {
   "recordType": "customer",
-  "mapping": {
+  "mappings": {
     "fields": [
       {"extract": "campaign", "generate": "leadSource", "lookup": "lookup1" },
-      {"generate": "transaction", "lookup": "lookup2" }
+      {"extract": "email", "generate": "primaryContact", "lookup": "lookup2" },
+      {"generate": "transaction", "lookup": "lookup3" },
     ],
     "lookups": {
       "lookup1": {
@@ -184,6 +186,13 @@ Every Integrator account is
         "allowFailures": "false"
       },
       "lookup2": {
+       "recordType": "contact",
+       "searchField": "email",
+       "resultField": "internalid",
+       "allowFailures": "true",
+       "includeInactive": "true"
+      },
+      "lookup3": {
         "recordType": "salesorder",
         "expression": "[['tranid', 'is', '{OrderNumber}']]",
         "allowFailures": "true"
