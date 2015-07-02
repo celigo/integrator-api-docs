@@ -31,6 +31,7 @@ Every Integrator account is
     "relativeURI": "/customers",
     "method": "GET"
   },
+  "pageSize": 20,
   "hooks": {
     "preSavePage": "5587092fd78228000000000b"
   }
@@ -47,13 +48,21 @@ Every Integrator account is
     "relativeURI": "/customers",
     "method": "GET"
   },
+  "pageSize": 20,
   "hooks": {
     "preSavePage": "5587092fd78228000000000b"
   }
 }
 ```
-### Distributed Exports
-##### Sample Export Request
+### Distributed Export
+##### HTTP Endpoints
+| Relative URI | Method | Success Code | Description |
+| :---- | :---- | ----: | :---- |
+| /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
+| /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
+
+#### NetSuite Realtime Export
+##### Sample Export JSON
 ```javascript
 {
   "name": "Realtime Item Export",
@@ -64,13 +73,6 @@ Every Integrator account is
   }
 }
 ```
-##### HTTP Endpoints
-| Relative URI | Method | Success Code | Description |
-| :---- | :---- | ----: | :---- |
-| /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
-| /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
-
-#### NetSuite Realtime Exports
 ##### Sample Distributed Request
 ```javascript
 {
@@ -89,15 +91,28 @@ Every Integrator account is
 ##### Sample Distributed Response
 ```javascript
 ```
-#### NetSuite Batch Exports
+#### NetSuite Batch Export
+##### Sample Export JSON
+```javascript
+{
+  "name": "Delta Customer Export",
+  "_connectionId": "5587092ed78128000000000a",
+  "type": "delta",
+  "delta": {
+    "dateField": "lastmodifieddate"
+  },
+  "netsuite": {
+    "type": "restlet"
+  },
+  "pageSize": 50
+}
+```
 ##### Sample Distributed Request
 ```javascript
 {
   "type": "batch",
-  "recordType": "salesorder",
-  "searchId": "internal id or script id, should we rename this field?",
-  "dateField": "lastmodifieddate",
-  "otherfields": "???", // export once, etc...  need to ask Ankush too how this is working currently.
+  "recordType": "customer",
+  "searchId": "69422",
   "hooks": {
     "preSendData": {
       "fileInternalId": "1234",
@@ -106,7 +121,6 @@ Every Integrator account is
   }
 }
 ```
-# TODO: mapping schemas are not compaitble.  solve this!
 ## Import
 ##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
@@ -216,30 +230,190 @@ Every Integrator account is
 
 ```
 ## Mapping
-The mapping resource is used to describe the data transformation that should take place between a source document (perhaps from an export) and the document to be imported into a destination system.  
+Mappings are tightly coupled to [Imports](#import).  For non-distributed imports mappings are their own resource.  For distributed imports mappings must be submitted via the [Distributed Imports](#Distributed Imports) endpoint and are tightly coupled to an import resource.
 
-Note that a mapping resource is an optional feature of an [Import](#import). By default, if no explicit mapping is defined imports will simply pass along the source document to the destination system.
+Note that a mapping is an optional feature of an [Import](#import), and if no explicit mapping is defined data will be passed along to the import application in Integrator's canonical JSON format.  
+
+### Mapping Schema
+
+Here are the important fields that you should understand before constructing your first mapping (for an import).
+| Field | Description |
+| :----: | :---- |
+| **extract** | Used to specify the JSON path of the export data that you want to map. Regardless of the mediaType used by the application or system you are exporting data from the Integrator will always transform that data into a canonical JSON format. |  
+| **generate** | Used to specific the path (not always JSON in this case) that you want to construct for your import. |
+| **dataType** | Used to tell the mapper what data type you would like to generate for your import.  Possible values include string, number, and boolean. |
+| **hardCodedValue** | Used to specify that a specific value should always be used for the generate data. |
+| **lookup** | Used to reference a lookup object in the lookups section of our your mapping. The different types of lookups and how to configure them will be defined in depth below. |
+| **fields** | An array of field mappings. |
+| **lists** | An array of list mappings. |
+
+Alright, now that we have some basic definitions let's dive right into some examples so we can see how these things piece together.  
+#### NetSuite Distributed Adaptor Import Example
+```javascript
+{
+  "name": "NetSuite Sales Order Import",
+  "netsuite": {
+    "recordType": "salesorder"
+  },
+  "fields": [
+    {"extract": "city", "generate": "billcity"},
+    {"extract": "zip", "generate": "billzip"},
+    {"extract": "{first_name} {last_name}", "generate": "billaddressee"},
+    {"extract": "charge_approved", "generate": "ccapproved"},
+    {"extract": "memo", "generate": "message", "dataType": "string"},
+    {"generate": "ismultishipto", "hardCodedValue": false},
+    {"generate": "custbody_source", "hardCodedValue": "webstore"},
+    {"extract": "email", "generate": "customer", "lookup": "customerLookup"},
+    {"extract": "country", "generate": "currency", "lookup": "currencyMap"},
+    {"extract": "last_order", "generate": "custbody_previous", "lookup": "orderLookup"}
+  ],
+  "lists": [
+    {
+      "generate": "items",
+      "fields": [
+        {"extract": "order_lines[*].sku", "generate": "item", "lookup": "itemLookup"},
+        {"extract": "order_lines[*].price", "generate": "rate"},
+        {"extract": "order_lines[*].quantity", "generate": "qty"},
+        {"extract": "shipments[*].ship_via", "generate": "shipmethod"},
+        {"extract": "shipments[*].weight", "generate": "custcolumn_weight"},
+        {"extract": "tax_percent", "generate": "taxrate1"},
+        {"extract": "is_taxable", "generate": "istaxable"}
+      ]
+    }
+  ],
+  "lookups": [
+    "customerLookup": {
+     "recordType": "customer",
+     "searchField": "email",
+     "resultField": "internalid",
+     "allowFailures": "false",
+     "includeInactive": "false"
+    },
+    "currencyMap": {
+      "map": {
+        "USA": "USD",
+        "JAPAN": "JPY",
+        "UK": "GDP"
+      },
+      "allowFailures": "false"
+    },
+    "itemLookup": {
+     "recordType": "item",
+     "searchField": "itemid",
+     "resultField": "internalid",
+     "allowFailures": "false",
+     "includeInactive": "false"
+    },
+    "orderLookup": {
+      "recordType": "salesorder",
+      "expression": "[['tranid', 'is', '{OrderNumber}']]",
+      "allowFailures": "true"
+    }
+  ]
+}
+```
+#### REST API Import Example
+TODO: include dataType example
+```javascript
+{
+  "name": "REST API Adaptor Customer Import",
+  "fields": [
+    {"extract": "city", "generate": "billcity"},
+    {"extract": "zip", "generate": "billzip"},
+    {"extract": "{first_name} {last_name}", "generate": "billaddressee"},
+    {"extract": "charge_approved", "generate": "ccapproved"},
+    {"extract": "memo", "generate": "message", "dataType": "string"},
+    {"generate": "ismultishipto", "hardCodedValue": false},
+    {"generate": "custbody_source", "hardCodedValue": "webstore"},
+    {"extract": "email", "generate": "customer", "lookup": "customerLookup"},
+    {"extract": "country", "generate": "currency", "lookup": "currencyMap"},
+    {"extract": "last_order", "generate": "custbody_previous", "lookup": "orderLookup"}
+  ],
+  "lists": [
+    {
+      "generate": "items",
+      "fields": [
+        {"extract": "order_lines[*].sku", "generate": "item", "lookup": "itemLookup"},
+        {"extract": "order_lines[*].price", "generate": "rate"},
+        {"extract": "order_lines[*].quantity", "generate": "qty"},
+        {"extract": "shipments[*].ship_via", "generate": "shipmethod"},
+        {"extract": "shipments[*].weight", "generate": "custcolumn_weight"},
+        {"extract": "tax_percent", "generate": "taxrate1"},
+        {"extract": "is_taxable", "generate": "istaxable"}
+      ]
+    }
+  ],
+  "lookups": [
+    "customerLookup": {
+     "recordType": "customer",
+     "searchField": "email",
+     "resultField": "internalid",
+     "allowFailures": "false",
+     "includeInactive": "false"
+    },
+    "currencyMap": {
+      "map": {
+        "USA": "USD",
+        "JAPAN": "JPY",
+        "UK": "GDP"
+      },
+      "allowFailures": "false"
+    },
+    "itemLookup": {
+     "recordType": "item",
+     "searchField": "itemid",
+     "resultField": "internalid",
+     "allowFailures": "false",
+     "includeInactive": "false"
+    },
+    "orderLookup": {
+      "recordType": "salesorder",
+      "expression": "[['tranid', 'is', '{OrderNumber}']]",
+      "allowFailures": "true"
+    }
+  ]
+}
+```
+
+Regardless of where a mapping lives the same schema is used to define how data should be transformed.  Please note that some mapping capabilities (and schema elements) are only relevant for specific applications.  
+
+| Property | Type | Possible Values | Description |
+| :----: | :----: | :----: | :---- |
+| **name** | String | NetSuite Customer Import, Shopify Order Update, etc... | Give your mapping an intuitive name to help describe and/or distinguish it.  This value will show in the UI, and if you are building a Connector this value can be used as an external key field to facilitate finding and updating your mapping later. |
+| **fields** | Array |  |  |
+| **lists** | Array |  |  |
+| **lookups** | Array |  |  |
 
 ### Field Mapping
 The most basic transformation possible is mapping fields from one name to another.
 
+### Field Mapping Schema
+| Property | Type | Possible Values | Description |
+| :----: | :----: | :----: | :---- |
+| **extract** | String |  |  |
+| **generate** | String |  |  |
+| **lookup** | Ref |  |  |
+| **dataType** | Enum |  |  |
+| **hardCodedValue** | Mixed |  |  |
+
+#### Field Mapping Examples
 Consider this sample source document:
 ```javascript
 var contact = {
-  first: 'John',
-  last: 'Hancock',
-  age: '43',
-  isLocal: 'true'
+  first: "John",
+  last: "Hancock",
+  age: "43",
+  isLocal: "true"
 }
 ```
 If the destination system required only the first and last names, and used the properties firstName and lastName, the mapping below would accomplish this transformation:
 
 ```javascript
 {
-  name: 'example-mapping-1',
+  name: "example-mapping-1",
   fields: [
-    {extract: 'first', generate: 'firstName'},
-    {extract: 'last', generate: 'lastName'},
+    {extract: "first", generate: "firstName"},
+    {extract: "last", generate: "lastName"},
   ]
 }
 ```
@@ -247,8 +421,8 @@ The mapping above would generate the document below:
 
 ```javascript
 {
-  firstName: 'John',
-  lastName: 'Hancock'
+  firstName: "John",
+  lastName: "Hancock"
 }
 ```
 Note that if an [Import](#import) has a mapping defined, only the fields explicitly defined in the mapping will be included in the document passed to the destination system.
@@ -257,13 +431,13 @@ The simple example above can be enhanced in several ways. First, the values of t
 
 ```javascript
 var mapping = {
-  name: 'example-mapping-2',
+  name: "example-mapping-2",
   fields: [
-    {extract: 'first', generate: 'contact.firstName'},
-    {extract: 'last', generate: 'contact.lastName'},
-    {extract: 'age', generate: 'contact.age', dataType: 'number'},
-    {extract: 'isLocal', generate: 'isLocal', dataType: 'boolean'},
-    {generate: 'isNew', hardCodedValue: true}
+    {extract: "first", generate: "contact.firstName"},
+    {extract: "last", generate: "contact.lastName"},
+    {extract: "age", generate: "contact.age", dataType: "number"},
+    {extract: "isLocal", generate: "isLocal", dataType: "boolean"},
+    {generate: "isNew", hardCodedValue: true}
   ]
 }
 
@@ -271,40 +445,76 @@ var generatedDocument = {
   isNew: true,
   isLocal: true,
   contact: {
-    firstName: 'John',
-    lastName: 'Hancock',
+    firstName: "John",
+    lastName: "Hancock",
     age: 43
   }
 }
 ```
 Note that when type conversion is specified, the following rules apply:
-* boolean: null, undefined, false, NaN, 'false', 'off', and 'no' resolve to false. All other values resolve to true.
+* boolean: null, undefined, false, NaN, "false", "off", and "no" resolve to false. All other values resolve to true.
 * number: null, undefined, NaN, and any non-numeric string value resolve to 0.
 * string: simply the string equivalent of the value.
 
-There is one final field mapping feature. The use of simple expressions as the _extract_ value. Using an expression as an 'extract' value is a way to combine any number of source fields into a single field in the generated document.
+There is one final field mapping feature. The use of simple expressions as the _extract_ value. Using an expression as an "extract" value is a way to combine any number of source fields into a single field in the generated document.
 
 The example below will demonstrate the use and syntax of an _extract_ expression:
 ```javascript
 var issue = {
   id: 10002,
-  name: 'unable to login',
-  message: 'User forgot his password. Their password has been reset.',
+  name: "unable to login",
+  message: "User forgot his password. Their password has been reset.",
   userId: 12345
 }
 
 var mapping = {
-  name: 'example-mapping-3',
+  name: "example-mapping-3",
   fields: [
-    {extract: 'Issue-{id}: *{name}*  {message}', generate: 'message'},
-    {extract: 'first', generate: 'contact.firstName'},
+    {extract: "Issue-{id}: *{name}*  {message}", generate: "message"},
+    {extract: "first", generate: "contact.firstName"},
   ]
 }
 
 var generatedDocument = {
-  message: 'Issue-10002: *unable to login*  User forgot his password. Their password has been reset.'
+  message: "Issue-10002: *unable to login*  User forgot his password. Their password has been reset."
 }
 ```
+
+### List Mapping Schema
+| Property | Type | Possible Values | Description |
+| :----: | :----: | :----: | :---- |
+| **generate** | JSON Path |  |  |
+| **fields** | Array |  |  |
+
+### Lookup Schemas
+#### Static Lookup Schemas
+
+| Property | Type | Possible Values | Description |
+| :----: | :----: | :----: | :---- |
+| **map** | String |  |  |
+
+
+"lookup1": {
+  "map": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "allowFailures": "false"
+},
+"lookup2": {
+ "recordType": "contact",
+ "searchField": "email",
+ "resultField": "internalid",
+ "allowFailures": "true",
+ "includeInactive": "true"
+},
+"lookup3": {
+  "recordType": "salesorder",
+  "expression": "[['tranid', 'is', '{OrderNumber}']]",
+  "allowFailures": "true"
+}
+
+
 ## Flow
 ## Integration
 ## Connector
