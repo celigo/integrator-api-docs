@@ -234,7 +234,7 @@ Alright, let's dive right into some examples so we can see how these things all 
 
 #### NetSuite Distributed Adaptor Import Example
 
-If you are using the Integrator to integrate NetSuite in any way, we highly recommend that you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super rich import engine that can be used to map and load NetSuite data in very creative (and efficient) ways.  Here is what a mapping for the NetSuite DA looks like.  Please keep in mind that this example was created for documentation purposes to illustrate different mapping capabilities, not to represent a working order import into NetSuite.
+If you are using the Integrator to integrate NetSuite in any way, we highly recommend that you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super rich import engine that can be used to map and load NetSuite data in very creative (and efficient) ways.  Here is what a mapping for the NetSuite DA looks like.  Please keep in mind that this sample was created for documentation purposes only, to illustrate different mapping capabilities, not to represent a working order import into NetSuite.
 
 ```javascript
 {
