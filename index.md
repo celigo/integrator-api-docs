@@ -208,13 +208,17 @@ Every Integrator account is
 ```
 ## Mapping
 
-Mappings are tightly coupled to [Imports](#import).  For non-distributed imports mappings are their own resource.  For distributed imports mappings must be submitted via the [Distributed Imports](#Distributed Imports) endpoint and are tightly coupled to an import resource.
+Mapping data from one application to another is never as easy as it sounds.  For example, often the media types will not match and you need to transform one data format into another (e.g. CSV to JSON).  Then sometimes media types will match but field ids will not (e.g. first_name to firstName).  Even then, very rarely,  both media types and field ids will match but semantics will still vary (e.g. 'name' in one app might be different than 'name' in another).  
 
-Note that a mapping is an optional feature of an [Import](#import), and if no explicit mapping is defined data will be passed along to the import application in Integrator's canonical JSON format.  
+Very important #1, every Export that you define will always generate JSON data when you invoke it.  Regardless of what media type an application uses natively to store and transmit data, when you use the Integrator to export data you will always get JSON.  JSON is the canonical format.
+
+Very important #2, mapping happens at time of import, and your mapping objects will always be tightly coupled to one or more Import objects.  One of the fundamental design principles of the Integrator is to get export data into a canonical format, and then move the export data as close as possible to the import application (ideally the canonical export data is transferred raw into the import application), and then invoke the mapping and semantical transformation logic.
+
+Note that if a mapping is not defined in your Import the export data will simply be passed along as-is (in JSON format).
 
 ### Mapping Schema
 
-Here are the important fields that you should understand before constructing your first mapping (for an import).
+Before we look at any sample mappings here are the important properties that you should understand before building anything.  
 
 | Field | Description |
 | :---- | :---- |
@@ -226,8 +230,12 @@ Here are the important fields that you should understand before constructing you
 | **fields** | An array of field mappings. |
 | **lists** | An array of list mappings. |
 
-Alright, now that we have some basic definitions let's dive right into some examples so we can see how these things piece together.  
+Alright, let's dive right into some examples so we can see how these things all piece together.  
+
 #### NetSuite Distributed Adaptor Import Example
+
+If you are using the Integrator to integrate NetSuite in any way, we highly recommend that you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super rich import engine that can be used to map and load NetSuite data in very creative (and efficient) ways.  Here is what a mapping for the NetSuite DA looks like, though please keep in mind that this example was constructed to illustrate mapping capabilities -- not to represent a working order import into NetSuite.
+
 ```javascript
 {
   "name": "Webstore to NetSuite Sales Order",
@@ -286,6 +294,8 @@ Alright, now that we have some basic definitions let's dive right into some exam
   ]
 }
 ```
+Please see [NetSuite Distributed Imports](#NetSuite Distributed Imports) for instructions on how to include a mapping object in a distributed import.
+
 #### REST API Import Example
 TODO: include dataType example
 ```javascript
@@ -348,27 +358,6 @@ TODO: include dataType example
   ]
 }
 ```
-
-Regardless of where a mapping lives the same schema is used to define how data should be transformed.  Please note that some mapping capabilities (and schema elements) are only relevant for specific applications.  
-
-| Property | Type | Possible Values | Description |
-| :----: | :----: | :----: | :---- |
-| **name** | String | NetSuite Customer Import, Shopify Order Update, etc... | Give your mapping an intuitive name to help describe and/or distinguish it.  This value will show in the UI, and if you are building a Connector this value can be used as an external key field to facilitate finding and updating your mapping later. |
-| **fields** | Array |  |  |
-| **lists** | Array |  |  |
-| **lookups** | Array |  |  |
-
-### Field Mapping
-The most basic transformation possible is mapping fields from one name to another.
-
-### Field Mapping Schema
-| Property | Type | Possible Values | Description |
-| :----: | :----: | :----: | :---- |
-| **extract** | String |  |  |
-| **generate** | String |  |  |
-| **lookup** | Ref |  |  |
-| **dataType** | Enum |  |  |
-| **hardCodedValue** | Mixed |  |  |
 
 #### Field Mapping Examples
 Consider this sample source document:
