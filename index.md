@@ -238,7 +238,6 @@ If you are using the Integrator to integrate NetSuite in any way, we highly reco
 
 ```javascript
 {
-  "name": "Webstore to NetSuite Sales Order",
   "fields": [
     {"extract": "city", "generate": "billcity"},
     {"extract": "zip", "generate": "billzip"},
@@ -297,7 +296,7 @@ If you are using the Integrator to integrate NetSuite in any way, we highly reco
 Please see [NetSuite Distributed Imports](#NetSuite Distributed Imports) for instructions on how to include a mapping object in a distributed import.
 
 #### REST API Import Example
-TODO: include dataType example
+TODO: everythign below still WIP
 ```javascript
 {
   "name": "REST API Adaptor Customer Import",
