@@ -185,33 +185,10 @@ Every Integrator account is
 ```javascript
 {
   "recordType": "customer",
-  "mappings": {
-    "fields": [
-      {"extract": "campaign", "generate": "leadSource", "lookup": "lookup1" },
-      {"extract": "email", "generate": "primaryContact", "lookup": "lookup2" },
-      {"generate": "transaction", "lookup": "lookup3" },
-    ],
-    "lookups": {
-      "lookup1": {
-        "map": {
-          "key1": "value1",
-          "key2": "value2"
-        },
-        "allowFailures": "false"
-      },
-      "lookup2": {
-       "recordType": "contact",
-       "searchField": "email",
-       "resultField": "internalid",
-       "allowFailures": "true",
-       "includeInactive": "true"
-      },
-      "lookup3": {
-        "recordType": "salesorder",
-        "expression": "[['tranid', 'is', '{OrderNumber}']]",
-        "allowFailures": "true"
-      }
-    }
+  "mapping": {
+    "fields": [],
+    "lists": [],
+    "lookups": []
   },
   "hooks": {
     "preMapping": {
@@ -230,6 +207,7 @@ Every Integrator account is
 
 ```
 ## Mapping
+
 Mappings are tightly coupled to [Imports](#import).  For non-distributed imports mappings are their own resource.  For distributed imports mappings must be submitted via the [Distributed Imports](#Distributed Imports) endpoint and are tightly coupled to an import resource.
 
 Note that a mapping is an optional feature of an [Import](#import), and if no explicit mapping is defined data will be passed along to the import application in Integrator's canonical JSON format.  
@@ -237,8 +215,9 @@ Note that a mapping is an optional feature of an [Import](#import), and if no ex
 ### Mapping Schema
 
 Here are the important fields that you should understand before constructing your first mapping (for an import).
+
 | Field | Description |
-| :----: | :---- |
+| :---- | :---- |
 | **extract** | Used to specify the JSON path of the export data that you want to map. Regardless of the mediaType used by the application or system you are exporting data from the Integrator will always transform that data into a canonical JSON format. |  
 | **generate** | Used to specific the path (not always JSON in this case) that you want to construct for your import. |
 | **dataType** | Used to tell the mapper what data type you would like to generate for your import.  Possible values include string, number, and boolean. |
@@ -251,25 +230,20 @@ Alright, now that we have some basic definitions let's dive right into some exam
 #### NetSuite Distributed Adaptor Import Example
 ```javascript
 {
-  "name": "NetSuite Sales Order Import",
-  "netsuite": {
-    "recordType": "salesorder"
-  },
+  "name": "Webstore to NetSuite Sales Order",
   "fields": [
     {"extract": "city", "generate": "billcity"},
     {"extract": "zip", "generate": "billzip"},
     {"extract": "{first_name} {last_name}", "generate": "billaddressee"},
-    {"extract": "charge_approved", "generate": "ccapproved"},
-    {"extract": "memo", "generate": "message", "dataType": "string"},
     {"generate": "ismultishipto", "hardCodedValue": false},
     {"generate": "custbody_source", "hardCodedValue": "webstore"},
     {"extract": "email", "generate": "customer", "lookup": "customerLookup"},
     {"extract": "country", "generate": "currency", "lookup": "currencyMap"},
-    {"extract": "last_order", "generate": "custbody_previous", "lookup": "orderLookup"}
+    {"generate": "custbody_previous", "lookup": "orderLookup"}
   ],
   "lists": [
     {
-      "generate": "items",
+      "generate": "item",
       "fields": [
         {"extract": "order_lines[*].sku", "generate": "item", "lookup": "itemLookup"},
         {"extract": "order_lines[*].price", "generate": "rate"},
@@ -297,17 +271,17 @@ Alright, now that we have some basic definitions let's dive right into some exam
       },
       "allowFailures": "false"
     },
+    "orderLookup": {
+      "recordType": "transaction",
+      "expression": "[['tranid', 'is', '{last_order}']]",
+      "allowFailures": "true"
+    },
     "itemLookup": {
      "recordType": "item",
      "searchField": "itemid",
      "resultField": "internalid",
      "allowFailures": "false",
      "includeInactive": "false"
-    },
-    "orderLookup": {
-      "recordType": "salesorder",
-      "expression": "[['tranid', 'is', '{OrderNumber}']]",
-      "allowFailures": "true"
     }
   ]
 }
