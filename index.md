@@ -221,7 +221,7 @@ Note that if a mapping is not defined in your Import the export data will simply
 Before we look at any sample mappings here are the important properties that you should understand before building anything.  
 
 | Field | Description |
-| :----: | :---- |
+| :---- | :---- |
 | **extract** | Used to specify the JSON path of the export data that you want to map. Regardless of the mediaType used by the application or system you are exporting data from the Integrator will always transform that data into a canonical JSON format. |  
 | **generate** | Used to specific the path (not always JSON in this case) that you want to construct for your import. |
 | **dataType** | Used to tell the mapper what data type you would like to generate for your import.  Possible values include string, number, and boolean. |
