@@ -1,5 +1,5 @@
 # Introduction
-The Integrator is an API first platform.  Every new feature gets released here first, and then shortly later in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers who wish to build integration based apps.  Complementing the API, the Integrator supports a rich customization framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks (hooks give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
+The Integrator is an API first platform.  Every new feature gets released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers who wish to build integration based apps.  Complementing the API, the Integrator supports a rich customization framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks (hooks give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
 
 ## Quick Start
 ## Authentication
@@ -13,14 +13,24 @@ Every Integrator account is
 # Resources
 ## Connection
 ## Export
+### What is an Export?
+Exports are used to extract data from external applications in a standardized, canonical way.  Exports can run standalone, or in the context of a [Flow](#Flow).  
+
+Standalone Exports are useful for applications where user actions (like clicking a button) need to invoke an external application's API in real-time and return the results immediately.  Standalone exports are especially useful for applications that need to integrate with more than one external applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive.  Celigo uses standalone Exports extensively in its spreadsheet and email sync product lines.  
+
+Exports running in the context of a Flow will execute asynchronously and automatically break exported data down into one or more pages and then stream those pages to one or more [Imports](#Import).  
+
 ##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
-| :---- | :---- | ----: | :---- |
+| :---- | :---- | :----: | :---- |
 | /exports | POST | 201 | Create new export. |
 | /exports/{_id} | PUT | 200 | Update existing export. |
 | /exports/{_id} | GET | 200 | Retrieve existing export.  |
 | /exports/{_id} | DELETE | 204 | Delete existing export. |
-
+| /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
+| /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
+| /{apiIdentifier} | POST | 200 | Invoke an export. |
+| /exports/preview | POST | 200 | Invoke an export in test mode before saving it to preview the results.  |
 
 ##### Sample Export Request
 ```javascript
@@ -54,10 +64,57 @@ Every Integrator account is
   }
 }
 ```
+##### Fields
+| Field | Description |
+| :---- | :---- |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **asynchronous** | . |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **type** | . |
+| **pageSize** | . |
+| **sampleData** | . |
+| **test.limit** | . |
+| **delta.dateField** | . |
+| **delta.dateFormat** | . |
+| **once.booleanField** | . |
+| **valueDelta.exportedField** | . |
+| **valueDelta.pendingField** | . |
+| **webhook.verify** | . |
+| **webhook.token** | . |
+| **webhook.path** | . |
+| **webhook.algorithm** | . |
+| **webhook.encoding** | . |
+| **webhook.key** | . |
+| **webhook.header** | . |
+| **distributed.bearerToken** | . |
+| **hooks.preSavePage** | . |
+| **rest.relativeURI** | . |
+| **rest.method** | . |
+| **rest.headers** | . |
+| **rest.query** | . |
+| **rest.resourcePath** | . |
+| **rest.postBody** | . |
+| **rest.pagingMethod** | . |
+| **rest.nextPagePath** | . |
+| **rest.pageArgument** | . |
+| **ftp.directoryPath** | . |
+| **netsuite.type** | . |
+| **netsuite.searches** | . |
+| **netsuite.metadata** | . |
+| **netsuite.selectoption** | . |
+| **netsuite.customFieldMetadata** | . |
+| **netsuite.sortedByInternalId** | . |
+| **netsuite.groupByInternalId** | . |
+
+
 ### Distributed Export
 ##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
-| :---- | :---- | ----: | :---- |
+| :---- | :---- | :----: | :---- |
 | /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
 | /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
 
@@ -91,6 +148,16 @@ Every Integrator account is
 ##### Sample Distributed Response
 ```javascript
 ```
+##### Fields
+| Field | Description |
+| :---- | :---- |
+| **type** | . |
+| **recordType** | . |
+| **executionContext** | Read only field tracking last modified date/time. |
+| **qualifier** | . |
+| **hooks.preSendData.fileInternalId** | . |
+| **hooks.preSendData.functionName** | . |
+
 #### NetSuite Batch Export
 ##### Sample Export JSON
 ```javascript
@@ -121,10 +188,19 @@ Every Integrator account is
   }
 }
 ```
+##### Fields
+| Field | Description |
+| :---- | :---- |
+| **type** | . |
+| **recordType** | . |
+| **searchId** | . |
+| **hooks.preSendData.fileInternalId** | . |
+| **hooks.preSendData.functionName** | . |
+
 ## Import
 ##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
-| :---- | :---- | ----: | :---- |
+| :---- | :---- | :----: | :---- |
 | /imports | POST | 201 | Create new imports. |
 | /imports/{_id} | PUT | 200 | Update existing import. |
 | /imports/{_id} | GET | 200 | Retrieve existing import.  |
@@ -176,12 +252,13 @@ Every Integrator account is
 ```
 ##### HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
-| :---- | :---- | ----: | :---- |
+| :---- | :---- | :----: | :---- |
 | /imports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing import. |
 | /imports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing import. |
 
 #### NetSuite Distributed Imports
 ##### Sample Distributed Request
+Note: the mapping property below is empty to keep this sample JSON small but is described in depth here, [NetSuite Distributed Adaptor Import Example](#NetSuite Distributed Adaptor Import Example).
 ```javascript
 {
   "recordType": "customer",
@@ -222,7 +299,7 @@ Before we look at any sample mappings here are the important properties that you
 
 | Field | Description |
 | :---- | :---- |
-| **extract** | Used to specify the JSON path of the export data that you want to map. Regardless of the mediaType used by the application or system you are exporting data from the Integrator will always transform that data into a canonical JSON format. |  
+| **extract** | Used to specify the JSON path of the export data that you want to map. Export data will always be in a JSON format. |  
 | **generate** | Used to specific the path (not always JSON in this case) that you want to construct for your import. |
 | **dataType** | Used to tell the mapper what data type you would like to generate for your import.  Possible values include string, number, and boolean. |
 | **hardCodedValue** | Used to specify that a specific value should always be used for the generate data. |
