@@ -39,7 +39,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
   },
   "pageSize": 20,
   "hooks": {
-    "_preSavePage": "5587092fd78228000000000b"
+    "_preSavePageId": "5587092fd78228000000000b"
   }
 }
 ```
@@ -56,7 +56,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
   },
   "pageSize": 20,
   "hooks": {
-    "_preSavePage": "5587092fd78228000000000b"
+    "_preSavePageId": "5587092fd78228000000000b"
   }
 }
 ```
@@ -87,7 +87,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | **webhook.key** | . |
 | **webhook.header** | . |
 | **distributed.bearerToken** | . |
-| **hooks.preSavePage** | . |
+| **hooks._preSavePageId** | . |
 | **rest.relativeURI** | . |
 | **rest.method** | . |
 | **rest.headers** | . |
@@ -134,7 +134,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
   "executionContext": ["userinterface", "webservices", "webstore"],
   "qualifier": "['total', '>=', '1000']",
   "hooks": {
-    "preSendData": {
+    "preSend": {
       "fileInternalId": "1234",
       "functionName": "myPreSendLogic"
     }
@@ -151,8 +151,8 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | **recordType** | . |
 | **executionContext** | Read only field tracking last modified date/time. |
 | **qualifier** | . |
-| **hooks.preSendData.fileInternalId** | . |
-| **hooks.preSendData.functionName** | . |
+| **hooks.preSend.fileInternalId** | . |
+| **hooks.preSend.functionName** | . |
 
 #### NetSuite Batch Export
 ##### Sample Export JSON
@@ -177,7 +177,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
   "recordType": "customer",
   "searchId": "69422",
   "hooks": {
-    "preSendData": {
+    "preSend": {
       "fileInternalId": "1234",
       "functionName": "myPreSendLogic"
     }
@@ -190,8 +190,8 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | **type** | . |
 | **recordType** | . |
 | **searchId** | . |
-| **hooks.preSendData.fileInternalId** | . |
-| **hooks.preSendData.functionName** | . |
+| **hooks.preSend.fileInternalId** | . |
+| **hooks.preSend.functionName** | . |
 
 ##### Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
