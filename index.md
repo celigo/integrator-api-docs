@@ -14,52 +14,112 @@ Every Integrator account is
 ## Connection
 ## Export
 ##### What is an Export?
-Exports are used to extract data from external applications in a standardized, canonical way.  Exports can run standalone, or in the context of a [Flow](#Flow).  
+Exports are used to extract data from an application.  Exports can run standalone, or in the context of a [Flow](#Flow).  
 
-Standalone Exports are useful for applications where user actions (like clicking a button) need to invoke an external application's API in real-time and return the results immediately.  Standalone exports are especially useful for applications that need to integrate with more than one external applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive.  Celigo uses standalone Exports extensively in its spreadsheet and email sync product lines.  
+Standalone Exports are useful for integrations where user actions (like clicking a button) need to invoke an external application's API in real-time and return the results immediately.  Standalone exports are especially useful for applications that need to integrate with more than one other applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive.  Celigo uses standalone Exports extensively in its spreadsheet and email sync products.  
 
 Exports running in the context of a Flow will execute asynchronously and automatically break exported data down into one or more pages and then stream those pages to one or more [Imports](#Import).  
 
-##### HTTP Endpoints
+##### Export Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
 | /exports | POST | 201 | Create new export. |
 | /exports/{_id} | PUT | 200 | Update existing export. |
 | /exports/{_id} | GET | 200 | Retrieve existing export.  |
 | /exports/{_id} | DELETE | 204 | Delete existing export. |
+| /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
+| /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
+| /{apiIdentifier} | POST | 200 | Invoke an export. |
+| /exports/preview | POST | 200 | Invoke an export in test mode before saving it to preview the results.  |
 
-##### Sample Export Request
+The following sections are organized by application and adaptor, and ordered by popularity.
+
+### NetSuite Distributed Adaptor Exports
+If you are using the Integrator to build NetSuite based integrations, we highly recommend you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super powerful export engine that can both export NetSuite data in realtime, intercepting events in NetSuite as they happen, and also run batch based exports that utilize NetSuite's SuiteScript APIs for more advanced and efficient search and custom logic capabilities.  Two examples follow.  The first outlines the steps required to create a realtime export, and the second does the same for a batch based export.  Please note that both samples were generated to illustrate capabilities, not to provide fully functional NetSuite exports.
+
+#### NetSuite Realtime Export
+##### First, create your export resource.  POST /exports
 ```javascript
 {
-  "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a",
-  "rest": {
-    "relativeURI": "/customers",
-    "method": "GET"
-  },
-  "pageSize": 20,
-  "hooks": {
-    "_preSavePageId": "5587092fd78228000000000b"
+  "name": "Realtime Item Export",
+  "_connectionId": "5587092ed78128000000000a",
+  "type": "distributed",
+  "distributed": {
+    "bearerToken": "********",
   }
 }
 ```
-##### Sample Export Response
+You should receive a response that includes the following fields.  Note that we will use the \_id in the next step.
 ```javascript
 {
-  "_id": "507f1f77bcf86cd799439011",
-  "apiIdentifier": "e53ec313",
-  "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a",
-  "rest": {
-    "relativeURI": "/customers",
-    "method": "GET"
-  },
-  "pageSize": 20,
+  "_id": "507f1f77bcf86cd799439044",
+  "apiIdentifier": "e22ef316"
+}  
+```
+##### Second, create your distributed export resource.  PUT /exports/507f1f77bcf86cd799439044/distributed
+```javascript
+{
+  "recordType": "salesorder",
+  "executionContext": ["userinterface", "webservices", "webstore"],
+  "qualifier": "['total', '>=', '1000']",
   "hooks": {
-    "_preSavePageId": "5587092fd78228000000000b"
+    "preSend": {
+      "fileInternalId": "1234",
+      "functionName": "myPreSendLogic"
+    }
   }
 }
 ```
+
+#### Relevant Schema Info
+##### Export Resource Fields (/exports)
+| Field | Description |
+| :---- | :---- |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **type** | . |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **distributed.bearerToken** | . |
+
+##### Distributed Export Resource Fields (/exports/{_id}/distributed)
+| Field | Description |
+| :---- | :---- |
+| **recordType** | . |
+| **executionContext** | . |
+| **qualifier** | . |
+| **hooks.preSend.fileInternalId** | . |
+| **hooks.preSend.functionName** | . |
+
+#### NetSuite Batch Export (utilizing a RESTlet in the NetSuite DA)
+##### POST /exports
+```javascript
+{
+  "name": "Delta Customer Export",
+  "_connectionId": "5587092ed78128000000000a",
+  "type": "delta",
+  "delta": {
+    "dateField": "lastmodifieddate"
+  },
+  "netsuite": {
+    "type": "restlet",
+    "restlet": {
+      "recordType": "customer",
+      "searchId": "69422",
+      "hooks": {
+        "preSend": {
+          "fileInternalId": "1234",
+          "functionName": "myPreSendLogic"
+        }
+      }
+    }
+  },
+  "pageSize": 50
+}
+```
+
 ##### Fields
 | Field | Description |
 | :---- | :---- |
@@ -107,52 +167,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | **netsuite.groupByInternalId** | . |
 
 
-### Distributed Export
-##### HTTP Endpoints
-| Relative URI | Method | Success Code | Description |
-| :---- | :---- | :----: | :---- |
-| /exports/{_id}/distributed | PUT | 200 | Create or update a distributed component that is linked to an existing export. |
-| /exports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing export. |
 
-#### NetSuite Realtime Export
-##### Sample Export JSON
-```javascript
-{
-  "name": "Realtime Item Export",
-  "_connectionId": "5587092ed78128000000000a",
-  "type": "distributed",
-  "distributed": {
-    "bearerToken": "********",
-  }
-}
-```
-##### Sample Distributed Request
-```javascript
-{
-  "type": "realtime",
-  "recordType": "salesorder",
-  "executionContext": ["userinterface", "webservices", "webstore"],
-  "qualifier": "['total', '>=', '1000']",
-  "hooks": {
-    "preSend": {
-      "fileInternalId": "1234",
-      "functionName": "myPreSendLogic"
-    }
-  }
-}
-```
-##### Sample Distributed Response
-```javascript
-```
-##### Fields
-| Field | Description |
-| :---- | :---- |
-| **type** | . |
-| **recordType** | . |
-| **executionContext** | Read only field tracking last modified date/time. |
-| **qualifier** | . |
-| **hooks.preSend.fileInternalId** | . |
-| **hooks.preSend.functionName** | . |
 
 #### NetSuite Batch Export
 ##### Sample Export JSON
@@ -166,22 +181,18 @@ Exports running in the context of a Flow will execute asynchronously and automat
   },
   "netsuite": {
     "type": "restlet"
+    "restlet": {
+      "recordType": "customer",
+      "searchId": "69422",
+      "hooks": {
+        "preSend": {
+          "fileInternalId": "1234",
+          "functionName": "myPreSendLogic"
+        }
+      }
+    }
   },
   "pageSize": 50
-}
-```
-##### Sample Distributed Request
-```javascript
-{
-  "type": "batch",
-  "recordType": "customer",
-  "searchId": "69422",
-  "hooks": {
-    "preSend": {
-      "fileInternalId": "1234",
-      "functionName": "myPreSendLogic"
-    }
-  }
 }
 ```
 ##### Fields
@@ -193,14 +204,51 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.functionName** | . |
 
-##### Related HTTP Endpoints
-| Relative URI | Method | Success Code | Description |
-| :---- | :---- | :----: | :---- |
-| /{apiIdentifier} | POST | 200 | Invoke an export. |
-| /exports/preview | POST | 200 | Invoke an export in test mode before saving it to preview the results.  |
 
+##### Sample Export Request
+```javascript
+{
+  "name": "My Export",
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "GET"
+  },
+  "pageSize": 20,
+  "hooks": {
+    "_preSavePageId": "5587092fd78228000000000b"
+  }
+}
+```
+
+You should receive a response that includes the following fields.  Note that we will use the \_id in the next step.
+##### Sample Export Response
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "apiIdentifier": "e53ec313",
+  "name": "My Export",
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "GET"
+  },
+  "pageSize": 20,
+  "hooks": {
+    "_preSavePageId": "5587092fd78228000000000b"
+  }
+}
+```
 
 ## Import
+
+##### What is an Import?
+Imports are used to insert data into an application.  Like [Exports](#Export), Imports can run standalone, or in the context of a [Flow](#Flow).  
+
+Standalone Imports are useful for integrations where user actions (like clicking a button) need to invoke an application's API in real-time and return the results immediately.  Standalone imports are especially useful for applications that need to integrate with more than one other applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive.  Celigo uses standalone Imports extensively in its spreadsheet and email sync products.  
+
+Imports running in the context of a Flow will also execute synchronously but will channel results back to the flow so that stats can be reported in a job record.
+
 ##### Import Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
@@ -212,10 +260,10 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | /imports/{_id}/distributed | GET | 200 | Retrieve a distributed component that is linked to an existing import. |
 | /{apiIdentifier} | POST | 200 | Invoke an import on the req body (should be JSON array). |
 
-The following sections are organized by application, and popularity.  
+The following sections are organized by application and adaptor, and ordered by popularity.  
 
 ### NetSuite Distributed Adaptor Imports
-If you are using the Integrator to build NetSuite based integrations, we highly recommend you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super rich import engine that can be used to map and load NetSuite data in very creative (and efficient) ways.  Once installed, here are the steps to create an import using the API.  Please note that the samples below were generated to illustrate capabilities, not to provide a fully functional NetSuite import.
+If you are using the Integrator to build NetSuite based integrations, we highly recommend you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super rich import engine that can be used to map and load NetSuite data in very creative (and efficient) ways.  Here are the steps required to create an import using the API.  Please note that the samples below were generated to illustrate capabilities, not to provide a fully functional NetSuite import.
 
 ##### First, create your import resource.  POST /imports
 ```javascript
@@ -302,13 +350,13 @@ You should receive a response that includes the following fields.  Note that we 
     ]
   },
   "hooks": {
-    "preMapping": {
+    "preMap": {
       "fileInternalId": "1234",
-      "functionName": "myPreMappingLogic"
+      "functionName": "mypreMapLogic"
     },
-    "postMapping": {
+    "postMap": {
       "fileInternalId": "1234",
-      "functionName": "myPostMappingLogic"
+      "functionName": "mypostMapLogic"
     },
     "postSubmit": {
       "fileInternalId": "1234",
@@ -318,7 +366,6 @@ You should receive a response that includes the following fields.  Note that we 
 }
 ```
 #### Relevant Schema Info
-
 ##### Import Resource Fields (/imports)
 | Field | Description |
 | :---- | :---- |
@@ -346,6 +393,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **lookups.recordType** | . |
 | **lookups.searchField** | . |
 | **lookups.resultField** | . |
+| **lookups.lookupOperator** | . |
 | **lookups.expression** | . |
 | **lookups.includeInactive** | . |
 | **lookups.allowFailures** | . |
@@ -355,13 +403,12 @@ You should receive a response that includes the following fields.  Note that we 
 | **mapping.fields.lookup** | . |
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
-| **hooks.preMapping.fileInternalId** | . |
-| **hooks.preMapping.functionName** | . |
-| **hooks.postMapping.fileInternalId** | . |
-| **hooks.postMapping.functionName** | . |
+| **hooks.preMap.fileInternalId** | . |
+| **hooks.preMap.functionName** | . |
+| **hooks.postMap.fileInternalId** | . |
+| **hooks.postMap.functionName** | . |
 | **hooks.postSubmit.fileInternalId** | . |
 | **hooks.postSubmit.functionName** | . |
-
 
 ### NetSuite (Non-Distributed) Adaptor Imports
 If installing the Distributed Adaptor in your NetSuite account is not an option, you can still create NetSuite imports that use NetSuite's web services API.  The capabilities are slightly more limited and the performance can also be slower depending on the complexity of your imports, especially related to the number of dynamic internal id lookups records in NetSuite will require before import.  But, the really nice thing about using the web services API is that you can get started right away, and you do not need to involve a NetSuite admin to install anything first.  With that, here is a sample NetSuite web services based import.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional NetSuite import.
@@ -405,16 +452,10 @@ If installing the Distributed Adaptor in your NetSuite account is not an option,
         "includeInactive": "false"
       }
     ],
-    "customFieldMetadata": [
-      {
-        "field": "custbody_source",
-        "type": "_freeFormText"
-      },
-      {
-        "field": "custcolumn_weight",
-        "type": "_decimalNumber"
-      }
-    ]
+    "customFieldMetadata": {
+      "custbody_source": "_freeFormText",
+      "custcolumn_weight": "_decimalNumber"
+    }
   },
   "mapping": {
     "fields": [
@@ -442,8 +483,8 @@ If installing the Distributed Adaptor in your NetSuite account is not an option,
     ]
   },
   "hooks": {
-    "_preMappingId": "5587092fd78228000000000a",
-    "_postMappingId": "5561092fd78228000000010b",
+    "_preMapId": "5587092fd78228000000000a",
+    "_postMapId": "5561092fd78228000000010b",
     "_postSubmitId": "5521092fd78228000100011c"
   }
 }
@@ -488,8 +529,7 @@ You should receive a response that includes the following fields.
 | **netsuite.lookups.resultField** | . |
 | **netsuite.lookups.includeInactive** | . |
 | **netsuite.lookups.allowFailures** | . |
-| **netsuite.customFieldMetadata.field** | . |
-| **netsuite.customFieldMetadata.type** | . |
+| **netsuite.customFieldMetadata** | . |
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
 | **mapping.fields.hardCodedValue** | . |
@@ -498,14 +538,33 @@ You should receive a response that includes the following fields.
 | **mapping.lists.fields** | . |
 
 ### REST API Adaptor Imports
-
+Here is a sample import.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional import.
 
 ##### POST /imports
 ```javascript
 {
   "name": "REST API Sample Post",
   "_connectionId": "5587092ed78228000000000a",
-  // todo, need rest section
+  "rest": {
+    "relativeURI": "",
+    "method": [],
+    "headers": {
+
+    },
+    "responseIdPath": "",
+    "resourceId": {
+      "lookupName": ""
+    },
+    "lookups": [
+      {
+        "name": "",
+        "relativeURI": "",
+        "method": "",
+        "extract": "",
+        "allowFailures": "false"
+      }
+    ]
+  },
   "mapping": {
     "fields": [
       {"extract": "city", "generate": "billingAddress.city"},
@@ -532,8 +591,8 @@ You should receive a response that includes the following fields.
     ]
   },
   "hooks": {
-    "_preMappingId": "5587092fd78228000000000a",
-    "_postMappingId": "5561092fd78228000000010b",
+    "_preMapId": "5587092fd78228000000000a",
+    "_postMapId": "5561092fd78228000000010b",
     "_postSubmitId": "5521092fd78228000100011c"
   }
 }
@@ -544,6 +603,65 @@ You should receive a response that includes the following fields.
 {
   "_id": "507f1f77bcf86cd799439030",
   "apiIdentifier": "i66ec312"
+}
+```
+
+Here is a more complex sample import.  Please note again that this sample was generated to illustrate capabilities, not to provide a fully functional import.
+
+```javascript
+{
+  "name": "REST API Sample Post",
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "",
+    "method": [],
+    "headers": {
+
+    },
+    "responseIdPath": "",
+    "resourceId": {
+      "lookupName": ""
+    },
+    "lookups": [
+      {
+        "name": "",
+        "relativeURI": "",
+        "method": "",
+        "extract": "",
+        "allowFailures": "false"
+      }
+    ]
+  },
+  "mapping": {
+    "fields": [
+      {"extract": "city", "generate": "billingAddress.city"},
+      {"extract": "zip", "generate": "billingAddress.zip"},
+      {"extract": "{first_name} {last_name}", "generate": "billingAddress.addressee"},
+      {"generate": "isMultiShipTo", "hardCodedValue": false},
+      {"generate": "custbody_source", "hardCodedValue": "webstore"},
+      {"extract": "email", "generate": "entity", "lookupName": "customerLookup"},
+      {"extract": "country", "generate": "currency", "lookupName": "currencyMap"}
+    ],
+    "lists": [
+      {
+        "generate": "SalesOrderItem",
+        "fields": [
+          {"extract": "order_lines[*].sku", "generate": "item", "lookupName": "itemLookup"},
+          {"extract": "order_lines[*].price", "generate": "rate"},
+          {"extract": "order_lines[*].quantity", "generate": "quantity"},
+          {"extract": "shipments[*].ship_via", "generate": "shipMethod"},
+          {"extract": "shipments[*].weight", "generate": "custcolumn_weight"},
+          {"extract": "tax_percent", "generate": "taxRate1"},
+          {"extract": "is_taxable", "generate": "isTaxable"}
+        ]
+      }
+    ]
+  },
+  "hooks": {
+    "_preMapId": "5587092fd78228000000000a",
+    "_postMapId": "5561092fd78228000000010b",
+    "_postSubmitId": "5521092fd78228000100011c"
+  }
 }
 ```
 
