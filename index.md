@@ -126,7 +126,7 @@ You should receive a response that includes the following fields.
 ```javascript
 {
   "_id": "507f1f77bcf86cd788439431",
-  "apiIdentifier": "i66ec422"
+  "apiIdentifier": "e66ec422"
 }
 ```
 
@@ -186,7 +186,7 @@ You should receive a response that includes the following fields.
 ```javascript
 {
   "_id": "507f1e67bcf99ef788439431",
-  "apiIdentifier": "i66ec411"
+  "apiIdentifier": "e66ec411"
 }
 ```
 
@@ -212,43 +212,118 @@ You should receive a response that includes the following fields.
 | **pageSize** | . |
 | **hooks._preSavePageId** | . |
 
+### REST API Adaptor Exports
+Here is a sample REST API based export.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional export.
 
-
-// TODO document one two REST API exports
-##### Sample Export Request
+##### POST /exports
 ```javascript
 {
   "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a",
+  "_connectionId": "5587092ef78228000000000a",
+  "asynchronous": true,
   "rest": {
     "relativeURI": "/customers",
-    "method": "GET"
+    "method": "GET",
+    "resourcePath": "customers",
+    "pagingMethod": "nextpageurl",
+    "nextPagePath": "next_page"
   },
   "pageSize": 20,
   "hooks": {
-    "_preSavePageId": "5587092fd78228000000000b"
+    "_preSavePageId": "5587092fd78228000f0e001b"
   }
 }
 ```
 
-You should receive a response that includes the following fields.  Note that we will use the \_id in the next step.
+You should receive a response that includes the following fields.
 ##### Sample Export Response
 ```javascript
 {
   "_id": "507f1f77bcf86cd799439011",
   "apiIdentifier": "e53ec313",
-  "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a",
-  "rest": {
-    "relativeURI": "/customers",
-    "method": "GET"
-  },
-  "pageSize": 20,
+}
+```
+
+#### Relevant Schema Info
+##### Export Resource Fields (/exports)
+| Field | Description |
+| :---- | :---- |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **asynchronous** | . |
+| **type** | . |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **test.limit** | . |
+| **rest.relativeURI** | . |
+| **rest.method** | . |
+| **rest.headers** | . |
+| **rest.query** | . |
+| **rest.resourcePath** | . |
+| **rest.postBody** | . |
+| **rest.pagingMethod** | . |
+| **rest.nextPagePath** | . |
+| **rest.pageArgument** | . |
+| **pageSize** | . |
+| **hooks._preSavePageId** | . |
+
+### Webhook Adaptor Exports
+Here is a sample Webhook based export.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional export.
+
+##### POST /exports
+```javascript
+{
+  "name": "My Webhook",
+  "_connectionId": "5587092ed78668000000000a",
+  "type": "webhook",
+  "webhook": {
+    "verify": "hmac",
+    "algorithm": "sha256",
+    "encoding": "hex",
+    "key": "********",
+    "header": "X-Apple-Banana"
+  }
   "hooks": {
-    "_preSavePageId": "5587092fd78228000000000b"
+    "_preSavePageId": "5587092fd78aa8000f0e001b"
   }
 }
 ```
+
+You should receive a response that includes the following fields.
+##### Sample Export Response
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "apiIdentifier": "e53ec313",
+}
+```
+
+#### Relevant Schema Info
+##### Export Resource Fields (/exports)
+| Field | Description |
+| :---- | :---- |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **asynchronous** | . |
+| **type** | . |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **test.limit** | . |
+| **rest.relativeURI** | . |
+| **rest.method** | . |
+| **rest.headers** | . |
+| **rest.query** | . |
+| **rest.resourcePath** | . |
+| **rest.postBody** | . |
+| **rest.pagingMethod** | . |
+| **rest.nextPagePath** | . |
+| **rest.pageArgument** | . |
+| **pageSize** | . |
+| **hooks._preSavePageId** | . |
 
 
 
@@ -328,7 +403,7 @@ If you are using the Integrator to build NetSuite based integrations, we highly 
 ```javascript
 {
   "name": "NetSuite Order Import",
-  "_connectionId": "5587092ed78228000000000a",
+  "_connectionId": "5587092ed7822800e040000a",
   "_integrationId": "5560092ed7922800000f000e",
   "distributed": true
 }
@@ -476,7 +551,7 @@ If installing the Distributed Adaptor in your NetSuite account is not an option,
 ```javascript
 {
   "name": "NetSuite Order Import",
-  "_connectionId": "5587092ed78228000000000a",
+  "_connectionId": "5587092ed78228009a00000a",
   "netsuite": {
     "recordType": "SalesOrder",
     "operation": "addupdate",
@@ -607,7 +682,7 @@ Here is a sample import.  Please note that this sample was generated to illustra
 ```javascript
 {
   "name": "REST API Sample Post",
-  "_connectionId": "5587092ed78228000000000a",
+  "_connectionId": "5587092ed7822800000d0c0a",
   "rest": {
     "relativeURI": "",
     "method": [],
