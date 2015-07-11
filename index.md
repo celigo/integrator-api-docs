@@ -65,7 +65,7 @@ You should receive a response that includes the following fields.  Note that we 
   "hooks": {
     "preSend": {
       "fileInternalId": "1234",
-      "functionName": "myPreSendLogic"
+      "function": "myPreSendLogic"
     }
   }
 }
@@ -91,7 +91,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **executionContext** | . |
 | **qualifier** | . |
 | **hooks.preSend.fileInternalId** | . |
-| **hooks.preSend.functionName** | . |
+| **hooks.preSend.function** | . |
 
 #### NetSuite Batch Export (utilizing a RESTlet in the NetSuite DA)
 ##### POST /exports
@@ -99,6 +99,7 @@ You should receive a response that includes the following fields.  Note that we 
 {
   "name": "Delta Customer Export",
   "_connectionId": "5587092ed78128000000000a",
+  "asynchronous": true,
   "type": "delta",
   "delta": {
     "dateField": "lastmodifieddate"
@@ -111,14 +112,145 @@ You should receive a response that includes the following fields.  Note that we 
       "hooks": {
         "preSend": {
           "fileInternalId": "1234",
-          "functionName": "myPreSendLogic"
+          "function": "myPreSendLogic"
         }
       }
-    }
+    },
+    // todo: dont know if this is right or not?  does this belong to restlet section?  
+    "sortedByInternalId": true
   },
   "pageSize": 50
 }
 ```
+You should receive a response that includes the following fields.  
+```javascript
+{
+  "_id": "507f1f77bcf86cd788439431",
+  "apiIdentifier": "i66ec422"
+}
+```
+
+#### Relevant Schema Info
+##### Export Resource Fields (/exports)
+| Field | Description |
+| :---- | :---- |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **asynchronous** | . |
+| **type** | . |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **test.limit** | . |
+| **delta.dateField** | . |
+| **delta.dateFormat** | . |
+| **once.booleanField** | . |
+| **netsuite.type** | . |
+| **netsuite.restlet.recordType** | . |
+| **netsuite.restlet.searchId** | . |
+| **netsuite.restlet.hooks.preSend.fileInternalId** | . |
+| **netsuite.restlet.hooks.preSend.function** | . |
+| **netsuite.sortedByInternalId** | . |
+| **pageSize** | . |
+
+### NetSuite (Non-Distributed) Adaptor Exports
+If installing the Distributed Adaptor in your NetSuite account is not an option, you can still create NetSuite exports that use NetSuite's web services API.  The capabilities are slightly more limited and the performance can also be slower depending on the complexity of your exports, especially related to the number of dynamic searches each record will require before export.  But, the really nice thing about using the web services API is that you can get started right away, and you do not need to involve a NetSuite admin to install anything first.  With that, here is a sample NetSuite web services based export.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional NetSuite export.
+
+##### POST /exports
+```javascript
+{
+  "name": "Delta Customer Export",
+  "_connectionId": "5587092ed78128000000000a",
+  "asynchronous": true,
+  "type": "delta",
+  "delta": {
+    "dateField": "lastModifiedDate"
+  },
+  "netsuite": {
+    "type": "search",
+    "searches": [
+      {
+        "recordType": "customer",
+        "searchId": "613"
+      }
+    ]
+  },
+  "pageSize": 50,
+  "hooks": {
+    "_preSavePageId": "5587092fd78228000000000b"
+  }
+}
+```
+You should receive a response that includes the following fields.  
+```javascript
+{
+  "_id": "507f1e67bcf99ef788439431",
+  "apiIdentifier": "i66ec411"
+}
+```
+
+#### Relevant Schema Info
+##### Export Resource Fields (/exports)
+| Field | Description |
+| :---- | :---- |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **asynchronous** | . |
+| **type** | . |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **test.limit** | . |
+| **delta.dateField** | . |
+| **delta.dateFormat** | . |
+| **once.booleanField** | . |
+| **netsuite.type** | . |
+| **netsuite.searches.recordType** | . |
+| **netsuite.searches.searchId** | . |
+| **pageSize** | . |
+| **hooks._preSavePageId** | . |
+
+
+
+// TODO document one two REST API exports
+##### Sample Export Request
+```javascript
+{
+  "name": "My Export",
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "GET"
+  },
+  "pageSize": 20,
+  "hooks": {
+    "_preSavePageId": "5587092fd78228000000000b"
+  }
+}
+```
+
+You should receive a response that includes the following fields.  Note that we will use the \_id in the next step.
+##### Sample Export Response
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "apiIdentifier": "e53ec313",
+  "name": "My Export",
+  "_connectionId": "5587092ed78228000000000a",
+  "rest": {
+    "relativeURI": "/customers",
+    "method": "GET"
+  },
+  "pageSize": 20,
+  "hooks": {
+    "_preSavePageId": "5587092fd78228000000000b"
+  }
+}
+```
+
+
 
 ##### Fields
 | Field | Description |
@@ -167,79 +299,6 @@ You should receive a response that includes the following fields.  Note that we 
 | **netsuite.groupByInternalId** | . |
 
 
-
-
-#### NetSuite Batch Export
-##### Sample Export JSON
-```javascript
-{
-  "name": "Delta Customer Export",
-  "_connectionId": "5587092ed78128000000000a",
-  "type": "delta",
-  "delta": {
-    "dateField": "lastmodifieddate"
-  },
-  "netsuite": {
-    "type": "restlet"
-    "restlet": {
-      "recordType": "customer",
-      "searchId": "69422",
-      "hooks": {
-        "preSend": {
-          "fileInternalId": "1234",
-          "functionName": "myPreSendLogic"
-        }
-      }
-    }
-  },
-  "pageSize": 50
-}
-```
-##### Fields
-| Field | Description |
-| :---- | :---- |
-| **type** | . |
-| **recordType** | . |
-| **searchId** | . |
-| **hooks.preSend.fileInternalId** | . |
-| **hooks.preSend.functionName** | . |
-
-
-##### Sample Export Request
-```javascript
-{
-  "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a",
-  "rest": {
-    "relativeURI": "/customers",
-    "method": "GET"
-  },
-  "pageSize": 20,
-  "hooks": {
-    "_preSavePageId": "5587092fd78228000000000b"
-  }
-}
-```
-
-You should receive a response that includes the following fields.  Note that we will use the \_id in the next step.
-##### Sample Export Response
-```javascript
-{
-  "_id": "507f1f77bcf86cd799439011",
-  "apiIdentifier": "e53ec313",
-  "name": "My Export",
-  "_connectionId": "5587092ed78228000000000a",
-  "rest": {
-    "relativeURI": "/customers",
-    "method": "GET"
-  },
-  "pageSize": 20,
-  "hooks": {
-    "_preSavePageId": "5587092fd78228000000000b"
-  }
-}
-```
-
 ## Import
 
 ##### What is an Import?
@@ -271,7 +330,7 @@ If you are using the Integrator to build NetSuite based integrations, we highly 
   "name": "NetSuite Order Import",
   "_connectionId": "5587092ed78228000000000a",
   "_integrationId": "5560092ed7922800000f000e",
-  "distributed": "true"
+  "distributed": true
 }
 ```
 You should receive a response that includes the following fields.  Note that we will use the \_id in the next step.
@@ -320,7 +379,7 @@ You should receive a response that includes the following fields.  Note that we 
       "name": "orderLookup",
       "recordType": "salesorder",
       "expression": "[['tranid','is','{{last_order}}'],'OR',['custbody_web_id','is','{{last_order}}']]",
-      "allowFailures": "true"
+      "allowFailures": true
     }
   ],
   "mapping": {
@@ -352,15 +411,15 @@ You should receive a response that includes the following fields.  Note that we 
   "hooks": {
     "preMap": {
       "fileInternalId": "1234",
-      "functionName": "mypreMapLogic"
+      "function": "mypreMapLogic"
     },
     "postMap": {
       "fileInternalId": "1234",
-      "functionName": "mypostMapLogic"
+      "function": "mypostMapLogic"
     },
     "postSubmit": {
       "fileInternalId": "1234",
-      "functionName": "myPostSubmitLogic"
+      "function": "myPostSubmitLogic"
     }
   }
 }
@@ -404,14 +463,14 @@ You should receive a response that includes the following fields.  Note that we 
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
 | **hooks.preMap.fileInternalId** | . |
-| **hooks.preMap.functionName** | . |
+| **hooks.preMap.function** | . |
 | **hooks.postMap.fileInternalId** | . |
-| **hooks.postMap.functionName** | . |
+| **hooks.postMap.function** | . |
 | **hooks.postSubmit.fileInternalId** | . |
-| **hooks.postSubmit.functionName** | . |
+| **hooks.postSubmit.function** | . |
 
 ### NetSuite (Non-Distributed) Adaptor Imports
-If installing the Distributed Adaptor in your NetSuite account is not an option, you can still create NetSuite imports that use NetSuite's web services API.  The capabilities are slightly more limited and the performance can also be slower depending on the complexity of your imports, especially related to the number of dynamic internal id lookups records in NetSuite will require before import.  But, the really nice thing about using the web services API is that you can get started right away, and you do not need to involve a NetSuite admin to install anything first.  With that, here is a sample NetSuite web services based import.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional NetSuite import.
+If installing the Distributed Adaptor in your NetSuite account is not an option, you can still create NetSuite imports that use NetSuite's web services API.  The capabilities are slightly more limited and the performance can also be slower depending on the complexity of your imports, especially related to the number of dynamic internal id lookups each record in NetSuite will require before import.  But, the really nice thing about using the web services API is that you can get started right away, and you do not need to involve a NetSuite admin to install anything first.  With that, here is a sample NetSuite web services based import.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional NetSuite import.
 
 ##### POST /imports
 ```javascript
@@ -453,8 +512,12 @@ If installing the Distributed Adaptor in your NetSuite account is not an option,
       }
     ],
     "customFieldMetadata": {
-      "custbody_source": "_freeFormText",
-      "custcolumn_weight": "_decimalNumber"
+      "custbody_source": {
+        "type": "_freeFormText"
+      },
+      "custcolumn_weight": {
+        "type": "_decimalNumber"
+      }
     }
   },
   "mapping": {
