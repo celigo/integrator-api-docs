@@ -1,5 +1,5 @@
 # Introduction
-The Integrator is an API first platform.  Every new feature gets released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers who wish to build integration based apps.  Complementing the API, the Integrator supports a rich customization framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks (hooks give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
+The Integrator is an API first platform.  Features are released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers who wish to build integration based apps.  Complementing the API, the Integrator supports a rich customization framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks (hooks give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
 
 ## Quick Start
 ## Authentication
@@ -35,7 +35,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
 The following sections are organized by application and adaptor, and ordered by popularity.
 
 ### NetSuite Distributed Adaptor Exports
-If you are using the Integrator to build NetSuite based integrations, we highly recommend you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super powerful export engine that can both export NetSuite data in realtime, intercepting events in NetSuite as they happen, and also run batch based exports that utilize NetSuite's SuiteScript APIs for more advanced and efficient search and custom logic capabilities.  Two examples follow.  The first outlines the steps required to create a realtime export, and the second does the same for a batch based export.  Please note that both samples were generated to illustrate capabilities, not to provide fully functional NetSuite exports.
+If you are using the Integrator to build NetSuite based integrations, we highly recommend you install our Distributed Adaptor (DA for short).  It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account.  Once installed, it enables a super powerful export engine that can both export NetSuite data in realtime, intercepting events in NetSuite as they happen, and also run batch based exports that utilize NetSuite's SuiteScript APIs for more advanced and efficient search and custom logic capabilities.  Two examples follow.  The first outlines the steps required to create a realtime export, and the second does the same for a batch based export.
 
 #### NetSuite Realtime Export
 ##### First, create your export resource.  POST /exports
@@ -155,7 +155,7 @@ You should receive a response that includes the following fields.
 | **pageSize** | . |
 
 ### NetSuite (Non-Distributed) Adaptor Exports
-If installing the Distributed Adaptor in your NetSuite account is not an option, you can still create NetSuite exports that use NetSuite's web services API.  The capabilities are slightly more limited and the performance can also be slower depending on the complexity of your exports, especially related to the number of dynamic searches each record will require before export.  But, the really nice thing about using the web services API is that you can get started right away, and you do not need to involve a NetSuite admin to install anything first.  With that, here is a sample NetSuite web services based export.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional NetSuite export.
+If installing the Distributed Adaptor in your NetSuite account is not an option, you can still create NetSuite exports that use NetSuite's web services API.  The capabilities are slightly more limited and the performance can also be slower depending on the complexity of your exports, especially related to the number of dynamic searches each record will require before export.  But, the really nice thing about using the web services API is that you can get started right away, and you do not need to involve a NetSuite admin to install anything first.  With that, here is a sample NetSuite web services based export.  
 
 ##### POST /exports
 ```javascript
@@ -209,11 +209,13 @@ You should receive a response that includes the following fields.
 | **netsuite.type** | . |
 | **netsuite.searches.recordType** | . |
 | **netsuite.searches.searchId** | . |
+| **netsuite.sortedByInternalId** | . |
+| **netsuite.groupByInternalId** | . |
 | **pageSize** | . |
 | **hooks._preSavePageId** | . |
 
 ### REST API Adaptor Exports
-Here is a sample REST API based export.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional export.
+The Integrator supports the ability to integrate with any RESTful JSON API, and following is a sample REST API based export.
 
 ##### POST /exports
 ```javascript
@@ -270,13 +272,12 @@ You should receive a response that includes the following fields.
 | **hooks._preSavePageId** | . |
 
 ### Webhook Adaptor Exports
-Here is a sample Webhook based export.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional export.
+The Integrator also supports the ability to integrate with any JSON based webhook.  An export record is used to register a listener that can then be posted to.  Following is a sample Webhook based export.
 
 ##### POST /exports
 ```javascript
 {
   "name": "My Webhook",
-  "_connectionId": "5587092ed78668000000000a",
   "type": "webhook",
   "webhook": {
     "verify": "hmac",
@@ -285,9 +286,6 @@ Here is a sample Webhook based export.  Please note that this sample was generat
     "key": "********",
     "header": "X-Apple-Banana"
   }
-  "hooks": {
-    "_preSavePageId": "5587092fd78aa8000f0e001b"
-  }
 }
 ```
 
@@ -295,8 +293,8 @@ You should receive a response that includes the following fields.
 ##### Sample Export Response
 ```javascript
 {
-  "_id": "507f1f77bcf86cd799439011",
-  "apiIdentifier": "e53ec313",
+  "_id": "507f1f77bcf86cd799439012",
+  "apiIdentifier": "e53ec314"
 }
 ```
 
@@ -305,47 +303,12 @@ You should receive a response that includes the following fields.
 | Field | Description |
 | :---- | :---- |
 | **name** | Give your export an intuitive name to stay organized. |
-| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
-| **asynchronous** | . |
+| **_connectionId** | . |
 | **type** | . |
 | **lastModified** | Read only field tracking last modified date/time. |
 | **apiIdentifier** | . |
 | **_integrationId** | . |
 | **_connectorId** | . |
-| **test.limit** | . |
-| **rest.relativeURI** | . |
-| **rest.method** | . |
-| **rest.headers** | . |
-| **rest.query** | . |
-| **rest.resourcePath** | . |
-| **rest.postBody** | . |
-| **rest.pagingMethod** | . |
-| **rest.nextPagePath** | . |
-| **rest.pageArgument** | . |
-| **pageSize** | . |
-| **hooks._preSavePageId** | . |
-
-
-
-##### Fields
-| Field | Description |
-| :---- | :---- |
-| **name** | Give your export an intuitive name to stay organized. |
-| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
-| **lastModified** | Read only field tracking last modified date/time. |
-| **asynchronous** | . |
-| **apiIdentifier** | . |
-| **_integrationId** | . |
-| **_connectorId** | . |
-| **type** | . |
-| **pageSize** | . |
-| **sampleData** | . |
-| **test.limit** | . |
-| **delta.dateField** | . |
-| **delta.dateFormat** | . |
-| **once.booleanField** | . |
-| **valueDelta.exportedField** | . |
-| **valueDelta.pendingField** | . |
 | **webhook.verify** | . |
 | **webhook.token** | . |
 | **webhook.path** | . |
@@ -353,25 +316,7 @@ You should receive a response that includes the following fields.
 | **webhook.encoding** | . |
 | **webhook.key** | . |
 | **webhook.header** | . |
-| **distributed.bearerToken** | . |
 | **hooks._preSavePageId** | . |
-| **rest.relativeURI** | . |
-| **rest.method** | . |
-| **rest.headers** | . |
-| **rest.query** | . |
-| **rest.resourcePath** | . |
-| **rest.postBody** | . |
-| **rest.pagingMethod** | . |
-| **rest.nextPagePath** | . |
-| **rest.pageArgument** | . |
-| **ftp.directoryPath** | . |
-| **netsuite.type** | . |
-| **netsuite.searches** | . |
-| **netsuite.metadata** | . |
-| **netsuite.selectoption** | . |
-| **netsuite.customFieldMetadata** | . |
-| **netsuite.sortedByInternalId** | . |
-| **netsuite.groupByInternalId** | . |
 
 
 ## Import
