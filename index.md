@@ -115,9 +115,7 @@ You should receive a response that includes the following fields.  Note that we 
           "function": "myPreSendLogic"
         }
       }
-    },
-    // todo: dont know if this is right or not?  does this belong to restlet section?  
-    "sortedByInternalId": true
+    }
   },
   "pageSize": 50
 }
@@ -151,7 +149,7 @@ You should receive a response that includes the following fields.
 | **netsuite.restlet.searchId** | . |
 | **netsuite.restlet.hooks.preSend.fileInternalId** | . |
 | **netsuite.restlet.hooks.preSend.function** | . |
-| **netsuite.sortedByInternalId** | . |
+| **netsuite.skipGrouping** | . |
 | **pageSize** | . |
 
 ### NetSuite (Non-Distributed) Adaptor Exports
@@ -209,13 +207,12 @@ You should receive a response that includes the following fields.
 | **netsuite.type** | . |
 | **netsuite.searches.recordType** | . |
 | **netsuite.searches.searchId** | . |
-| **netsuite.sortedByInternalId** | . |
-| **netsuite.groupByInternalId** | . |
+| **netsuite.skipGrouping** | . |
 | **pageSize** | . |
 | **hooks._preSavePageId** | . |
 
 ### REST API Adaptor Exports
-The Integrator supports the ability to integrate with any RESTful JSON API, and following is a sample REST API based export.
+The Integrator supports the ability to define exports for any RESTful JSON API.  Following is an example.
 
 ##### POST /exports
 ```javascript
@@ -224,7 +221,7 @@ The Integrator supports the ability to integrate with any RESTful JSON API, and 
   "_connectionId": "5587092ef78228000000000a",
   "asynchronous": true,
   "rest": {
-    "relativeURI": "/customers",
+    "relativeURI": "customers",
     "method": "GET",
     "resourcePath": "customers",
     "pagingMethod": "nextpageurl",
@@ -621,62 +618,28 @@ You should receive a response that includes the following fields.
 | **mapping.lists.fields** | . |
 
 ### REST API Adaptor Imports
-Here is a sample import.  Please note that this sample was generated to illustrate capabilities, not to provide a fully functional import.
+The Integrator supports the ability to define imports for any RESTful JSON API.  Following are two examples, one simple, the other more complex.  
 
 ##### POST /imports
+The following simple import will send a POST request to the /customers relative URI to create new customers.
+
 ```javascript
 {
   "name": "REST API Sample Post",
   "_connectionId": "5587092ed7822800000d0c0a",
   "rest": {
-    "relativeURI": "",
-    "method": [],
-    "headers": {
-
-    },
-    "responseIdPath": "",
-    "resourceId": {
-      "lookupName": ""
-    },
-    "lookups": [
-      {
-        "name": "",
-        "relativeURI": "",
-        "method": "",
-        "extract": "",
-        "allowFailures": "false"
-      }
-    ]
+    "relativeURI": "customers",
+    "method": "POST",
   },
   "mapping": {
     "fields": [
+      {"extract": "street1", "generate": "billingAddress.addr1"},
+      {"extract": "street2", "generate": "billingAddress.addr2"},
       {"extract": "city", "generate": "billingAddress.city"},
+      {"extract": "state", "generate": "billingAddress.state"},
       {"extract": "zip", "generate": "billingAddress.zip"},
       {"extract": "{first_name} {last_name}", "generate": "billingAddress.addressee"},
-      {"generate": "isMultiShipTo", "hardCodedValue": false},
-      {"generate": "custbody_source", "hardCodedValue": "webstore"},
-      {"extract": "email", "generate": "entity", "lookupName": "customerLookup"},
-      {"extract": "country", "generate": "currency", "lookupName": "currencyMap"}
-    ],
-    "lists": [
-      {
-        "generate": "SalesOrderItem",
-        "fields": [
-          {"extract": "order_lines[*].sku", "generate": "item", "lookupName": "itemLookup"},
-          {"extract": "order_lines[*].price", "generate": "rate"},
-          {"extract": "order_lines[*].quantity", "generate": "quantity"},
-          {"extract": "shipments[*].ship_via", "generate": "shipMethod"},
-          {"extract": "shipments[*].weight", "generate": "custcolumn_weight"},
-          {"extract": "tax_percent", "generate": "taxRate1"},
-          {"extract": "is_taxable", "generate": "isTaxable"}
-        ]
-      }
     ]
-  },
-  "hooks": {
-    "_preMapId": "5587092fd78228000000000a",
-    "_postMapId": "5561092fd78228000000010b",
-    "_postSubmitId": "5521092fd78228000100011c"
   }
 }
 ```
@@ -689,55 +652,47 @@ You should receive a response that includes the following fields.
 }
 ```
 
-Here is a more complex sample import.  Please note again that this sample was generated to illustrate capabilities, not to provide a fully functional import.
+Here is a more complex import.  This import will check to see if a customer resource already exists (by performing the lookup defined by 'idLookup').  If the customer does exists the import will submit a PUT request to update the existing customer.  If the customer does not exist the import will submit a POST request to a different URI to create a new customer.
 
 ```javascript
 {
-  "name": "REST API Sample Post",
+  "name": "Composite Add or Update Import",
   "_connectionId": "5587092ed78228000000000a",
-  "rest": {
-    "relativeURI": "",
-    "method": [],
-    "headers": {
-
-    },
-    "responseIdPath": "",
-    "resourceId": {
-      "lookupName": ""
-    },
-    "lookups": [
+  "rest" : {
+    "relativeURI": [
+      "customers/{idLookup}",
+      "customers"
+    ],
+    "method": [
+      "PUT",
+      "POST"
+    ],
+    "lookups" : [
       {
-        "name": "",
-        "relativeURI": "",
-        "method": "",
-        "extract": "",
+        "name": "idLookup",
+        "relativeURI": "customers?ns_id={internalId}",
+        "method": "GET",
+        "extract": "0.id",
+      },
+      {
+        "name": "currencyMap",
+        "map": {
+          "USA": "USD",
+          "JAPAN": "JPY",
+          "UK": "GDP"
+        },
         "allowFailures": "false"
       }
     ]
   },
   "mapping": {
     "fields": [
-      {"extract": "city", "generate": "billingAddress.city"},
-      {"extract": "zip", "generate": "billingAddress.zip"},
-      {"extract": "{first_name} {last_name}", "generate": "billingAddress.addressee"},
-      {"generate": "isMultiShipTo", "hardCodedValue": false},
-      {"generate": "custbody_source", "hardCodedValue": "webstore"},
-      {"extract": "email", "generate": "entity", "lookupName": "customerLookup"},
-      {"extract": "country", "generate": "currency", "lookupName": "currencyMap"}
-    ],
-    "lists": [
-      {
-        "generate": "SalesOrderItem",
-        "fields": [
-          {"extract": "order_lines[*].sku", "generate": "item", "lookupName": "itemLookup"},
-          {"extract": "order_lines[*].price", "generate": "rate"},
-          {"extract": "order_lines[*].quantity", "generate": "quantity"},
-          {"extract": "shipments[*].ship_via", "generate": "shipMethod"},
-          {"extract": "shipments[*].weight", "generate": "custcolumn_weight"},
-          {"extract": "tax_percent", "generate": "taxRate1"},
-          {"extract": "is_taxable", "generate": "isTaxable"}
-        ]
-      }
+      {"extract": "billingAddress.city", "generate": "city"},
+      {"extract": "billingAddress.zip", "generate": "zip"},
+      {"extract": "{firstName} {lastName}", "generate": "addressee"},
+      {"generate": "opt_out", "hardCodedValue": false},
+      {"generate": "source", "hardCodedValue": "phone"},
+      {"extract": "billingAddress.country", "generate": "currency", "lookupName": "currencyMap"}
     ]
   },
   "hooks": {
@@ -781,7 +736,6 @@ Here is a more complex sample import.  Please note again that this sample was ge
 | **mapping.fields.lookup** | . |
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
-
 
 ## Flow
 ## Integration
