@@ -45,7 +45,7 @@ If you are using the Integrator to build NetSuite based integrations, we highly 
   "_connectionId": "5587092ed78128000000000a",
   "type": "distributed",
   "distributed": {
-    "bearerToken": "********",
+    "bearerToken": "********"
   }
 }
 ```
@@ -716,7 +716,9 @@ Here is a more complex import.  This import will check to see if a customer reso
 | **_connectorId** | . |
 | **maxAttempts** | . |
 | **ignoreExisting** | . |
+| **ignoreExistingLoE** | . |
 | **ignoreMissing** | . |
+| **ignoreMissingLoE** | . |
 | **rest.relativeURI** | . |
 | **rest.method** | . |
 | **rest.headers** | . |
