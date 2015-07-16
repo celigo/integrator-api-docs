@@ -4,7 +4,7 @@ The Integrator is an API first platform.  Features are released here first, and 
 ## Quick Start
 ## Authentication
 ### Bearer Tokens
-Every Integrator account is
+Every Integrator account is...
 ### One Time Tokens
 ## Rate Limiting
 ## Headers
@@ -12,9 +12,83 @@ Every Integrator account is
 
 # Resources
 ## Connection
+##### What is a Connection?
+Connections are used to store credentials, along with other base information needed to access specific applications or systems.  Currently the Integrator supports the following connection types.
+* NetSuite
+* REST API
+* SFTP/FTP
+
+##### Connection Related HTTP Endpoints
+| Relative URI | Method | Success Code | Description |
+| :---- | :---- | :----: | :---- |
+| /connections | POST | 201 | Create new connections. |
+| /connections/{_id} | PUT | 200 | Update existing connections. |
+| /connections/{_id} | GET | 200 | Retrieve existing connections.  |
+| /connections/{_id} | DELETE | 204 | Delete existing connections. |
+
+#### Relevant Schema Info
+##### NetSuite Connection
+| Field | Description |
+| :---- | :---- |
+| **name** | . |
+| **type** | . |
+| **lastModified** | . |
+| **offline** | . |
+| **_connectorId** | . |
+| **netsuite.account** | . |
+| **netsuite.roleId** | . |
+| **netsuite.email** | . |
+| **netsuite.password** | . |
+| **netsuite.companyId** | . |
+| **netsuite.userId** | . |
+| **netsuite.useSsoLogin** | . |
+| **netsuite.noOfSeats** | . |
+| **netsuite.environment** | . |
+| **netsuite.requestLevelCredentials** | . |
+| **netsuite.dataCenterURLs** | . |
+
+##### REST API Connection
+| Field | Description |
+| :---- | :---- |
+| **name** | . |
+| **type** | . |
+| **lastModified** | . |
+| **offline** | . |
+| **_connectorId** | . |
+| **rest.mediaType** | . |
+| **rest.baseURI** | . |
+| **rest.bearerToken** | . |
+| **rest.tokenLocation** | . |
+| **rest.tokenParam** | . |
+| **rest.scope** | . |
+| **rest.scopeDelimiter** | . |
+| **rest.refreshToken** | . |
+| **rest.authURI** | . |
+| **rest.authHeader** | . |
+| **rest.authScheme** | . |
+| **rest.basicAuth.username** | . |
+| **rest.basicAuth.password** | . |
+| **rest._iClientId** | . |
+| **rest.info** | . |
+| **rest.pingRelativeURI** | . |
+
+##### SFTP/FTP Connection
+| Field | Description |
+| :---- | :---- |
+| **name** | . |
+| **type** | . |
+| **lastModified** | . |
+| **offline** | . |
+| **_connectorId** | . |
+| **ftp.hostURI** | . |
+| **ftp.username** | . |
+| **ftp.password** | . |
+| **ftp.port** | . |
+
+
 ## Export
 ##### What is an Export?
-Exports are used to extract data from an application.  Exports can run standalone, or in the context of a [Flow](#Flow).  
+Exports are used to extract data from an application or system.  Exports can run standalone, or in the context of a [Flow](#Flow).  
 
 Standalone Exports are useful for integrations where user actions (like clicking a button) need to invoke an external application's API in real-time and return the results immediately.  Standalone exports are especially useful for applications that need to integrate with more than one other applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive.  Celigo uses standalone Exports extensively in its spreadsheet and email sync products.  
 
