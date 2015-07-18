@@ -48,10 +48,10 @@ Connections are used to store credentials, along with other access information f
 ##### Connection Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
-| /connections | POST | 201 | Create new connections. |
-| /connections/{_id} | PUT | 200 | Update existing connections. |
-| /connections/{_id} | GET | 200 | Retrieve existing connections.  |
-| /connections/{_id} | DELETE | 204 | Delete existing connections. |
+| /connections | POST | 201 | Create new connection. |
+| /connections/{_id} | PUT | 200 | Update existing connection. |
+| /connections/{_id} | GET | 200 | Retrieve existing connection.  |
+| /connections/{_id} | DELETE | 204 | Delete existing connection. |
 
 #### Relevant Schema Info
 ##### NetSuite Connection
@@ -860,10 +860,10 @@ Flows are used to export data out of one application and import it into another 
 ##### Flow Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
-| /flows | POST | 201 | Create new flows. |
-| /flows/{_id} | PUT | 200 | Update existing flows. |
-| /flows/{_id} | GET | 200 | Retrieve existing flows.  |
-| /flows/{_id} | DELETE | 204 | Delete existing flows. |
+| /flows | POST | 201 | Create new flow. |
+| /flows/{_id} | PUT | 200 | Update existing flow. |
+| /flows/{_id} | GET | 200 | Retrieve existing flow.  |
+| /flows/{_id} | DELETE | 204 | Delete existing flow. |
 
 #### Relevant Schema Info
 ##### Flow
@@ -886,10 +886,10 @@ Integrations are used group one or more [Imports](#Import), [Exports](#Export), 
 ##### Integration Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
-| /integrations | POST | 201 | Create new integrations. |
-| /integrations/{_id} | PUT | 200 | Update existing integrations. |
-| /integrations/{_id} | GET | 200 | Retrieve existing integrations.  |
-| /integrations/{_id} | DELETE | 204 | Delete existing integrations. |
+| /integrations | POST | 201 | Create new integration. |
+| /integrations/{_id} | PUT | 200 | Update existing integration. |
+| /integrations/{_id} | GET | 200 | Retrieve existing integration.  |
+| /integrations/{_id} | DELETE | 204 | Delete existing integration. |
 | /integrations/{_connectorId}/install | POST | 204 | Install connector. |
 | /integrations/{_id}/install | DELETE | 204 | Uninstall connector. |
 | /integrations/{_id}/installer/{function} | PUT | 204 | Invoke 'function' (belonging to installer module). |
@@ -918,12 +918,12 @@ Connectors represent fully functional pre-built integrations that any user can i
 ##### Connector Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
-| /connectors | POST | 201 | Create new connectors. |
-| /connectors/{_id} | PUT | 200 | Update existing connectors. |
-| /connectors/{_id} | GET | 200 | Retrieve existing connectors.  |
-| /connectors/{_id} | DELETE | 204 | Delete existing connectors. |
-| /connectors/{_id}/installBase | GET | 200 | Returns information related to the install base for the connector. |
-| /connectors/{_id}/update | PUT | 200 | Push an update to the _integrationIds[] provided in the request body. |
+| /connectors | POST | 201 | Create new connector. |
+| /connectors/{_id} | PUT | 200 | Update existing connector. |
+| /connectors/{_id} | GET | 200 | Retrieve existing connector.  |
+| /connectors/{_id} | DELETE | 204 | Delete existing connector. |
+| /connectors/{_id}/installBase | GET | 200 | Retrieve information related to install base for given connector \_id. |
+| /connectors/{_id}/update | PUT | 200 | Push update to _integrationIds[] provided in the request body. |
 
 #### Relevant Schema Info
 ##### Connector
