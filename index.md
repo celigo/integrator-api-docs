@@ -48,6 +48,7 @@ Connections are used to store credentials, along with other access information f
 ##### Connection Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
+| /connections | GET | 200 | List all connections. |
 | /connections | POST | 201 | Create new connection. |
 | /connections/{_id} | PUT | 200 | Update existing connection. |
 | /connections/{_id} | GET | 200 | Retrieve existing connection.  |
@@ -127,6 +128,7 @@ Exports running in the context of a Flow will execute asynchronously and automat
 ##### Export Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
+| /exports | GET | 200 | List all exports. |
 | /exports | POST | 201 | Create new export. |
 | /exports/{_id} | PUT | 200 | Update existing export. |
 | /exports/{_id} | GET | 200 | Retrieve existing export.  |
@@ -438,6 +440,7 @@ Imports running in the context of a Flow will also execute synchronously but wil
 ##### Import Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
+| /imports | GET | 200 | List all imports. |
 | /imports | POST | 201 | Create new import. |
 | /imports/{_id} | PUT | 200 | Update existing import. |
 | /imports/{_id} | GET | 200 | Retrieve existing import.  |
@@ -860,6 +863,7 @@ Flows are used to export data out of one application and import it into another 
 ##### Flow Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
+| /flows | GET | 200 | List all flows. |
 | /flows | POST | 201 | Create new flow. |
 | /flows/{_id} | PUT | 200 | Update existing flow. |
 | /flows/{_id} | GET | 200 | Retrieve existing flow.  |
@@ -886,6 +890,7 @@ Integrations are used group one or more [Imports](#Import), [Exports](#Export), 
 ##### Integration Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
+| /integrations | GET | 200 | List all integrations. |
 | /integrations | POST | 201 | Create new integration. |
 | /integrations/{_id} | PUT | 200 | Update existing integration. |
 | /integrations/{_id} | GET | 200 | Retrieve existing integration.  |
@@ -918,6 +923,7 @@ Connectors represent fully functional pre-built integrations that any user can i
 ##### Connector Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
+| /connectors | GET | 200 | List all connectors. |
 | /connectors | POST | 201 | Create new connector. |
 | /connectors/{_id} | PUT | 200 | Update existing connector. |
 | /connectors/{_id} | GET | 200 | Retrieve existing connector.  |
