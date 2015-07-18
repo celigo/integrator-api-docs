@@ -1,5 +1,5 @@
 # Introduction
-The Integrator is an API first platform.  Features are released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers who wish to build integration based apps.  Complementing the API, the Integrator supports a rich customization framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks (hooks give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
+The Integrator is an API first platform.  Features are released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers building integration based apps.  Complementing the API, the Integrator supports a rich extension framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks or wrappers (hooks and wrappers give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
 
 ## Quick Start
 ## Authentication
@@ -53,6 +53,10 @@ Connections are used to store credentials, along with other access information f
 | /connections/{_id} | PUT | 200 | Update existing connection. |
 | /connections/{_id} | GET | 200 | Retrieve existing connection.  |
 | /connections/{_id} | DELETE | 204 | Delete existing connection. |
+TODO here.  lots of routes to add still. :(
+  GET /connections/:_id/ping
+  POST /connections/ping
+  etc...
 
 #### Relevant Schema Info
 ##### NetSuite Connection
