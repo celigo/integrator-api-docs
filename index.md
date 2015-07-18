@@ -57,6 +57,7 @@ Connections are used to store credentials, along with other access information f
 ##### NetSuite Connection
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **type** | . |
 | **lastModified** | . |
@@ -77,6 +78,7 @@ Connections are used to store credentials, along with other access information f
 ##### REST Connection
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **type** | . |
 | **lastModified** | . |
@@ -102,6 +104,7 @@ Connections are used to store credentials, along with other access information f
 ##### FTP Connection
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **type** | . |
 | **lastModified** | . |
@@ -176,6 +179,7 @@ You should receive a response that includes the following fields.  Note that we 
 ##### Export Resource Fields (/exports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | Give your export an intuitive name to stay organized. |
 | **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
 | **type** | . |
@@ -188,6 +192,7 @@ You should receive a response that includes the following fields.  Note that we 
 ##### Distributed Export Resource Fields (/exports/{_id}/distributed)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **recordType** | . |
 | **executionContext** | . |
 | **qualifier** | . |
@@ -233,6 +238,7 @@ You should receive a response that includes the following fields.
 ##### Export Resource Fields (/exports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | Give your export an intuitive name to stay organized. |
 | **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
 | **asynchronous** | . |
@@ -293,6 +299,7 @@ You should receive a response that includes the following fields.
 ##### Export Resource Fields (/exports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | Give your export an intuitive name to stay organized. |
 | **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
 | **asynchronous** | . |
@@ -348,6 +355,7 @@ You should receive a response that includes the following fields.
 ##### Export Resource Fields (/exports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | Give your export an intuitive name to stay organized. |
 | **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
 | **asynchronous** | . |
@@ -400,6 +408,7 @@ You should receive a response that includes the following fields.
 ##### Export Resource Fields (/exports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | Give your export an intuitive name to stay organized. |
 | **_connectionId** | . |
 | **type** | . |
@@ -546,6 +555,7 @@ You should receive a response that includes the following fields.  Note that we 
 ##### Import Resource Fields (/imports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **_connectionId** | . |
 | **lastModified** | . |
@@ -557,6 +567,7 @@ You should receive a response that includes the following fields.  Note that we 
 ##### Distributed Import Resource Fields (/imports/{_id}/distributed)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **recordType** | . |
 | **operation** | . |
 | **internalIdLookup.extract** | . |
@@ -690,6 +701,7 @@ You should receive a response that includes the following fields.
 ##### Import Resource Fields (/imports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **_connectionId** | . |
 | **lastModified** | . |
@@ -809,6 +821,7 @@ Here is a more complex import.  This import will check to see if a customer reso
 ##### Import Resource Fields (/imports)
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **_connectionId** | . |
 | **lastModified** | . |
@@ -856,6 +869,7 @@ Flows are used to export data out of one application and import it into another 
 ##### Flow
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
 | **schedule** | . |
 | **lastModified** | . |
@@ -867,30 +881,68 @@ Flows are used to export data out of one application and import it into another 
 
 ## Integration
 ##### What is an Integration?
-Flows are used
+Integrations are used group one or more [Imports](#Import), [Exports](#Export), or [Flows](#Flow).  Integrations will show as tiles in the Integrator dashboard.
 
 ##### Integration Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
-| /flows | POST | 201 | Create new flows. |
-| /flows/{_id} | PUT | 200 | Update existing flows. |
-| /flows/{_id} | GET | 200 | Retrieve existing flows.  |
-| /flows/{_id} | DELETE | 204 | Delete existing flows. |
+| /integrations | POST | 201 | Create new integrations. |
+| /integrations/{_id} | PUT | 200 | Update existing integrations. |
+| /integrations/{_id} | GET | 200 | Retrieve existing integrations.  |
+| /integrations/{_id} | DELETE | 204 | Delete existing integrations. |
+| /integrations/{_connectorId}/install | POST | 204 | Install connector. |
+| /integrations/{_id}/install | DELETE | 204 | Uninstall connector. |
+| /integrations/{_id}/installer/{function} | PUT | 204 | Invoke 'function' (belonging to installer module). |
+| /integrations/{_id}/uninstaller/{function} | PUT | 204 | Invoke 'function' (belonging to uninstaller module). |
+| /integrations/{_id}/settings/{function} | PUT | 204 | Invoke 'function' (belonging to settings module). |
 
 #### Relevant Schema Info
 ##### Integration
 | Field | Description |
 | :---- | :---- |
+| **_id** | . |
 | **name** | . |
-| **schedule** | . |
+| **tag** | . |
 | **lastModified** | . |
-| **_exportId** | . |
-| **_importId** | . |
-| **_integrationId** | . |
 | **_connectorId** | . |
-| **disabled** | . |
+| **mode** | . |
+| **install** | . |
+| **version** | . |
+| **settings** | . |
+| **updateInProgress** | . |
 
 ## Connector
+##### What is a Connector?
+Connectors represent fully functional pre-built integrations that any user can install into their Integrator account, directly from the Integrator Marketplace.  Connectors include an installer, uninstaller, and a settings interface.  Connector developers can push updates at any time for their Connector to their entire install base.  Connectors are mostly made up of code (that subsequently uses the Integrator API to interact with a user's account).  A Connector can create any number of components in a user's account.  All components created in a user's account are tagged with the Connector's \_id (via the \_connectorId field).  A Connector can only modify components tagged with its own \_id.  The schema below mostly serves the purpose of listing a Connector in the Integrator Marketplace (i.e. description, imageURL, websiteURL, etc...).
+
+##### Connector Related HTTP Endpoints
+| Relative URI | Method | Success Code | Description |
+| :---- | :---- | :----: | :---- |
+| /connectors | POST | 201 | Create new connectors. |
+| /connectors/{_id} | PUT | 200 | Update existing connectors. |
+| /connectors/{_id} | GET | 200 | Retrieve existing connectors.  |
+| /connectors/{_id} | DELETE | 204 | Delete existing connectors. |
+| /connectors/{_id}/installBase | GET | 200 | Returns information related to the install base for the connector. |
+| /connectors/{_id}/update | PUT | 200 | Push an update to the _integrationIds[] provided in the request body. |
+
+#### Relevant Schema Info
+##### Connector
+| Field | Description |
+| :---- | :---- |
+| **_id** | . |
+| **name** | . |
+| **handle** | . |
+| **lastModified** | . |
+| **published** | . |
+| **_integrationId** | . |
+| **description** | . |
+| **imageURL** | . |
+| **websiteURL** | . |
+| **installerFunction** | . |
+| **uninstallerFunction** | . |
+| **updateFunction** | . |
+
+
 ## IClient
 ## Job
 ## Job Error
