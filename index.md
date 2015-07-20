@@ -48,14 +48,14 @@ Connections are used to store credentials, along with other access information f
 ##### Connection Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
 | :---- | :---- | :----: | :---- |
-| /connections | GET | 200 | List all connections. |
-| /connections | POST | 201 | Create new connection. |
-| /connections/{_id} | PUT | 200 | Update existing connection. |
-| /connections/{_id} | GET | 200 | Retrieve existing connection.  |
-| /connections/{_id} | DELETE | 204 | Delete existing connection. |
+| /v1/connections | GET | 200 | List all connections. |
+| /v1/connections | POST | 201 | Create new connection. |
+| /v1/connections/{_id} | PUT | 200 | Update existing connection. |
+| /v1/connections/{_id} | GET | 200 | Retrieve existing connection.  |
+| /v1/connections/{_id} | DELETE | 204 | Delete existing connection. |
 TODO here.  lots of routes to add still. :(
-  GET /connections/:_id/ping
-  POST /connections/ping
+  GET /v1/connections/:_id/ping
+  POST /v1/connections/ping
   etc...
 
 #### Relevant Schema Info
