@@ -860,6 +860,7 @@ Here is a more complex import.  This import will check to see if a customer reso
 | **rest.lookups.allowFailures** | . |
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
+| **mapping.fields.dataType** | . |
 | **mapping.fields.hardCodedValue** | . |
 | **mapping.fields.lookupName** | . |
 | **mapping.fields.extractDateFormat** | . |
