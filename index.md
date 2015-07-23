@@ -595,7 +595,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
 | **mapping.fields.hardCodedValue** | . |
-| **mapping.fields.lookup** | . |
+| **mapping.fields.lookupName** | . |
 | **mapping.fields.extractDateFormat** | . |
 | **mapping.fields.extractDateTimezone** | . |
 | **mapping.fields.generateDateFormat** | . |
@@ -735,7 +735,7 @@ You should receive a response that includes the following fields.
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
 | **mapping.fields.hardCodedValue** | . |
-| **mapping.fields.lookup** | . |
+| **mapping.fields.lookupName** | . |
 | **mapping.fields.extractDateFormat** | . |
 | **mapping.fields.extractDateTimezone** | . |
 | **mapping.fields.generateDateFormat** | . |
@@ -861,7 +861,7 @@ Here is a more complex import.  This import will check to see if a customer reso
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
 | **mapping.fields.hardCodedValue** | . |
-| **mapping.fields.lookup** | . |
+| **mapping.fields.lookupName** | . |
 | **mapping.fields.extractDateFormat** | . |
 | **mapping.fields.extractDateTimezone** | . |
 | **mapping.fields.generateDateFormat** | . |
