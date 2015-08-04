@@ -26,7 +26,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One Time Tokens
-The Integrator will also pass one-time tokens to backend components implementing hooks, wrappers, installer, uninstaller, or settings interfaces.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into the Integrator.  The difference between one-time tokens and the main Integrator account token is that they auto expire after use (determined via the return statement, or after a 15 minute timeout).  For integration apps, tokens passed are only granted access to invoke resources belonging to the app itself (determined via the \_connectorId property).
+The Integrator will also pass one-time tokens to backend components implementing hooks, wrappers, installer, uninstaller, or settings interfaces.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into the Integrator.  One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout).  For Connectors (managed integration apps), tokens passed are only granted access to invoke resources belonging to the Connector itself (determined via the \_connectorId property).  For hooks and wrappers not belonging to a Connector, one-time tokens are limited to only invoking Exports and Imports already defined in the Integrator account.
 
 ## Rate Limiting
 The Integrator API is rate limited using a token bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
@@ -171,12 +171,17 @@ You should receive a response that includes the following fields.  Note that we 
 ```javascript
 {
   "recordType": "salesorder",
+  "sublists": ['item', 'shipgroup'],
   "executionContext": ["userinterface", "webservices", "webstore"],
   "qualifier": ['total', '>=', '1000'],
   "hooks": {
     "preSend": {
       "fileInternalId": "1234",
-      "function": "myPreSendLogic"
+      "function": "myPreSendLogic",
+      "settings": {
+        "myprop1": "value",
+        "myprop2": "value"
+      }
     }
   }
 }
@@ -201,10 +206,12 @@ You should receive a response that includes the following fields.  Note that we 
 | :---- | :---- |
 | **_id** | . |
 | **recordType** | . |
+| **sublists** | . |
 | **executionContext** | . |
 | **qualifier** | . |
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.function** | . |
+| **hooks.preSend.settings** | . |
 
 #### NetSuite Batch Export (utilizing a RESTlet in the NetSuite DA)
 ##### POST /exports
@@ -857,6 +864,8 @@ Here is a more complex import.  This import will check to see if a customer reso
 | **rest.lookups.method** | . |
 | **rest.lookups.postData** | . |
 | **rest.lookups.extract** | . |
+| **rest.lookups.map** | . |
+| **rest.lookups.default** | . |
 | **rest.lookups.allowFailures** | . |
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
