@@ -178,11 +178,11 @@ You should receive a response that includes the following fields.  Note that we 
     "preSend": {
       "fileInternalId": "1234",
       "function": "myPreSendLogic",
-      "settings": {
-        "myprop1": "value",
-        "myprop2": "value"
-      }
     }
+  },
+  "settings": {
+    "myprop1": "value",
+    "myprop2": "value"
   }
 }
 ```
@@ -211,7 +211,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **qualifier** | . |
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.function** | . |
-| **hooks.preSend.settings** | . |
+| **settings** | . |
 
 #### NetSuite Batch Export (utilizing a RESTlet in the NetSuite DA)
 ##### POST /exports
