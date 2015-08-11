@@ -1,12 +1,12 @@
 # Introduction
-The Integrator is an API first platform.  Features are released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers building integration based apps.  Complementing the API, the Integrator supports a rich extension framework.  The integrations that you build can include an installer, settings pages, along with any number of hooks or wrappers (hooks and wrappers give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
+The Integrator is an API first platform.  Features are released here first, and then shortly after in the UI.  The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens.  The target audience for the API is developers building integration based apps.  Complementing the API, the Integrator supports a rich extension framework.  The integrations you build can include an installer, settings pages, along with any number of hooks or wrappers (hooks and wrappers give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone).  Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user.  Enjoy!
 
 ## Quick Start
 ## Authentication
 ### Bearer Tokens
-Every Integrator account is provisioned with one API token.  Clients should transmit their token using the "Authorization" request header field and the "Bearer" authentication scheme.  
+Every Integrator account is provisioned with one API token.  API clients should transmit this token using the "Authorization" request header field and the "Bearer" authentication scheme.  
 
-Sample Request:
+Sample HTTP Request:
 
 ```
 GET /v1/tokenInfo HTTP/1.1
@@ -26,7 +26,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One Time Tokens
-The Integrator will also pass one-time tokens to backend components implementing hooks, wrappers, installer, uninstaller, or settings interfaces.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into the Integrator.  The difference between one-time tokens and the main Integrator account token is that they auto expire after use (determined via the return statement, or after a 15 minute timeout).  For integration apps, tokens passed are only granted access to invoke resources belonging to the app itself (determined via the \_connectorId property).
+The Integrator will also pass one-time tokens to backend components implementing hooks, wrappers, installer, uninstaller, or settings interfaces.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into the Integrator.  One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout).  For Connectors (managed integration apps), tokens passed are only granted access to invoke resources belonging to the Connector itself (determined via the \_connectorId property).  For hooks and wrappers not belonging to a Connector, one-time tokens are limited to only invoking Exports and Imports already defined in the Integrator account.
 
 ## Rate Limiting
 The Integrator API is rate limited using a token bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
@@ -41,9 +41,9 @@ The Integrator API supports the following custom HTTP headers.
 ## Connection
 ##### What is a Connection?
 Connections are used to store credentials, along with other access information for an application or system.  Currently the Integrator supports the following connection types.
-* [netsuite](#NetSuite Connection)
-* [rest](#REST Connection)
-* [ftp](#FTP Connection)
+* [NetSuite](#NetSuite Connection)
+* [REST API](#REST Connection)
+* [SFTP/FTP](#FTP Connection)
 
 ##### Connection Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
@@ -53,8 +53,9 @@ Connections are used to store credentials, along with other access information f
 | /connections/{_id} | PUT | 200 | Update existing connection. |
 | /connections/{_id} | GET | 200 | Retrieve existing connection.  |
 | /connections/{_id} | DELETE | 204 | Delete existing connection. |
-TODO here.  lots of routes to add still. :(
-  GET /connections/:_id/ping
+
+TODO here!  lots of routes to add still. :(
+  GET /connections/:\_id/ping
   POST /connections/ping
   etc...
 
@@ -170,13 +171,18 @@ You should receive a response that includes the following fields.  Note that we 
 ```javascript
 {
   "recordType": "salesorder",
+  "sublists": ['item', 'shipgroup'],
   "executionContext": ["userinterface", "webservices", "webstore"],
-  "qualifier": "['total', '>=', '1000']",
+  "qualifier": ['total', '>=', '1000'],
   "hooks": {
     "preSend": {
       "fileInternalId": "1234",
-      "function": "myPreSendLogic"
+      "function": "myPreSendLogic",
     }
+  },
+  "settings": {
+    "myprop1": "value",
+    "myprop2": "value"
   }
 }
 ```
@@ -200,10 +206,12 @@ You should receive a response that includes the following fields.  Note that we 
 | :---- | :---- |
 | **_id** | . |
 | **recordType** | . |
+| **sublists** | . |
 | **executionContext** | . |
 | **qualifier** | . |
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.function** | . |
+| **settings** | . |
 
 #### NetSuite Batch Export (utilizing a RESTlet in the NetSuite DA)
 ##### POST /exports
@@ -489,8 +497,7 @@ You should receive a response that includes the following fields.  Note that we 
       "recordType": "customer",
       "searchField": "email",
       "resultField": "internalid",
-      "allowFailures": "false",
-      "includeInactive": "false"
+      "allowFailures": false
     },
     {
       "name": "currencyMap",
@@ -499,20 +506,20 @@ You should receive a response that includes the following fields.  Note that we 
         "JAPAN": "JPY",
         "UK": "GDP"
       },
-      "allowFailures": "false"
+      "allowFailures": false
     },
     {
       "name": "itemLookup",
       "recordType": "item",
       "searchField": "itemid",
       "resultField": "internalid",
-      "allowFailures": "false",
-      "includeInactive": "false"
+      "allowFailures": true,
+      "default": "1234"
     },
     {
       "name": "orderLookup",
       "recordType": "salesorder",
-      "expression": "[['tranid','is','{{last_order}}'],'OR',['custbody_web_id','is','{{last_order}}']]",
+      "expression": [['tranid','is','{{last_order}}'],'OR',['custbody_web_id','is','{{last_order}}']],
       "allowFailures": true
     }
   ],
@@ -588,14 +595,18 @@ You should receive a response that includes the following fields.  Note that we 
 | **lookups.recordType** | . |
 | **lookups.searchField** | . |
 | **lookups.resultField** | . |
-| **lookups.lookupOperator** | . |
+| **lookups.operator** | . |
 | **lookups.expression** | . |
-| **lookups.includeInactive** | . |
 | **lookups.allowFailures** | . |
+| **lookups.default** | . |
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
 | **mapping.fields.hardCodedValue** | . |
-| **mapping.fields.lookup** | . |
+| **mapping.fields.lookupName** | . |
+| **mapping.fields.extractDateFormat** | . |
+| **mapping.fields.extractDateTimezone** | . |
+| **mapping.fields.generateDateFormat** | . |
+| **mapping.fields.internalId** | . |
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
 | **hooks.preMap.fileInternalId** | . |
@@ -626,8 +637,7 @@ If installing the Distributed Adaptor in your NetSuite account is not an option,
         "recordType": "Customer",
         "searchField": "email",
         "resultField": "internalId",
-        "allowFailures": "false",
-        "includeInactive": "false"
+        "allowFailures": false,
       },
       {
         "name": "currencyMap",
@@ -636,15 +646,14 @@ If installing the Distributed Adaptor in your NetSuite account is not an option,
           "JAPAN": "JPY",
           "UK": "GDP"
         },
-        "allowFailures": "false"
+        "allowFailures": false
       },
       {
         "name": "itemLookup",
         "recordType": "Item",
         "searchField": "itemId",
         "resultField": "internalId",
-        "allowFailures": "false",
-        "includeInactive": "false"
+        "allowFailures": false,
       }
     ],
     "customFieldMetadata": {
@@ -733,7 +742,10 @@ You should receive a response that includes the following fields.
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
 | **mapping.fields.hardCodedValue** | . |
-| **mapping.fields.lookup** | . |
+| **mapping.fields.lookupName** | . |
+| **mapping.fields.extractDateFormat** | . |
+| **mapping.fields.extractDateTimezone** | . |
+| **mapping.fields.generateDateFormat** | . |
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
 
@@ -801,7 +813,7 @@ Here is a more complex import.  This import will check to see if a customer reso
           "JAPAN": "JPY",
           "UK": "GDP"
         },
-        "allowFailures": "false"
+        "allowFailures": false
       }
     ]
   },
@@ -852,11 +864,17 @@ Here is a more complex import.  This import will check to see if a customer reso
 | **rest.lookups.method** | . |
 | **rest.lookups.postData** | . |
 | **rest.lookups.extract** | . |
+| **rest.lookups.map** | . |
+| **rest.lookups.default** | . |
 | **rest.lookups.allowFailures** | . |
 | **mapping.fields.extract** | . |
 | **mapping.fields.generate** | . |
+| **mapping.fields.dataType** | . |
 | **mapping.fields.hardCodedValue** | . |
-| **mapping.fields.lookup** | . |
+| **mapping.fields.lookupName** | . |
+| **mapping.fields.extractDateFormat** | . |
+| **mapping.fields.extractDateTimezone** | . |
+| **mapping.fields.generateDateFormat** | . |
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
 
@@ -899,11 +917,11 @@ Integrations are used group one or more [Imports](#Import), [Exports](#Export), 
 | /integrations/{_id} | PUT | 200 | Update existing integration. |
 | /integrations/{_id} | GET | 200 | Retrieve existing integration.  |
 | /integrations/{_id} | DELETE | 204 | Delete existing integration. |
-| /integrations/{_connectorId}/install | POST | 204 | Install connector. |
-| /integrations/{_id}/install | DELETE | 204 | Uninstall connector. |
-| /integrations/{_id}/installer/{function} | PUT | 204 | Invoke 'function' (belonging to installer module). |
-| /integrations/{_id}/uninstaller/{function} | PUT | 204 | Invoke 'function' (belonging to uninstaller module). |
-| /integrations/{_id}/settings/{function} | PUT | 204 | Invoke 'function' (belonging to settings module). |
+| /integrations/{_connectorId}/install | POST | 200 | Install connector. |
+| /integrations/{_id}/install | DELETE | 200 | Uninstall connector. |
+| /integrations/{_id}/installer/{function} | PUT | 200 | Invoke 'function' (belonging to installer module). |
+| /integrations/{_id}/uninstaller/{function} | PUT | 200 | Invoke 'function' (belonging to uninstaller module). |
+| /integrations/{_id}/settings/{function} | PUT | 200 | Invoke 'function' (belonging to settings module). |
 
 #### Relevant Schema Info
 ##### Integration
