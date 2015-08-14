@@ -183,7 +183,8 @@ You should receive a response that includes the following fields.  Note that we 
   "settings": {
     "myprop1": "value",
     "myprop2": "value"
-  }
+  },
+  "disabled": false
 }
 ```
 
@@ -212,6 +213,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.function** | . |
 | **settings** | . |
+| **disabled** | . |
 
 #### NetSuite Batch Export (utilizing a RESTlet in the NetSuite DA)
 ##### POST /exports
