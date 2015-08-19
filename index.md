@@ -80,6 +80,8 @@ TODO here!  lots of routes to add still. :(
 | **netsuite.environment** | . |
 | **netsuite.requestLevelCredentials** | . |
 | **netsuite.dataCenterURLs** | . |
+| **netsuite.accountName** | . |
+| **netsuite.roleName** | . |
 
 ##### REST Connection
 | Field | Description |
