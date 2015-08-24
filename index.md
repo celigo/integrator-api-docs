@@ -210,6 +210,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **recordType** | . |
 | **sublists** | . |
 | **executionContext** | . |
+| **executionType** | . |
 | **qualifier** | . |
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.function** | . |
