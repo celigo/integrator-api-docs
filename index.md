@@ -175,6 +175,7 @@ You should receive a response that includes the following fields.  Note that we 
   "recordType": "salesorder",
   "sublists": ['item', 'shipgroup'],
   "executionContext": ["userinterface", "webservices", "webstore"],
+  "executionType": ["create", "edit", "xedit"],
   "qualifier": ['total', '>=', '1000'],
   "hooks": {
     "preSend": {
@@ -211,6 +212,7 @@ You should receive a response that includes the following fields.  Note that we 
 | **recordType** | . |
 | **sublists** | . |
 | **executionContext** | . |
+| **executionType** | . |
 | **qualifier** | . |
 | **hooks.preSend.fileInternalId** | . |
 | **hooks.preSend.function** | . |
