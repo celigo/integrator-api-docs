@@ -1,0 +1,20 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/opt/nvm/v0.10.38/bin/node',
+1 verbose cli   '/usr/local/opt/nvm/v0.10.38/bin/npm',
+1 verbose cli   'i' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.38
+4 verbose node symlink /usr/local/opt/nvm/v0.10.38/bin/node
+5 error install Couldn't read dependencies
+6 error package.json ENOENT, open '/Users/shivaalluri/Documents/workspace/git/alluriprasad/integrator/integrator-api-docs/package.json'
+6 error package.json This is most likely not a problem with npm itself.
+6 error package.json npm can't find a package.json file in your current directory.
+7 error System Darwin 14.4.0
+8 error command "/usr/local/opt/nvm/v0.10.38/bin/node" "/usr/local/opt/nvm/v0.10.38/bin/npm" "i"
+9 error cwd /Users/shivaalluri/Documents/workspace/git/alluriprasad/integrator/integrator-api-docs
+10 error node -v v0.10.38
+11 error npm -v 1.4.28
+12 error path /Users/shivaalluri/Documents/workspace/git/alluriprasad/integrator/integrator-api-docs/package.json
+13 error code ENOPACKAGEJSON
+14 error errno 34
+15 verbose exit [ 34, true ]
