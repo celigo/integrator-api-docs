@@ -44,6 +44,7 @@ Connections are used to store credentials, along with other access information f
 * [NetSuite](#NetSuite Connection)
 * [REST API](#REST Connection)
 * [SFTP/FTP](#FTP Connection)
+* [Salesforce(OAuth2)](#Salesforce Connection)
 
 ##### Connection Related HTTP Endpoints
 | Relative URI | Method | Success Code | Description |
@@ -122,6 +123,25 @@ TODO here!  lots of routes to add still. :(
 | **ftp.username** | . |
 | **ftp.password** | . |
 | **ftp.port** | . |
+
+##### Salesforce Connection(OAuth2)
+| Field | Description |
+| :---- | :---- |
+| **_id** | . |
+| **name** | . |
+| **type** | . |
+| **lastModified** | . |
+| **offline** | . |
+| **_connectorId** | . |
+| **salesforce.sandbox** | . |
+| **salesforce.baseURI** | . |
+| **salesforce.bearerToken** | . |
+| **salesforce.refreshToken** | . |
+| **salesforce.scope** | . |
+| **salesforce.iClientId** | . |
+| **salesforce.info** | . |
+| **salesforce.concurrencyLevel** | . |
+
 
 
 ## Export
@@ -394,6 +414,56 @@ You should receive a response that includes the following fields.
 | **rest.pageArgument** | . |
 | **pageSize** | . |
 | **hooks._preSavePageId** | . |
+
+### Salesforce Adaptor Exports
+The Integrator supports the ability to define exports from Salesforce using SOQL query. Following is an example.
+
+##### POST /exports
+```javascript
+  {
+    "_connectionId": "568dc3c7683fd1c40bf518ed",
+    "asynchronous": true,
+    "hooks": {
+      "preSavePage": {
+        "function": null,
+        "_stackId": null
+      }
+    },
+    "salesforce": {
+      "type": "soql",
+      "api": "rest",
+      "soql": {
+        "query": "select id, fax from account where name like 'test fax lookup'"
+      }
+    }
+  }
+```
+You should receive a response that includes the following fields.
+
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439321",
+  "apiIdentifier": "e6dec26ffb",
+}
+```
+
+#### Relevant Schema Info
+##### Export Resource Fields (/exports)
+| Field | Description |
+| :---- | :---- |
+| **_id** | . |
+| **name** | Give your export an intuitive name to stay organized. |
+| **_connectionId** | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being exported. |
+| **asynchronous** | . |
+| **type** | . |
+| **lastModified** | Read only field tracking last modified date/time. |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **salesforce.type** | `soql` for export using SOQL query |
+| **salesforce.api** | `rest(default)` or `soap` |
+| **salesforce.soql.query** | the actual SOQL query to use |
+
 
 ### Webhook Adaptor Exports
 The Integrator also supports the ability to integrate with any JSON based webhook.  An export record is used to register a listener that can then be posted to.  Following is a sample Webhook based export.
@@ -881,6 +951,129 @@ Here is a more complex import.  This import will check to see if a customer reso
 | **mapping.fields.generateDateFormat** | . |
 | **mapping.lists.generate** | . |
 | **mapping.lists.fields** | . |
+
+
+### Salesforce Adaptor Imports
+The Integrator supports the ability to define imports for Salesforce. Currently the following data operations are supported:
+
+* insert
+* update
+* upsert
+
+##### POST /imports
+The following simple import will insert `Case` objects into connected Salesforce account through Salesforce's `REST` API.
+
+```javascript
+{
+    "_connectionId": "568dc3c7683fd1c40bf518ed",
+    "distributed": false,
+    "hooks": {
+      "postSubmit": {
+        "function": null,
+        "_stackId": null
+      },
+      "postMap": {
+        "function": null,
+        "_stackId": null
+      },
+      "preMap": {
+        "function": null,
+        "_stackId": null
+      }
+    },
+    "salesforce": {
+      "operation": "insert",
+      "sObjectType": "Case",
+      "api": "rest"
+    }
+  }
+```
+
+You should receive a response that includes the following fields. 
+ 
+```javascript
+{
+  "_id": "507f1f77bcf86cd799439030",
+  "apiIdentifier": "id34bc748e"
+}
+```
+
+Here is another example using the `upsert` operation. For `upsert`, it is required to specify the externalIdField used in question.
+
+```javascript
+{
+    "_connectionId": "568dc3c7683fd1c40bf518ed",
+    "distributed": false,
+    "hooks": {
+      "postSubmit": {
+        "function": null,
+        "_stackId": null
+      },
+      "postMap": {
+        "function": null,
+        "_stackId": null
+      },
+      "preMap": {
+        "function": null,
+        "_stackId": null
+      }
+    },
+    "mapping": {
+      "fields": [
+        {
+          "extract": "Phone",
+          "generate": "FirstName"
+        },
+        {
+          "extract": "Id",
+          "generate": "Title"
+        }
+      ]
+    },
+    "salesforce": {
+      "operation": "upsert",
+      "sObjectType": "Contact",
+      "api": "rest",
+      "idLookup": {
+        "extract": "Id"
+      },
+      "upsert": {
+        "externalIdField": "my_external_id__c"
+      }
+    }
+  }
+```
+
+#### Relevant Schema Info
+
+##### Import Resource Fields (/imports)
+| Field | Description |
+| :---- | :---- |
+| **_id** | . |
+| **name** | . |
+| **_connectionId** | . |
+| **lastModified** | . |
+| **apiIdentifier** | . |
+| **_integrationId** | . |
+| **_connectorId** | . |
+| **maxAttempts** | . |
+| **ignoreExisting** | . |
+| **ignoreExistingLoE** | . |
+| **ignoreMissing** | . |
+| **ignoreMissingLoE** | . |
+| **salesforce.operation** | `insert`, `update` or `upsert` |
+| **salesforce.sObjectType** | the SObjectType to operate on |
+| **salesforce.api** | `rest` or `soap` |
+| **salesforce.idLookup.extract** | for `update` the source field that contains the Salesforce `Id`; for `upsert` the source field that contains the Salesforce `external Id` |
+| **salesforce.idLookup.whereClause** | the query clause used to find existing object in Salesforce based on source data. e.g. `email = {{email source_email_field }}` |
+| **salesforce.upsert.externalIdField** | for `upsert` only, the external id field name used |
+| **salesforce.lookups.name** | . |
+| **salesforce.lookups.allowFailures** | . |
+| **salesforce.lookups.map** | . |
+| **salesforce.lookups.default** | . |
+| **salesforce.lookups.sObjectType** | the SObject type to query on. e.g. `Account`|
+| **salesforce.lookups.resultField** | the field to get out of a lookup query e.g. `Id` |
+| **salesforce.lookups.whereClause** | the query clause that can use source data fields to look up objects in Salesforce. e.g. `name = {{string account_name}} and owner.email = {{email my_email}} and site = 'example site' `|
 
 ## Flow
 ##### What is a Flow?
