@@ -86,26 +86,26 @@ TODO here!  lots of routes to add still. :(
 ##### REST Connection
 | Field | Description |
 | :---- | :---- |
-| **_id** | . |
-| **name** | . |
-| **type** | . |
+| **_id** | unique id assaigned by integrator |
+| **name** | name by which you would like to recognize the connection |
+| **type** | type of connection. REST in this case |
 | **lastModified** | . |
 | **offline** | . |
 | **_connectorId** | . |
 | **rest.mediaType** | . |
-| **rest.baseURI** | . |
-| **rest.bearerToken** | . |
-| **rest.tokenLocation** | . |
-| **rest.tokenParam** | . |
-| **rest.scope** | . |
-| **rest.scopeDelimiter** | . |
+| **rest.baseURI** | base URI of the endpoint to which the connection belongs to. |
+| **rest.bearerToken** |  |
+| **rest.tokenLocation** | location where the token exists in response. For example header or url, depends on the endpoint |
+| **rest.tokenParam** | name of the prameter in response which holds access token |
+| **rest.scope** | permissions to request (list of resources on which you need read or write access) |
+| **rest.scopeDelimiter** | delimeter used on the list of resources mentioned in rest.scope |
 | **rest.refreshToken** | . |
-| **rest.authURI** | . |
-| **rest.authHeader** | . |
-| **rest.authScheme** | . |
-| **rest.basicAuth.username** | . |
-| **rest.basicAuth.password** | . |
-| **rest._iClientId** | . |
+| **rest.authURI** | realtive URI to be pinged for authentication |
+| **rest.authHeader** | name of the header in which access token should be passed for making authenticated requests |
+| **rest.authScheme** |  |
+| **rest.basicAuth.username** | username that is used to login to the account |
+| **rest.basicAuth.password** | password of the account |
+| **rest._iClientId** |  |
 | **rest.info** | . |
 | **rest.pingRelativeURI** | . |
 
@@ -113,15 +113,15 @@ TODO here!  lots of routes to add still. :(
 | Field | Description |
 | :---- | :---- |
 | **_id** | . |
-| **name** | . |
-| **type** | . |
-| **lastModified** | . |
+| **name** | name by which you would like to recognize the connection |
+| **type** | type of connection. FTP in this case |
+| **lastModified** |  |
 | **offline** | . |
 | **_connectorId** | . |
-| **ftp.hostURI** | . |
-| **ftp.username** | . |
-| **ftp.password** | . |
-| **ftp.port** | . |
+| **ftp.hostURI** | Uniform Resource Indentifier (URI) of the FTP server to which you want to connect |
+| **ftp.username** | username of your account on FTP server |
+| **ftp.password** | password of your account |
+| **ftp.port** | port number on which the FTP server is running. By default the port number is 21 |
 
 
 ## Export
