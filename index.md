@@ -57,7 +57,12 @@ Connection
 
 ##### What is a Connection?
 
-Connections are used to store credentials, along with other access information for an application or system. Currently the Integrator supports the following connection types.* [NetSuite](#NetSuite Connection)* [REST API](#REST Connection)* [SFTP/FTP](#FTP Connection)
+Connections are used to store credentials, along with other access information for an application or system. Currently the Integrator supports the following connection types.
+
+-	[NetSuite](#NetSuite Connection)
+-	[REST API](#REST Connection)
+-	[SFTP/FTP](#FTP Connection)
+-	[S3](#S3)
 
 ##### Connection Related HTTP Endpoints
 
@@ -544,7 +549,9 @@ The following sections are organized by application and adaptor, and ordered by 
 
 If you are using the Integrator to build NetSuite based integrations, we highly recommend you install our Distributed Adaptor (DA for short). It's a SuiteApp that gets installed as a Bundle directly in your NetSuite account. Once installed, it enables a super rich import engine that can be used to map and load NetSuite data in very creative (and efficient) ways. Here are the steps required to create an import using the API. Please note that the samples below were generated to illustrate capabilities, not to provide a fully functional NetSuite import.
 
-##### First, create your import resource. POST /imports
+##### First, create your import resource.
+
+POST /imports
 
 ```javascript
 {
@@ -564,7 +571,9 @@ You should receive a response that includes the following fields. Note that we w
 }  
 ```
 
-##### Second, create your distributed import resource. PUT /imports/507f1f77bcf86cd799439032/distributed
+##### Second, create your distributed import resource.
+
+PUT /imports/507f1f77bcf86cd799439032/distributed
 
 ```javascript
 {
