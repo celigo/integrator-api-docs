@@ -3,9 +3,6 @@ Introduction
 
 The Integrator is an API first platform. Features are released here first, and then shortly after in the UI. The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers building integration based apps. Complementing the API, the Integrator supports a rich extension framework. The integrations you build can include an installer, settings pages, along with any number of hooks or wrappers (hooks and wrappers give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone). Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user. Enjoy!
 
-Quick Start
------------
-
 Authentication
 --------------
 
@@ -103,8 +100,6 @@ Exports running in the context of a Flow will execute asynchronously and automat
 | /{apiIdentifier}           | POST   |     200      | Invoke an export.                                                              |
 | /exports/preview           | POST   |     200      | Invoke an export in test mode before saving it to preview the results.         |
 
-The following sections are organized by application and adaptor, and ordered by popularity.
-
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/export.md) for more info on export
 
 Import
@@ -130,8 +125,6 @@ Imports running in the context of a Flow will also execute synchronously but wil
 | /imports/{_id}/distributed | PUT    |     200      | Create or update a distributed component that is linked to an existing import. |
 | /imports/{_id}/distributed | GET    |     200      | Retrieve a distributed component that is linked to an existing import.         |
 | /{apiIdentifier}           | POST   |     200      | Invoke an import on the req body (should be JSON array).                       |
-
-The following sections are organized by application and adaptor, and ordered by popularity.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/import.md) for more info on import
 
