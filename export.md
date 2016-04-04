@@ -103,9 +103,9 @@ You should receive a response that includes the following fields. Note that we w
 
 ##### Export Resource Fields (/exports)
 
-| Field                       | Required | Description |
-|:----------------------------|:---------|:------------|
-| **distributed.bearerToken** | Yes      | .           |
+| Field                       | Required | Description                            |
+|:----------------------------|:---------|:---------------------------------------|
+| **distributed.bearerToken** | Yes      | Token used for authentication purpose. |
 
 ##### Distributed Export Resource Fields (/exports/{_id}/distributed)
 
@@ -164,15 +164,20 @@ You should receive a response that includes the following fields.
 
 ##### Export Resource Fields (/exports)
 
-| Field                                             | Description |
-|:--------------------------------------------------|:------------|
-| **netsuite.type**                                 | .           |
-| **netsuite.restlet.recordType**                   | .           |
-| **netsuite.restlet.searchId**                     | .           |
-| **netsuite.restlet.hooks.preSend.fileInternalId** | .           |
-| **netsuite.restlet.hooks.preSend.function**       | .           |
-| **netsuite.skipGrouping**                         | .           |
-| **pageSize**                                      | .           |
+| Field                                             | Required | Description                                                                                                                                  |
+|:--------------------------------------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| **netsuite.type**                                 | Yes      | This field determines the type of the operation to be performed on the NS account (Ex: search, basicSearch, metadata, selectoption, restlet) |
+| **netsuite.searches**                             | No       | If the type is set to 'search' or 'basicSearch' this field holds an array of objects describing the search criteria for the NS records.      |
+| **netsuite.metadata**                             | No       | If the type is set to 'metadata'. This is the json path containing the recordType for which the metadata is to be exported                   |
+| **netsuite.selectoption**                         | No       | If the type is set to 'selectoption'. This contains the json path for the recordType and fields in the record to be exported.                |
+| **netsuite.customFieldMetadata**                  | No       | This field contains the customField name in the NS account for which the metadata is expected                                                |
+| **netsuite.skipGrouping**                         | No       | .                                                                                                                                            |
+| **netsuite.restlet.recordType**                   | Yes      | Type of the record to be exported.                                                                                                           |
+| **netsuite.restlet.searchId**                     | Yes      | Search identifier created in the NS on the record to be exported                                                                             |
+| **netsuite.restlet.hooks.preSend.fileInternalId** | .        | .                                                                                                                                            |
+| **netsuite.restlet.hooks.preSend.function**       | .        | .                                                                                                                                            |
+| **netsuite.basicSearch.bodyFieldsOnly**           | No       | Boolean value.                                                                                                                               |
+| **netsuite.basicSearch.pageSize**                 | No       | Page size can be set on the basicSearch results fetched back from the NS.                                                                    |
 
 ### NetSuite (Non-Distributed) Adaptor Exports
 
@@ -218,14 +223,12 @@ You should receive a response that includes the following fields.
 
 ##### Export Resource Fields (/exports)
 
-| Field                            | Description |
-|:---------------------------------|:------------|
-| **netsuite.type**                | .           |
-| **netsuite.searches.recordType** | .           |
-| **netsuite.searches.searchId**   | .           |
-| **netsuite.skipGrouping**        | .           |
-| **pageSize**                     | .           |
-| **hooks._preSavePageId**         | .           |
+| Field                            | Required | Description                                                                                                                                  |
+|:---------------------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| **netsuite.type**                | Yes      | This field determines the type of the operation to be performed on the NS account (Ex: search, basicSearch, metadata, selectoption, restlet) |
+| **netsuite.searches.recordType** | .        |                                                                                                                                              |
+| **netsuite.searches.searchId**   | .        |                                                                                                                                              |
+| **netsuite.skipGrouping**        | .        |                                                                                                                                              |
 
 ### REST API Adaptor Exports
 
@@ -283,9 +286,29 @@ You should receive a response that includes the following fields.
 | **rest.maxCountPath**        | No       | This is the same as maxPagePath but is the JSON path to the field holding the total record count.                                       |
 | **hooks._preSavePageId**     | No       | Hook id can be defined that gets executed before a page is saved                                                                        |
 
-### FTP Adaptor Exports
+### File Adaptor Exports
 
-The Integrator also supports the ability to define exports for CSV or JSON based file systems from FTP. Following is an example.
+The Integrator also supports the ability to define exports for CSV or JSON based file systems from different file storage servers. As of now integrator supports two different file servers. They are: FTP and Amazon S3.
+
+#### Relevant Schema Info
+
+##### Export Resource Fields (/exports)
+
+| Field                        | Required | Description                                                                                                                  |
+|:-----------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------|
+| **file.encoding**            | No       | Method for the operation to be performed (GET, POST)                                                                         |
+| **file.type**                | No       | Type of the file to be exported Ex: csv                                                                                      |
+| **file.skipDelete**          | No       | Boolean value, when set file will not be deleted from the source                                                             |
+| **file.csv.columnDelimiter** | No       | Column delimiter in the file. Ex: ',', '                                                                                     |
+| **file.csv.rowDelimiter**    | No       | Row delimiter in the file. Ex: '\n', '\r\n', '\r'                                                                            |
+| **file.csv.keyColumns**      | No       | An array containing the column names to be considered to merge together the records                                          |
+| **file.csv.hasHeaderRow**    | No       | Boolean value, when set it means the file has the header row and it is considered for the properties of the records exported |
+
+Following are the two different file adaptors supported.
+
+#### FTP Adaptor Exports
+
+FTP Adaptor Export helps in exporting CSV or JSON data from files residing on FTP server. Following is the example for creating the export.
 
 ##### POST /exports
 
@@ -327,22 +350,15 @@ You should receive a response that includes the following fields.
 
 ##### Export Resource Fields (/exports)
 
-| Field                        | Required | Description                                                                                                                            |
-|:-----------------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------|
-| **file.encoding**            | No       | Method for the operation to be performed (GET, POST)                                                                                   |
-| **file.type**                | No       | Type of the file to be exported Ex: csv                                                                                                |
-| **file.skipDelete**          | No       | Boolean value, when set file will not be deleted from the source                                                                       |
-| **file.csv.columnDelimiter** | No       | Column delimiter in the file. Ex: ',', '                                                                                               |
-| **file.csv.rowDelimiter**    | No       | Row delimiter in the file. Ex: '\n', '\r\n', '\r'                                                                                      |
-| **file.csv.keyColumns**      | No       | An array containing the column names to be considered to merge together the records                                                    |
-| **file.csv.hasHeaderRow**    | No       | Boolean value, when set it means the file has the header row and it is considered for the properties of the records exported           |
-| **ftp.directoryPath**        | Yes      | ftp directory path where the file is located                                                                                           |
-| **ftp.fileNameStartsWith**   | No       | If the file name on the ftp is known, starting string for the file name can be provided, that helps in filtering out the file from FTP |
-| **ftp.fileNameEndsWith**     | No       | Same as that of fileNameStartsWith but string will be matched to the ending of the file name                                           |
+| Field                      | Required | Description                                                                                                                            |
+|:---------------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------|
+| **ftp.directoryPath**      | Yes      | ftp directory path where the file is located                                                                                           |
+| **ftp.fileNameStartsWith** | No       | If the file name on the ftp is known, starting string for the file name can be provided, that helps in filtering out the file from FTP |
+| **ftp.fileNameEndsWith**   | No       | Same as that of fileNameStartsWith but string will be matched to the ending of the file name                                           |
 
-### S3 Adaptor Exports
+#### S3 Adaptor Exports
 
-The Integrator also supports the ability to define exports for CSV or JSON based file systems from Amazon S3. Following is an example.
+S3 Adaptor Export helps in exporting CSV or JSON data from files residing on Amazon S3 server. Following is the example for creating the export.
 
 ##### POST /exports
 
@@ -385,18 +401,11 @@ You should receive a response that includes the following fields.
 
 ##### Export Resource Fields (/exports)
 
-| Field                        | Required | Description                                                                                                                               |
-|:-----------------------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------|
-| **file.encoding**            | No       | Method for the operation to be performed (GET, POST)                                                                                      |
-| **file.type**                | No       | Type of the file to be exported Ex: csv                                                                                                   |
-| **file.skipDelete**          | No       | Boolean value, when set file will not be deleted from the source                                                                          |
-| **file.csv.columnDelimiter** | No       | Column delimiter in the file. Ex: ',', '                                                                                                  |
-| **file.csv.rowDelimiter**    | No       | Row delimiter in the file. Ex: '\n', '\r\n', '\r'                                                                                         |
-| **file.csv.keyColumns**      | No       | An array containing the column names to be considered to merge together the records                                                       |
-| **file.csv.hasHeaderRow**    | No       | Boolean value, when set it means the file has the header row and it is considered for the properties of the records exported              |
-| **s3.region**                | No       | Name of the nearest amazon s3 region to the location from where the request is being made. If not set, by default 'us-east-1' is selected |
-| **s3.fileNameStartsWith**    | No       | If the file name on the S3 is known, starting string for the file name can be provided, that helps in filtering out the file from S3      |
-| **s3.fileNameEndsWith**      | No       | Same as that of fileNameStartsWith but string will be matched to the ending of the file name                                              |
+| Field                     | Required | Description                                                                                                                               |
+|:--------------------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| **s3.region**             | No       | Name of the nearest amazon s3 region to the location from where the request is being made. If not set, by default 'us-east-1' is selected |
+| **s3.fileNameStartsWith** | No       | If the file name on the S3 is known, starting string for the file name can be provided, that helps in filtering out the file from S3      |
+| **s3.fileNameEndsWith**   | No       | Same as that of fileNameStartsWith but string will be matched to the ending of the file name                                              |
 
 ### Webhook Adaptor Exports
 
@@ -433,14 +442,13 @@ You should receive a response that includes the following fields.
 
 ##### Export Resource Fields (/exports)
 
-| Field                    | Required | Description |
-|:-------------------------|:---------|:------------|
-| **webhook.provider**     | .        | .           |
-| **webhook.verify**       | .        | .           |
-| **webhook.token**        | .        | .           |
-| **webhook.path**         | .        | .           |
-| **webhook.algorithm**    | .        | .           |
-| **webhook.encoding**     | .        | .           |
-| **webhook.key**          | .        | .           |
-| **webhook.header**       | .        | .           |
-| **hooks._preSavePageId** | .        | .           |
+| Field                 | Required | Description                                                                                                |
+|:----------------------|:---------|:-----------------------------------------------------------------------------------------------------------|
+| **webhook.provider**  | Yes      | Determines the name of the service on which the webhook has been used (Ex: github, slack, travis etc)      |
+| **webhook.verify**    | Yes      | Method type to verify the authenticity of the webbook (Ex: token hmac)                                     |
+| **webhook.token**     | Yes      | Token used to authenticate the webhook with the provider                                                   |
+| **webhook.path**      | No       | Incase of token based authentication path needs to be set, it is the json path where the token is present. |
+| **webhook.algorithm** | No       | Algorithm to be used for security and data integrity purpose. (Ex: sha1, sha256)                           |
+| **webhook.encoding**  | No       | Encoding type to be used for the data (Ex: hex, base64)                                                    |
+| **webhook.key**       | Yes      | For some services authentication happens using the key that we set in this field                           |
+| **webhook.header**    | .        | .                                                                                                          |

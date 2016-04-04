@@ -36,21 +36,22 @@ Below are the common properties on all connections:
 
 ##### NetSuite Connection
 
-| Field                                | Required | Description |
-|:-------------------------------------|:---------|:------------|
-| **netsuite.account**                 | Yes      | .           |
-| **netsuite.roleId**                  | Yes      | .           |
-| **netsuite.email**                   | Yes      | .           |
-| **netsuite.password**                | Yes      | .           |
-| **netsuite.companyId**               | Yes      | .           |
-| **netsuite.userId**                  | Yes      | .           |
-| **netsuite.useSsoLogin**             | No       | .           |
-| **netsuite.noOfSeats**               | No       | .           |
-| **netsuite.environment**             | No       | .           |
-| **netsuite.requestLevelCredentials** | No       | .           |
-| **netsuite.dataCenterURLs**          | No       | .           |
-| **netsuite.accountName**             | No       | .           |
-| **netsuite.roleName**                | No       | .           |
+| Field                                    | Required | Description                                                                                                                                                                                                                                                                                                 |
+|:-----------------------------------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **netsuite.account**                     | Yes      | This holds the Netsuite account number                                                                                                                                                                                                                                                                      |
+| **netsuite.roleId**                      | Yes      | The NetSuite user that is configured must be configured with a role that has sufficient permissions                                                                                                                                                                                                         |
+| **netsuite.email**                       | Yes      | Registered email id for the Netsuite account                                                                                                                                                                                                                                                                |
+| **netsuite.password**                    | Yes      | NS account password                                                                                                                                                                                                                                                                                         |
+| **netsuite.companyId**                   | No       | Company identifier that the user belongs to (required if it is sso login).                                                                                                                                                                                                                                  |
+| **netsuite.userId**                      | No       | User identifier required incase of sso login                                                                                                                                                                                                                                                                |
+| **netsuite.useSsoLogin**                 | No       | Boolean value. If set the login method would be single sign in.                                                                                                                                                                                                                                             |
+| **netsuite.environment**                 | Yes      | This field determines the type of NS account that the user holds (Ex: production, sandbox, beta)                                                                                                                                                                                                            |
+| **netsuite.requestLevelCredentials**     | No       | Boolean value. If set, login happens differently i.e. rather than authenticating to NetSuite by invoking login, users have the option of sending their credentials in the SOAP header of each request. Sending credentials with each request eliminates the need for session management and separate logins |
+| **netsuite.dataCenterURLs**              | No       | .                                                                                                                                                                                                                                                                                                           |
+| **netsuite.accountName**                 | No       | User account name with the Netsuite                                                                                                                                                                                                                                                                         |
+| **netsuite.roleName**                    | No       | Role name for the account held with Netsuite (Ex: Administrator)                                                                                                                                                                                                                                            |
+| **netsuite.concurrencyLevelRESTlet**     | No       | .                                                                                                                                                                                                                                                                                                           |
+| **netsuite.concurrencyLevelWebServices** | No       | .                                                                                                                                                                                                                                                                                                           |
 
 ##### REST Connection
 
