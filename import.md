@@ -22,23 +22,23 @@ Imports running in the context of a Flow will also execute synchronously but wil
 | /imports/{_id}/distributed | GET    |     200      | Retrieve a distributed component that is linked to an existing import.         |
 | /{apiIdentifier}           | POST   |     200      | Invoke an import on the req body (should be JSON array).                       |
 
-Below are the common properties in all exports:
+Below are the common properties in all imports:
 
-| Field                         | Required | Description                                                                                                                                |
-|:------------------------------|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------|
-| **_id**                       |  Yes     | System generated unique identifier for this connection.                                                                                    |
-| **name**                      |  No      | Give your import an intuitive name to stay organized.                                                                                      |
-| **_connectionId**             |  Yes     | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being imported. |
-| **lastModified**              |  No      | Read only field tracking last modified date/time.                                                                                          |
-| **apiIdentifier**             |  No      | .                                                                                                                                          |
-| **_integrationId**            |  Yes     | If this connection is part of an integration, this value will hold the id of that integration.                                             |
-| **_connectorId**              |  Yes     | If this connection belongs to a connector, this value will be hold the id of that connector.                                               |
-| **sampleData**                |  No      | Used in UI, which helps in populating data for mapping                                                                                     |
-| **distributed**               |  No      | Boolean value, if set the resulting import would be NS Distributed Import and dependendant fields to be set accordingly                    |
-| **maxAttempts**               |  No      | Maximum number of retries in the event of request failure                                                                                  |
-| **ignoreExisting**            |  No      | Boolean value, if set the creation of already existing resource will be avoided                                                            |
-| **ignoreMissing**             |  No      | Boolean value, if set the updation is skipped incase of the record is missing                                                              |
-| **idLockTemplate**            |  No      | .                                                                                                                                          |
+| Field              | Required | Description                                                                                                                                |
+|:-------------------|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------|
+| **_id**            | Yes      | System generated unique identifier for this connection.                                                                                    |
+| **name**           | No       | Give your import an intuitive name to stay organized.                                                                                      |
+| **_connectionId**  | Yes      | The _id of the [Connection](#Connection) resource that should be used to access the system or application hosting the data being imported. |
+| **lastModified**   | No       | Read only field tracking last modified date/time.                                                                                          |
+| **apiIdentifier**  | No       | .                                                                                                                                          |
+| **_integrationId** | Yes      | If this connection is part of an integration, this value will hold the id of that integration.                                             |
+| **_connectorId**   | Yes      | If this connection belongs to a connector, this value will be hold the id of that connector.                                               |
+| **sampleData**     | No       | Used in UI, which helps in populating data for mapping                                                                                     |
+| **distributed**    | No       | Boolean value, if set the resulting import would be NS Distributed Import and dependendant fields to be set accordingly                    |
+| **maxAttempts**    | No       | Maximum number of retries in the event of request failure                                                                                  |
+| **ignoreExisting** | No       | Boolean value, if set the creation of already existing resource will be avoided                                                            |
+| **ignoreMissing**  | No       | Boolean value, if set the updation is skipped incase of the record is missing                                                              |
+| **idLockTemplate** | No       | .                                                                                                                                          |
 
 The following sections are organized by application and adaptor, and ordered by popularity.
 
@@ -159,41 +159,41 @@ PUT /imports/507f1f77bcf86cd799439032/distributed
 
 ##### Distributed Import Resource Fields (/imports/{_id}/distributed)
 
-| Field                                  | Required | Description   |
-|:---------------------------------------|:---------|:--------------|
-| **recordType**                         | .        |               |
-| **operation**                          | .        |               |
-| **internalIdLookup.extract**           | .        |               |
-| **internalIdLookup.searchField**       | .        |               |
-| **internalIdLookup.expression**        | .        |               |
-| **maxAttempts**                        | .        |               |
-| **ignoreExisting**                     | .        |               |
-| **ignoreMissing**                      | .        |               |
-| **lookups.name**                       | .        |               |
-| **lookups.map**                        | .        |               |
-| **lookups.recordType**                 | .        |               |
-| **lookups.searchField**                | .        |               |
-| **lookups.resultField**                | .        |               |
-| **lookups.operator**                   | .        |               |
-| **lookups.expression**                 | .        |               |
-| **lookups.allowFailures**              | .        |               |
-| **lookups.default**                    | .        |               |
-| **mapping.fields.extract**             | .        |               |
-| **mapping.fields.generate**            | .        |               |
-| **mapping.fields.hardCodedValue**      | .        |               |
-| **mapping.fields.lookupName**          | .        |               |
-| **mapping.fields.extractDateFormat**   | .        |               |
-| **mapping.fields.extractDateTimezone** | .        |               |
-| **mapping.fields.generateDateFormat**  | .        |               |
-| **mapping.fields.internalId**          | .        |               |
-| **mapping.lists.generate**             | .        |               |
-| **mapping.lists.fields**               | .        |               |
-| **hooks.preMap.fileInternalId**        | .        |               |
-| **hooks.preMap.function**              | .        |               |
-| **hooks.postMap.fileInternalId**       | .        |               |
-| **hooks.postMap.function**             | .        |               |
-| **hooks.postSubmit.fileInternalId**    | .        |               |
-| **hooks.postSubmit.function**          | .        |               |
+| Field                                  | Required | Description |
+|:---------------------------------------|:---------|:------------|
+| **recordType**                         | .        |             |
+| **operation**                          | .        |             |
+| **internalIdLookup.extract**           | .        |             |
+| **internalIdLookup.searchField**       | .        |             |
+| **internalIdLookup.expression**        | .        |             |
+| **maxAttempts**                        | .        |             |
+| **ignoreExisting**                     | .        |             |
+| **ignoreMissing**                      | .        |             |
+| **lookups.name**                       | .        |             |
+| **lookups.map**                        | .        |             |
+| **lookups.recordType**                 | .        |             |
+| **lookups.searchField**                | .        |             |
+| **lookups.resultField**                | .        |             |
+| **lookups.operator**                   | .        |             |
+| **lookups.expression**                 | .        |             |
+| **lookups.allowFailures**              | .        |             |
+| **lookups.default**                    | .        |             |
+| **mapping.fields.extract**             | .        |             |
+| **mapping.fields.generate**            | .        |             |
+| **mapping.fields.hardCodedValue**      | .        |             |
+| **mapping.fields.lookupName**          | .        |             |
+| **mapping.fields.extractDateFormat**   | .        |             |
+| **mapping.fields.extractDateTimezone** | .        |             |
+| **mapping.fields.generateDateFormat**  | .        |             |
+| **mapping.fields.internalId**          | .        |             |
+| **mapping.lists.generate**             | .        |             |
+| **mapping.lists.fields**               | .        |             |
+| **hooks.preMap.fileInternalId**        | .        |             |
+| **hooks.preMap.function**              | .        |             |
+| **hooks.postMap.fileInternalId**       | .        |             |
+| **hooks.postMap.function**             | .        |             |
+| **hooks.postSubmit.fileInternalId**    | .        |             |
+| **hooks.postSubmit.function**          | .        |             |
 
 ### NetSuite (Non-Distributed) Adaptor Imports
 
@@ -299,31 +299,31 @@ You should receive a response that includes the following fields.
 
 ##### Import Resource Fields (/imports)
 
-| Field                                     | Required | Description                                                                                          |
-|:------------------------------------------|:---------|:-----------------------------------------------------------------------------------------------------|
-| **netsuite.recordType**                   | Yes      | Type of the record on NS (Contact, Employee, SaleOrder etc..)                                        |
-| **netsuite.recordTypeId**                 | .        | Unique id associated with the recordType selected                                                    |
-| **netsuite.operation**                    | Yes      | Operation to be perfomred on the Netsuite (add, update, addupdate, attach, detach, delete)           |
-| **netsuite.retryUpdateAsAdd**             | No       | Boolean value if set, on failure of any record update on NS, it will be retried as a add operation   |
-| **netsuite.internalIdLookup.extract**     | Yes      | Field to be matched to update the respective record                                                  |
-| **netsuite.internalIdLookup.searchField** | .        | .                                                                                                    |
-| **netsuite.lookups.name**                 | .        | Give the lookups an appropriate name which is easier to refer it in the code                         |
-| **netsuite.lookups.map**                  | .        | .                                                                                                    |
-| **netsuite.lookups.recordType**           | .        | .                                                                                                    |
-| **netsuite.lookups.searchField**          | .        | .                                                                                                    |
-| **netsuite.lookups.resultField**          | .        | .                                                                                                    |
-| **netsuite.lookups.includeInactive**      | .        | .                                                                                                    |
-| **netsuite.lookups.allowFailures**        | .        | .                                                                                                    |
-| **netsuite.customFieldMetadata**          | .        | .                                                                                                    |
-| **mapping.fields.extract**                | .        | .                                                                                                    |
-| **mapping.fields.generate**               | .        | .                                                                                                    |
-| **mapping.fields.hardCodedValue**         | .        | .                                                                                                    |
-| **mapping.fields.lookupName**             | .        | .                                                                                                    |
-| **mapping.fields.extractDateFormat**      | .        | .                                                                                                    |
-| **mapping.fields.extractDateTimezone**    | .        | .                                                                                                    |
-| **mapping.fields.generateDateFormat**     | .        | .                                                                                                    |
-| **mapping.lists.generate**                | .        | .                                                                                                    |
-| **mapping.lists.fields**                  | .        | .                                                                                                    |
+| Field                                     | Required | Description                                                                                        |
+|:------------------------------------------|:---------|:---------------------------------------------------------------------------------------------------|
+| **netsuite.recordType**                   | Yes      | Type of the record on NS (Contact, Employee, SaleOrder etc..)                                      |
+| **netsuite.recordTypeId**                 | .        | Unique id associated with the recordType selected                                                  |
+| **netsuite.operation**                    | Yes      | Operation to be perfomred on the Netsuite (add, update, addupdate, attach, detach, delete)         |
+| **netsuite.retryUpdateAsAdd**             | No       | Boolean value if set, on failure of any record update on NS, it will be retried as a add operation |
+| **netsuite.internalIdLookup.extract**     | Yes      | Field to be matched to update the respective record                                                |
+| **netsuite.internalIdLookup.searchField** | .        | .                                                                                                  |
+| **netsuite.lookups.name**                 | .        | Give the lookups an appropriate name which is easier to refer it in the code                       |
+| **netsuite.lookups.map**                  | .        | .                                                                                                  |
+| **netsuite.lookups.recordType**           | .        | .                                                                                                  |
+| **netsuite.lookups.searchField**          | .        | .                                                                                                  |
+| **netsuite.lookups.resultField**          | .        | .                                                                                                  |
+| **netsuite.lookups.includeInactive**      | .        | .                                                                                                  |
+| **netsuite.lookups.allowFailures**        | .        | .                                                                                                  |
+| **netsuite.customFieldMetadata**          | .        | .                                                                                                  |
+| **mapping.fields.extract**                | .        | .                                                                                                  |
+| **mapping.fields.generate**               | .        | .                                                                                                  |
+| **mapping.fields.hardCodedValue**         | .        | .                                                                                                  |
+| **mapping.fields.lookupName**             | .        | .                                                                                                  |
+| **mapping.fields.extractDateFormat**      | .        | .                                                                                                  |
+| **mapping.fields.extractDateTimezone**    | .        | .                                                                                                  |
+| **mapping.fields.generateDateFormat**     | .        | .                                                                                                  |
+| **mapping.lists.generate**                | .        | .                                                                                                  |
+| **mapping.lists.fields**                  | .        | .                                                                                                  |
 
 ### REST API Adaptor Imports
 
@@ -418,33 +418,33 @@ Here is a more complex import. This import will check to see if a customer resou
 
 ##### Import Resource Fields (/imports)
 
-| Field                                  | Required | Description                                                                                                                                |
-|:---------------------------------------|:---------|:------------                                                                                                                               |
-| **rest.relativeURI**                   | Yes      | Relative URI to fetch the resource in context of baseURI                                                                                   |
-| **rest.method**                        | Yes      | Method for the operation to be performed (PUT, POST, DELETE)                                                                               |
-| **rest.headers**                       | .        | Header values to be set for the request                                                                                                    |
-| **rest.responseIdPath**                | .        | .                                                                                                                                          |
-| **rest.successPath**                   | .        | .                                                                                                                                          |
-| **rest.resourceId.lookupName**         | .        | .                                                                                                                                          |
-| **rest.resourceId.extract**            | .        | .                                                                                                                                          |
-| **rest.lookups.name**                  | .        | .                                                                                                                                          |
-| **rest.lookups.relativeURI**           | .        | .                                                                                                                                          |
-| **rest.lookups.method**                | .        | .                                                                                                                                          |
-| **rest.lookups.postData**              | .        | .                                                                                                                                          |
-| **rest.lookups.extract**               | .        | .                                                                                                                                          |
-| **rest.lookups.map**                   | .        | .                                                                                                                                          |
-| **rest.lookups.default**               | .        | .                                                                                                                                          |
-| **rest.lookups.allowFailures**         | .        | .                                                                                                                                          |
-| **mapping.fields.extract**             | .        | .                                                                                                                                          |
-| **mapping.fields.generate**            | .        | .                                                                                                                                          |
-| **mapping.fields.dataType**            | .        | .                                                                                                                                          |
-| **mapping.fields.hardCodedValue**      | .        | .                                                                                                                                          |
-| **mapping.fields.lookupName**          | .        | .                                                                                                                                          |
-| **mapping.fields.extractDateFormat**   | .        | .                                                                                                                                          |
-| **mapping.fields.extractDateTimezone** | .        | .                                                                                                                                          |
-| **mapping.fields.generateDateFormat**  | .        | .                                                                                                                                          |
-| **mapping.lists.generate**             | .        | .                                                                                                                                          |
-| **mapping.lists.fields**               | .        | .                                                                                                                                          |
+| Field                                  | Required | Description                                                  |
+|:---------------------------------------|:---------|:-------------------------------------------------------------|
+| **rest.relativeURI**                   | Yes      | Relative URI to fetch the resource in context of baseURI     |
+| **rest.method**                        | Yes      | Method for the operation to be performed (PUT, POST, DELETE) |
+| **rest.headers**                       | .        | Header values to be set for the request                      |
+| **rest.responseIdPath**                | .        | .                                                            |
+| **rest.successPath**                   | .        | .                                                            |
+| **rest.resourceId.lookupName**         | .        | .                                                            |
+| **rest.resourceId.extract**            | .        | .                                                            |
+| **rest.lookups.name**                  | .        | .                                                            |
+| **rest.lookups.relativeURI**           | .        | .                                                            |
+| **rest.lookups.method**                | .        | .                                                            |
+| **rest.lookups.postData**              | .        | .                                                            |
+| **rest.lookups.extract**               | .        | .                                                            |
+| **rest.lookups.map**                   | .        | .                                                            |
+| **rest.lookups.default**               | .        | .                                                            |
+| **rest.lookups.allowFailures**         | .        | .                                                            |
+| **mapping.fields.extract**             | .        | .                                                            |
+| **mapping.fields.generate**            | .        | .                                                            |
+| **mapping.fields.dataType**            | .        | .                                                            |
+| **mapping.fields.hardCodedValue**      | .        | .                                                            |
+| **mapping.fields.lookupName**          | .        | .                                                            |
+| **mapping.fields.extractDateFormat**   | .        | .                                                            |
+| **mapping.fields.extractDateTimezone** | .        | .                                                            |
+| **mapping.fields.generateDateFormat**  | .        | .                                                            |
+| **mapping.lists.generate**             | .        | .                                                            |
+| **mapping.lists.fields**               | .        | .                                                            |
 
 ### FTP Adaptor Imports
 
@@ -490,20 +490,20 @@ You should receive a response that includes the following fields.
 
 ##### Import Resource Fields (/imports)
 
-| Field                                 | Required | Description                                                                                                                                |
-|:----------------------------------    |:---------|:-------------------------------------------------------------------------------------------------------------------------------------------|
-| **file.skipAggregation**              | No       | Boolean value, when set to true records are aggregated at worker end. (Default is false)                                                   |
-| **file.type**                         | No       | Type of the file to be imported Ex: csv                                                                                                    |
-| **file.compressionFormat**            | No       | Compression format to be used to compress the data imported. (Default no compression)                                                      |
-| **file.csv.columnDelimiter**          | No       | Column delimiter to be used in the file. Ex: ',', '|', '\t' (Default is ',')                                                               |
-| **file.csv.rowDelimiter**             | No       | Row delimiter to be used in the file. Ex: '\n', '\r\n', '\r' (Default is crlf)                                                             |
-| **file.csv.includeHeader**            | No       | Boolean value, when set property names are put in the first row of the file (Default is true)                                              |
-| **file.csv.wrapWithQuotes**           | No       | Boolean value, when set all the values in the file are wrapped with quotes (Default is false)                                              |
-| **file.csv.replaceTabWithSpace**      | No       | Boolean value, when set tabs in the content of the data (except columnDelimiters) are replaced with a space (Default is false)             |
-| **file.csv.replaceNewlineWithSpace**  | No       | Boolean value, when set new lines in the content of the data (except rowDelimiters) are replaced with a space (Default is false)           |
-| **ftp.directoryPath**                 | Yes      | ftp directory path where the file to be saved                                                                                              |
-| **ftp.fileExtension**                 | No       | Extension of the file to be stored on the FTP                                                                                              |
-| **ftp.fileName**                      | No       | Name of the file                                                                                                                           |
+| Field                                | Required | Description                                                                                                                      |
+|:-------------------------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------|
+| **file.skipAggregation**             | No       | Boolean value, when set to true records are aggregated at worker end. (Default is false)                                         |
+| **file.type**                        | No       | Type of the file to be imported Ex: csv                                                                                          |
+| **file.compressionFormat**           | No       | Compression format to be used to compress the data imported. (Default no compression)                                            |
+| **file.csv.columnDelimiter**         | No       | Column delimiter to be used in the file. Ex: ',', '                                                                              |
+| **file.csv.rowDelimiter**            | No       | Row delimiter to be used in the file. Ex: '\n', '\r\n', '\r' (Default is crlf)                                                   |
+| **file.csv.includeHeader**           | No       | Boolean value, when set property names are put in the first row of the file (Default is true)                                    |
+| **file.csv.wrapWithQuotes**          | No       | Boolean value, when set all the values in the file are wrapped with quotes (Default is false)                                    |
+| **file.csv.replaceTabWithSpace**     | No       | Boolean value, when set tabs in the content of the data (except columnDelimiters) are replaced with a space (Default is false)   |
+| **file.csv.replaceNewlineWithSpace** | No       | Boolean value, when set new lines in the content of the data (except rowDelimiters) are replaced with a space (Default is false) |
+| **ftp.directoryPath**                | Yes      | ftp directory path where the file to be saved                                                                                    |
+| **ftp.fileExtension**                | No       | Extension of the file to be stored on the FTP                                                                                    |
+| **ftp.fileName**                     | No       | Name of the file                                                                                                                 |
 
 ### S3 Adaptor Imports
 
@@ -550,17 +550,17 @@ You should receive a response that includes the following fields.
 
 ##### Import Resource Fields (/imports)
 
-| Field                                 | Required | Description                                                                                                                                |
-|:----------------------------------    |:---------|:-------------------------------------------------------------------------------------------------------------------------------------------|
-| **file.skipAggregation**              | No       | Boolean value, when set to true records are aggregated at worker end. (Default is false)                                                   |
-| **file.type**                         | No       | Type of the file to be imported Ex: csv                                                                                                    |
-| **file.compressionFormat**            | No       | Compression format to be used to compress the data imported. (Default no compression)                                                      |
-| **file.csv.columnDelimiter**          | No       | Column delimiter to be used in the file. Ex: ',', '|', '\t' (Default is ',')                                                               |
-| **file.csv.rowDelimiter**             | No       | Row delimiter to be used in the file. Ex: '\n', '\r\n', '\r' (Default is crlf)                                                             |
-| **file.csv.includeHeader**            | No       | Boolean value, when set property names are put in the first row of the file (Default is true)                                              |
-| **file.csv.wrapWithQuotes**           | No       | Boolean value, when set all the values in the file are wrapped with quotes (Default is false)                                              |
-| **file.csv.replaceTabWithSpace**      | No       | Boolean value, when set tabs in the content of the data (except columnDelimiters) are replaced with a space (Default is false)             |
-| **file.csv.replaceNewlineWithSpace**  | No       | Boolean value, when set new lines in the content of the data (except rowDelimiters) are replaced with a space (Default is false)           |
-| **s3.region**                         | Yes      | Name of the nearest amazon s3 region to the location from where the request is being made. If not set, by default 'us-east-1' is selected  |
-| **s3.bucket**                         | Yes      | Name of the bucket in S3, where you want file to be saved                                                                                  |
-| **s3.fileKey**                        | No       | Name of the file                                                                                                                           |
+| Field                                | Required | Description                                                                                                                               |
+|:-------------------------------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------------|
+| **file.skipAggregation**             | No       | Boolean value, when set to true records are aggregated at worker end. (Default is false)                                                  |
+| **file.type**                        | No       | Type of the file to be imported Ex: csv                                                                                                   |
+| **file.compressionFormat**           | No       | Compression format to be used to compress the data imported. (Default no compression)                                                     |
+| **file.csv.columnDelimiter**         | No       | Column delimiter to be used in the file. Ex: ',', '                                                                                       |
+| **file.csv.rowDelimiter**            | No       | Row delimiter to be used in the file. Ex: '\n', '\r\n', '\r' (Default is crlf)                                                            |
+| **file.csv.includeHeader**           | No       | Boolean value, when set property names are put in the first row of the file (Default is true)                                             |
+| **file.csv.wrapWithQuotes**          | No       | Boolean value, when set all the values in the file are wrapped with quotes (Default is false)                                             |
+| **file.csv.replaceTabWithSpace**     | No       | Boolean value, when set tabs in the content of the data (except columnDelimiters) are replaced with a space (Default is false)            |
+| **file.csv.replaceNewlineWithSpace** | No       | Boolean value, when set new lines in the content of the data (except rowDelimiters) are replaced with a space (Default is false)          |
+| **s3.region**                        | Yes      | Name of the nearest amazon s3 region to the location from where the request is being made. If not set, by default 'us-east-1' is selected |
+| **s3.bucket**                        | Yes      | Name of the bucket in S3, where you want file to be saved                                                                                 |
+| **s3.fileKey**                       | No       | Name of the file                                                                                                                          |
