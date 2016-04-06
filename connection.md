@@ -10,13 +10,14 @@ Connections are used to store credentials, along with other access information f
 
 ##### Connection Related HTTP Endpoints
 
-| Relative URI       | Method | Success Code | Description                   |
-|:-------------------|:-------|:------------:|:------------------------------|
-| /connections       | GET    |     200      | List all connections.         |
-| /connections       | POST   |     201      | Create new connection.        |
-| /connections/{_id} | PUT    |     200      | Update existing connection.   |
-| /connections/{_id} | GET    |     200      | Retrieve existing connection. |
-| /connections/{_id} | DELETE |     204      | Delete existing connection.   |
+| Relative URI                       | Method | Success Code | Description                                                             |
+|:-----------------------------------|:-------|:------------:|:------------------------------------------------------------------------|
+| /connections                       | GET    |     200      | List all connections.                                                   |
+| /connections                       | POST   |     201      | Create new connection.                                                  |
+| /connections/{_id}                 | PUT    |     200      | Update existing connection.                                             |
+| /connections/{_id}                 | GET    |     200      | Retrieve existing connection.                                           |
+| /connections/{_id}                 | DELETE |     204      | Delete existing connection.                                             |
+| /connections/{_id}/debug/{_typeId} | GET    |     201      | Retrieve the debug logs for the connection Id and the type Id mentioned |
 
 TODO here! lots of routes to add still. :( GET /connections/:\_id/ping POST /connections/ping etc...
 
@@ -33,6 +34,7 @@ Below are the common properties on all connections:
 | **offline**        | A flag to identify if the connection is in offline-mode. If this is true than no flows with imports or exports using this connection will be ran. Connections can be reset to online my re-authentication.      |
 | **_connectorId**   | If this connection belongs to a connector, this value will be hold the id of that connector.                                                                                                                    |
 | **_integrationId** | If this connection is part of an integration, this value will hold the id of that integration.                                                                                                                  |
+| **debugDate**      | Mention duration in date and time, to start debug logging for specified duration. Maximum duration of 1 hour from the current date and time can be provided                                                     |
 
 ##### NetSuite Connection
 
@@ -106,3 +108,21 @@ Below are the common properties on all connections:
 | **s3.region**                | Yes      | AWS region where the s3 account is being hosted. |
 | **s3.accessKeyId**           | Yes      | AWS Access Key ID.                               |
 | **s3.secretAccessKey_crypt** | Yes      | AWS secret Access Key.                           |
+
+##### Debug Logging
+
+**what are Debug Logs ?**
+
+During execution of a flow, data useful for debugging is logged and these logs are called Debug Logs.
+
+**What is Logged?**
+
+The options and responses of requests made during the execution of flow are logged.
+
+**How to start Debug Logging:**
+
+In order to start logging 'debugDate' field should be set in the connection.
+
+**How to get logs for a connection ?**
+
+To get the logs "/connections/{_id}/debug/{_typeId}" relative end point should be pinged. Here the placeholder {_id} is the connection id and {_typeId} is the id of export or import for which you are trying to retrieve logs.
