@@ -10,14 +10,14 @@ Connections are used to store credentials, along with other access information f
 
 ##### Connection Related HTTP Endpoints
 
-| Relative URI                       | Method | Success Code | Description                                        |
-|:-----------------------------------|:-------|:------------:|:---------------------------------------------------|
-| /connections                       | GET    |     200      | List all connections.                              |
-| /connections                       | POST   |     201      | Create new connection.                             |
-| /connections/{_id}                 | PUT    |     200      | Update existing connection.                        |
-| /connections/{_id}                 | GET    |     200      | Retrieve existing connection.                      |
-| /connections/{_id}                 | DELETE |     204      | Delete existing connection.                        |
-| /connections/{_id}/debug/{_typeId} | GET    |     201      | Get the debug logs for the connection and the type |
+| Relative URI                       | Method | Success Code | Description                                                             |
+|:-----------------------------------|:-------|:------------:|:------------------------------------------------------------------------|
+| /connections                       | GET    |     200      | List all connections.                                                   |
+| /connections                       | POST   |     201      | Create new connection.                                                  |
+| /connections/{_id}                 | PUT    |     200      | Update existing connection.                                             |
+| /connections/{_id}                 | GET    |     200      | Retrieve existing connection.                                           |
+| /connections/{_id}                 | DELETE |     204      | Delete existing connection.                                             |
+| /connections/{_id}/debug/{_typeId} | GET    |     201      | Retrieve the debug logs for the connection Id and the type Id mentioned |
 
 TODO here! lots of routes to add still. :( GET /connections/:\_id/ping POST /connections/ping etc...
 
