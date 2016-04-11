@@ -229,6 +229,7 @@ You should receive a response that includes the following fields.
 | **netsuite.searches.recordType** | .        |                                                                                                                                              |
 | **netsuite.searches.searchId**   | .        |                                                                                                                                              |
 | **netsuite.skipGrouping**        | .        |                                                                                                                                              |
+| **netsuite.statsOnly**           | .        | When this field is set only high level stats provided by the export application about the search results will be returned.  For example, if you are invoking a NetSuite saved search then only the totalRecords value will be returned, and not any of the actual records.  Note also that this field is currently limited to just NetSuite web services, but other APIs can be exposed as needed upon request. |
 
 ### REST API Adaptor Exports
 
