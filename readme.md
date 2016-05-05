@@ -1,3 +1,5 @@
+Note: these docs are on hold until we can allocate more time to properly maintain them.
+
 Introduction
 ============
 
