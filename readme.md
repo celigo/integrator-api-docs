@@ -1,7 +1,13 @@
 Introduction
 ============
 
-The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers (1) using the integrator.io Extension Framework (see [here](https://github.com/celigo/integrator-extension)) to build SmartConnectors, Hooks and/or Wrappers; or (2) enabling Embedded Integrations inside an existing SaaS application.  Enjoy!
+The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
+1. SmartConnectors.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrtaor.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
+2. Embedded Integrations.  These are fully managed integration where integrator.io remains completely invisible to the end user.  These integrations will typically be enabled and/or configured from within an external application's UI, where application's backend servers use the integrator.io API to dynamically deploy and customize integration functionality based on settings stored in their application.
+3. Hooks.  A 'flow' in integrator.io is composed of one or more 'exports' that feed into one or more 'imports'. The exports are responsible for pulling data out of one or more applications, and the imports are the imports are responsible for mapping and inserting the exported data into one more applications.  Hooks represent a framework whereby your custom code can be injected into the flow for the purpose of customizing the behavior of the flow beyond what is possible in the integrator.io UI.  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
+4. Wrappers.  If you need to connect with an application that is not natively supported by integrator.io then you can use Wrappers to build totally custom export and/or import adaptors that can be plugged into any of your integrator.io flows.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
+
+Enjoy!
 
 Authentication
 --------------
