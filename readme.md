@@ -1,9 +1,7 @@
-Note: these docs are on hold until we can allocate more time to properly maintain them.
-
 Introduction
 ============
 
-The Integrator is an API first platform. Features are released here first, and then shortly after in the UI. The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers building integration based apps. Complementing the API, the Integrator supports a rich extension framework. The integrations you build can include an installer, settings pages, along with any number of hooks or wrappers (hooks and wrappers give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone). Any integrations that you build can be listed in the Integrator Marketplace for easy install by any other Integrator user. Enjoy!
+The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers building integration based apps. Complementing the API, integrator.io also supports a rich extension framework (see [here](https://github.com/celigo/integrator-extension)). The integrations that you build can include an installer, settings pages, along with any number of hooks and/or wrappers (hooks and wrappers give you the ability to write your own custom code, and are useful for requirements that cannot be implemented via configuration alone). The integration apps that you build can be listed in the integrator.io Marketplace for easy install by any other integrator.io user. Enjoy!
 
 Authentication
 --------------
