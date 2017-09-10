@@ -7,9 +7,9 @@ The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The t
 
 2. **Embedded Integrations**.  These are fully managed integrations where integrator.io remains completely invisible to the end user.  These integrations will typically be enabled and/or configured from within an external application, and the external application will use the integrator.io API to dynamically deploy and customize integration functionality.
 
-3. **Hooks**.  A 'flow' in integrator.io is composed of one or more 'exports' that feed into one or more 'imports'. The exports are responsible for pulling data out of one or more applications, and the imports are the imports are responsible for mapping and inserting the exported data into one more applications.  Hooks represent a framework whereby your custom code can be injected into the flow for the purpose of customizing the behavior of the flow beyond what is possible in the integrator.io UI.  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
+3. **Hooks**.  integrator.io is all about creating and running flows. A flow is always composed of one or more exports that feed into one or more imports. Exports are responsible for pulling data out of one or more applications, and imports are responsible for mapping and inserting data into one or more applications.  Hooks are custom code that can be injected at well defined points in a flow for the purpose of customizing the behavior of the flow beyond what is possible in the integrator.io UI.  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
 
-4. **Wrappers**.  If you need to connect with an application that is not natively supported by integrator.io then you can use Wrappers to build totally custom export and/or import adaptors that can be plugged into any of your integrator.io flows.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
+4. **Wrappers**.  If you need to connect with an application that is not natively supported by integrator.io then you can build a Wrapper.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
 
 Enjoy, and happy integrating!
 
