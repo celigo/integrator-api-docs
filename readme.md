@@ -1,7 +1,7 @@
 Introduction
 ============
 
-The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.  Enjoy!
+The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
 
 1. **SmartConnectors**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrtaor.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
 
@@ -11,6 +11,7 @@ The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The t
 
 4. **Wrappers**.  If you need to connect with an application that is not natively supported by integrator.io then you can use Wrappers to build totally custom export and/or import adaptors that can be plugged into any of your integrator.io flows.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
 
+Enjoy, and happy integrating!
 
 
 Authentication
