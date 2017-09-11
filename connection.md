@@ -1,7 +1,7 @@
 Connection
 ==========
 
-## Endpoints
+### Endpoints
 | Relative URI| Method | Success Code | Description|
 |:-------------------|:-------|:------------:|:------------------------------|
 |/connections|GET|200|List all connections.|
@@ -20,7 +20,7 @@ Connection
 |/connections/{_id}/import/map|POST|200||
 
 ## Schema
-#### Common
+### Common
 | Field|Description|                                                                                                                                                                                               
 |:-------------------|:--------------------------------------------------------------------------------|
 | **_id**| System generated unique identifier for this connection.                                                                                                                                                         |
