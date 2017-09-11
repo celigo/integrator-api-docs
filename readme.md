@@ -61,8 +61,7 @@ The Integrator API supports the following custom HTTP headers.
 Resource Types
 =========
 
-Connection
-----------
+###Connection
 
 Connections are used to store credentials, along with other access information for an application or system. Currently the Integrator supports the following connection types.
 
@@ -73,8 +72,8 @@ Connections are used to store credentials, along with other access information f
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for more info on connection
 
-Export
-------
+###Export
+
 
 Exports are used to extract data from an application or system. Exports can run standalone, or in the context of a [Flow](#Flow).
 
