@@ -22,10 +22,10 @@ Connection
 ### Schema
 Below are the common properties on all connections:
 
-| Field              | Description                                                                                                                                                                                                     |
-|:-------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **_id**            | System generated unique identifier for this connection.                                                                                                                                                         |
-| **name**           | Optional name that can be given to this connection.                                                                                                                                                             |
+| Field|Description|                                                                                                                                                                                               
+|:-------------------|:--------------------------------------------------------------------------------|
+| **_id**| System generated unique identifier for this connection.                                                                                                                                                         |
+| **name**| Optional name that can be given to this connection.                                                                                                                                                             |
 | **type**           | This lowercase string field identifies what application or system type the connection is being used for. The possible values are: ['netsuite', 'salesforce', 'ftp', 'sftp', 's3', 'magento', 'rest', 'wrapper'] |
 | **lastModified**   | System generated date used to track the last point in time this resource was modified.                                                                                                                          |
 | **offline**        | A flag to identify if the connection is in offline-mode. If this is true than no flows with imports or exports using this connection will be ran. Connections can be reset to online my re-authentication.      |
