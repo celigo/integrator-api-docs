@@ -1,7 +1,8 @@
 Connection
 ==========
 
-### Connection Related HTTP Endpoints
+Endpoints
+-------------
 
 | Relative URI       | Method | Success Code | Description                   |
 |:-------------------|:-------|:------------:|:------------------------------|
@@ -13,7 +14,8 @@ Connection
 
 TODO here! lots of routes to add still. :( GET /connections/:\_id/ping POST /connections/ping etc...
 
-### Schema
+Schema
+-------------
 
 Below are the common properties on all connections:
 
