@@ -1,14 +1,7 @@
 Connection
 ==========
 
-Connections are used to store credentials, along with other access information for an application or system. Currently the Integrator supports the following connection types.
-
--	[NetSuite](#NetSuite Connection)
--	[REST API](#REST Connection)
--	[SFTP/FTP](#FTP Connection)
--	[S3](#S3)
-
-##### Connection Related HTTP Endpoints
+#### Connection Related HTTP Endpoints
 
 | Relative URI       | Method | Success Code | Description                   |
 |:-------------------|:-------|:------------:|:------------------------------|
@@ -20,7 +13,7 @@ Connections are used to store credentials, along with other access information f
 
 TODO here! lots of routes to add still. :( GET /connections/:\_id/ping POST /connections/ping etc...
 
-#### Relevant Schema Info
+### Schema
 
 Below are the common properties on all connections:
 
