@@ -66,19 +66,19 @@ Click [here](https://github.com/celigo/integrator-api-docs/blob/master/import.md
 
 ### Flow
 
-Flows are used to comppose exports and imports so that data can exported out of one or more applications and then imported into one or more applications. 
+Flows are used to compose exports and imports so that data can be exported out of one or more applications and then imported into one or more applications. 
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/flow.md) for more info regarding the flow resource type and all its related API endpoints.
 
 ### Integration
 
-Integrations are used group flows.  All flows that belong to the same integration will share the same permissions, and stats will bubble up to the same tile, etc...
+Integrations are used to group flows.  All flows that belong to the same integration will share the same permissions, and all stats and jobs will display under the same tile, etc...
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/integration.md) for more info regarding the integration resource type and all its related API endpoints.
 
 ### State
 
-State is an API only resource type that can be used to store arbitrary JSON data.  Typically the state API is used to persist data about a flow's last execution, and then use that data to parameterize the flow the next time it runs.
+State is an API only resource type that can be used to store arbitrary JSON data (associated with a custom key).  Typically the state API is used to persist data about a flow's last execution, and then to use that same data to parameterize the next execution of the flow (i.e. the next time it runs).
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/state.md) for more info regarding the state resource type and all its related API endpoints.
 
@@ -87,7 +87,7 @@ Less Popular Resource Types (from API standpoint)
 
 ### iClient
 
-iClients are used (mostly) by SmartConnectors to store the authentication data required to connect with a specific API (on behalf of the SmartConnector).  For example, if you are building a SmartConnector for Salesforce you will be required (by Salesforce) to register your app, and Salesforce will proide you with a client id, token, etc... and you can use an iClient to store this data and also make it available to your entire SmartConnector install base.  iClients can only be used by the owning SmartConnector, and end users will not be allowed to see and/or use the iClient for other (non SmartConnector) integrations.
+iClients are used (mostly) by SmartConnectors to store the authentication data required to connect with a specific API (on behalf of the SmartConnector).  For example, if you are building a SmartConnector for Salesforce you will be required (by Salesforce) to register your app, and Salesforce will proide you with a client id, token, etc... and you can use an iClient to store this data and also make it available ONLY to your SmartConnector install base.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for more info regarding the iClient resource type and all its related API endpoints.
 
@@ -101,25 +101,25 @@ Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connector
 
 ### Template
 
-This is the listing record for a template based pre-built integration in the integrator.io marketplace.  Templates are different than SmartConnectors in that they are completely un-managed once installed by end users.
+This is the listing record for Templates in the integrator.io marketplace.  Templates are different than SmartConnectors in that they are completely un-managed once installed by end users.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/template.md) for more info regarding the template resource type and all its related API endpoints.
 
 ### Job
 
-Jobs represent the state of a flow while it is running, and then the stats for a flow after it is done running. 
+Jobs represent the state of a flow while it is running, and then the stats for a flow after it is done running (num success, num error, start time, end time, etc). 
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/job.md) for more info regarding the job resource type and all its related API endpoints.
 
 ### Notifications
 
-This resource type is used to subscribe to notifications for specific events in integrator.io.  For example, when a connection goes offline in my account send me an email notification.
+This resource type is used to subscribe to notifications for specific events in integrator.io.  For example, send me an email when a connection goes offline in my account.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/notification.md) for more info regarding the notification resource type and all its related API endpoints.
 
 ### Stack
 
-Stacks are used to register servers and/or AWS Lambda accounts that can then be invoked by SmartConnectors, Hooks or Wrappers.
+Stacks are used to register servers and/or AWS Lambda accounts that can be invoked by SmartConnectors, Hooks or Wrappers.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/stack.md) for more info regarding the stack resource type and all its related API endpoints.
 
@@ -131,7 +131,7 @@ Click [here](https://github.com/celigo/integrator-api-docs/blob/master/license.m
 
 ### Usage
 
-Usage records track the amount of time your integrations are actively running on the integrator.io platform.
+Usage records track the amount of time integrations are actively running on the integrator.io platform.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/usage.md) for more info regarding the usage resource type and all its related API endpoints.
 
