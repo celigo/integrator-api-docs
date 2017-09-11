@@ -3,11 +3,11 @@ Introduction
 
 The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
 
-1. **SmartConnectors**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrtaor.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
+1. **SmartConnectors**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrator.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
 
 2. **Embedded Integrations**.  These are fully managed integrations where integrator.io remains completely invisible to the end user.  These integrations are typically enabled and/or configured within an external application's UI, where that application's backend servers use the integrator.io API to dynamically deploy and customize integration functionality.
 
-3. **Hooks**.  integrator.io is all about creating and running data flows. A data flow is composed of one or more exports and one or more imports.  Exports are responsible for pulling data out of an application, and imports are responsible for mapping and inserting data into an application.  Hooks are well defined points in the flow where custom code can be run to customize a flow beyond what is possible in the integrator.io UI.  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
+3. **Hooks**.  integrator.io is all about creating and running data flows. A data flow is composed of one or more exports and one or more imports.  Exports are responsible for pulling data out of an application, and imports are responsible for mapping and inserting data into an application.  Hooks are well defined points in the data flow where your custom code can run (i.e. to customize the flow beyond what is possible in the integrator.io UI).  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
 
 4. **Wrappers**.  These can be used to connect with an application that is not natively supported by integrator.io.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
 
