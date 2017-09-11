@@ -14,6 +14,8 @@ The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The t
 Enjoy, and happy integrating!
 
 
+Common Stuff
+============
 Authentication
 --------------
 
@@ -41,23 +43,21 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One Time Tokens
-
 When using the integrator.io extension framework one-time tokens are also used.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into integrator.io. One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout). For SmartConnectors (i.e. managed integration apps), tokens passed are only granted access to invoke resources belonging to the SmartConnector itself (determined via the \_connectorId property). For hooks and wrappers not belonging to a SmartConnector, one-time tokens are limited to only a sub-set of the integrator.io API.
 
 Rate Limiting
 -------------
-
 The Integrator API is rate limited using a leaky bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
 
 Headers
 -------
-
 The Integrator API supports the following custom HTTP headers.
 
 -	Integrator-Relative-URI
 -	Integrator-Record-Type
 
-Resources
+
+Resources (a.k.a. object/record types)
 =========
 
 Connection
