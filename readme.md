@@ -58,7 +58,7 @@ The Integrator API supports the following custom HTTP headers.
 -	Integrator-Record-Type
 
 
-Most Popular Resource Types
+Core Resource Types
 =========
 
 Connection
@@ -116,7 +116,7 @@ iClient provides the mode of authentication for the connectors to authenticate t
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for more info on iClient
 
-Less Popular Resource Types
+Miscellaneous Resource Types
 =========
 Connector
 ---------
