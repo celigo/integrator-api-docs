@@ -83,7 +83,7 @@ State is an API only resource type that can be used to store arbitrary JSON data
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/state.md) for more info regarding the state resource type and all its related API endpoints.
 
 Less Popular Resource Types (from an API standpoint)
-=========
+-----------
 
 ### iClient
 
