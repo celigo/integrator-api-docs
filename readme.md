@@ -1,5 +1,6 @@
 Introduction
 ============
+
 The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
 
 1. **SmartConnectors**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrator.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
@@ -13,9 +14,9 @@ The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The t
 Enjoy, and happy integrating!
 
 
-
 Common Stuff
 ============
+
 Authentication
 --------------
 
@@ -49,7 +50,7 @@ Rate Limiting
 -------------
 The Integrator API is rate limited using a leaky bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
 
-Valid Headers
+Headers
 -------
 The Integrator API supports the following custom HTTP headers.
 
@@ -57,7 +58,7 @@ The Integrator API supports the following custom HTTP headers.
 -	Integrator-Record-Type
 
 
-Resources (a.k.a. object/record types)
+Resource Types
 =========
 
 Connection
