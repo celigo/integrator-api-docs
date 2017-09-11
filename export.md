@@ -1,6 +1,8 @@
 Export
 ======
 
+Standalone exports (invoked via the API) are useful for Embedded Integrations where user actions in an external app (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone exports are also useful in Hooks to call back into an application dynamically (i.e. to get more data while a flow is running).
+
 ##### What is an Export?
 
 Exports are used to extract data from an application or system. Exports can run standalone, or in the context of a [Flow](#Flow).
