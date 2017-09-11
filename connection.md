@@ -22,6 +22,7 @@ Connection
 ### Schema
 
 The following fields are common to all connection resources.
+
 | Field|Description|                                                                                                                                                                                               
 |:-------------------|:--------------------------------------------------------------------------------|
 | **_id**| System generated unique identifier for this connection.                                                                                                                                                         |
