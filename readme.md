@@ -50,7 +50,7 @@ Resource Types
 
 Connections are used to store credentials, along with any other information needed to access the applications you are integrating.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for more info regarding the connection resource type and all its related API endpoints.
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for more info (including all related API endpoints).
 
 ### Export
 
