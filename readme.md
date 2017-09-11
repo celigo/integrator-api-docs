@@ -19,7 +19,7 @@ Authentication
 
 ### Bearer Tokens
 
-API tokens can be generated and/or accessed via Options -> Tokens (within the integrator.io account).  API clients should transmit the token using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
+API tokens can be generated and/or accessed via Options -> Tokens (within your integrator.io account).  API clients should transmit their token using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
 
 Sample HTTP Request:
 
