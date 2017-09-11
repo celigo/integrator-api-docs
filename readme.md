@@ -41,7 +41,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One-time Tokens
-When using the integrator.io extension framework one-time tokens are also supported (and highly recommended).  The one-time tokens are passed in the options argument to each your function, and can be used similar to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
+When using the integrator.io extension framework one-time tokens are also supported (and highly recommended).  The one-time tokens are passed in the options argument to each of your functions, and can be used similar to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
 
 Resource Types
 =========
