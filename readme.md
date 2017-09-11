@@ -105,14 +105,14 @@ Integrations are used group one or more [Imports](#Import), [Exports](#Export), 
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/integration.md) for more info on Integrations
 
+Less Popular Resource Types (from API standpoint)
+=========
+
 ### iClient
 
 iClient provides the mode of authentication for the connectors to authenticate the resource access from integrator. oAuth 2.0 is the authorization protocol used for iClients.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for more info on iClient
-
-Less Popular Resource Types (from API standpoint)
-=========
 
 ### Connector
 
