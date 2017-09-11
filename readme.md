@@ -19,7 +19,7 @@ Authentication
 
 ### Bearer Tokens
 
-Every integrator.io account has access to the API, and please go to Options -> Tokens to retrieve your API token.  API clients should transmit this token using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
+API tokens can be generated and/or accessed via Options -> Tokens (within the integrator.io account).  API clients should transmit the token using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
 
 Sample HTTP Request:
 
@@ -41,7 +41,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One-time Tokens
-When using the integrator.io extension framework one-time tokens are also used.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout). For SmartConnectors (i.e. managed integration apps), tokens passed are only granted access to invoke resources belonging to the SmartConnector itself (determined via the \_connectorId property). For hooks and wrappers not belonging to a SmartConnector, one-time tokens are limited to only a sub-set of the integrator.io API.
+When using the integrator.io extension framework one-time tokens are supported (and highly recommended).  The one-time tokens are passed in the options argument of each function, and can be used similar to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
 
 Resource Types
 =========
@@ -90,6 +90,10 @@ Integrations are used group one or more [Imports](#Import), [Exports](#Export), 
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/integration.md) for more info on Integrations
 
+### State
+
+TODO
+
 Less Popular Resource Types (from API standpoint)
 =========
 
@@ -104,6 +108,10 @@ Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.m
 Connectors represent fully functional pre-built integrations that any user can install into their Integrator account, directly from the Integrator Marketplace. Connectors include an installer, uninstaller, and a settings interface. Connector developers can push updates at any time for their Connector to their entire install base. Connectors are mostly made up of code (that subsequently uses the Integrator API to interact with a user's account). A Connector can create any number of components in a user's account. All components created in a user's account are tagged with the Connector's \_id (via the \_connectorId field). A Connector can only modify components tagged with its own \_id. The schema below mostly serves the purpose of listing a Connector in the Integrator Marketplace (i.e. description, imageURL, websiteURL, etc...).
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connector.md) for more info on connector
+
+### Template
+
+TODO
 
 ### Job
 
@@ -125,6 +133,23 @@ Click [here](https://github.com/celigo/integrator-api-docs/blob/master/retry.md)
 Any error that have caused the executing job to fail. There can be scenarios where job can be completed but it may have errors as some records involved in the job might have failed.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/jobError.md) for more info on jobError
+
+### Notifications
+
+TODO
+
+### Stack
+
+TODO
+
+### License
+
+TODO
+
+### Usage
+
+TODO
+
 
 Rate Limiting
 ============
