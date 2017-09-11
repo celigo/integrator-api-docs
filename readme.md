@@ -91,56 +91,53 @@ Less Popular Resource Types (from API standpoint)
 
 ### iClient
 
-iClient provides the mode of authentication for the connectors to authenticate the resource access from integrator. oAuth 2.0 is the authorization protocol used for iClients.
+iClients are used (mostly) by SmartConnectors to store the authentication data required to connect with a specific API (on behalf of the SmartConnector).  For example, if you are building a SmartConnector for Salesforce you will be required (by Salesforce) to register your app, and Salesforce will proide you with a client id, token, etc... and you can use an iClient to store this data and also make it available to your entire SmartConnector install base.  iClients can only be used by the owning SmartConnector, and end users will not be allowed to see and/or use the iClient for other (non SmartConnector) integrations.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for more info on iClient
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for more info regarding the iClient resource type and all its related API endpoints.
+
 
 ### Connector
 
-Connectors represent fully functional pre-built integrations that any user can install into their Integrator account, directly from the Integrator Marketplace. Connectors include an installer, uninstaller, and a settings interface. Connector developers can push updates at any time for their Connector to their entire install base. Connectors are mostly made up of code (that subsequently uses the Integrator API to interact with a user's account). A Connector can create any number of components in a user's account. All components created in a user's account are tagged with the Connector's \_id (via the \_connectorId field). A Connector can only modify components tagged with its own \_id. The schema below mostly serves the purpose of listing a Connector in the Integrator Marketplace (i.e. description, imageURL, websiteURL, etc...).
+Connectors represent SmartConnectors in the integrator.io marketplace.  This is the listing record for a SmartConnector, and also contains various fields to configure the installer, uninstaller, applications being integrated, etc...
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connector.md) for more info on connector
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connector.md) for more info regarding the connector resource type and all its related API endpoints.
+
 
 ### Template
 
-TODO
+This is the listing record for a template based pre-built integration in the integrator.io marketplace.  Templates are different than SmartConnectors in that they are completely un-managed once installed by end users.
+
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/template.md) for more info regarding the template resource type and all its related API endpoints.
 
 ### Job
 
-Job represents execution state of a flow in integrator. When a flow is run, a job is created and it has a unique identifier associated with it. Job contains status property that that holds the current state of the job. These states are: queued, running, completed, failed, cancelling and cancelled. For example, when a flow is run, new job is created with the status 'queued'. When the worker thread picks up that particular job and start executing, job status is updated as 'running' till it completes its execution. Once the job is completed, its status could be 'completed' or 'failed' Along with the status, job contains information about number of success and number of errors. A job can go to 'completed' state even though there are errors as some of the records in the flow might have failed. In that event, failed records can be retried. Jobs can be referred using the unique Id associated with them.
+Jobs represent the state of a flow while it is running, and then the stats for a flow after it is done running. 
 
-On retry of the job, new job is created but the results of retried job will be still associated with the original parent job. At any given time, only one job will be in running state for a flow.
-
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/job.md) for more info on job
-
-
-### Retry
-
-This is the feature provided in the integrator to retry any flow, export or import in the event of failure. This will create new job for the retry execution but the results of the retry will be associated with the parent job.
-
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/retry.md) for more info on retry
-
-### Job Error
-
-Any error that have caused the executing job to fail. There can be scenarios where job can be completed but it may have errors as some records involved in the job might have failed.
-
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/jobError.md) for more info on jobError
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/job.md) for more info regarding the job resource type and all its related API endpoints.
 
 ### Notifications
 
-TODO
+This resource type is used to subscribe to notifications for specific events in integrator.io.  For example, when a connection goes offline in my account send me an email notification.
+
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/notification.md) for more info regarding the notification resource type and all its related API endpoints.
 
 ### Stack
 
-TODO
+Stacks are used to register servers and/or AWS Lambda accounts that can then be invoked by SmartConnectors, Hooks or Wrappers.
+
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/stack.md) for more info regarding the stack resource type and all its related API endpoints.
 
 ### License
 
-TODO
+Licenses are used to provide access to features, add-ons, SmartConnectors, etc...
+
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/license.md) for more info regarding the license resource type and all its related API endpoints.
 
 ### Usage
 
-TODO
+Usage records track the amount of time your integrations are actively running on the integrator.io platform.
+
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/usage.md) for more info regarding the usage resource type and all its related API endpoints.
 
 
 Rate Limiting
