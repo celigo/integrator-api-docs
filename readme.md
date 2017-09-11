@@ -48,7 +48,7 @@ Resource Types
 
 ### Connection
 
-Connections are used to store credentials, along with other access information for the applications you are integrating.
+Connections are used to store credentials, along with any other information needed to access the applications you are integrating.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for more info regarding the connection resource type and all its related API endpoints.
 
