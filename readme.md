@@ -56,15 +56,11 @@ Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connectio
 
 Exports are used to extract data from an application. Exports can run standalone via the API, or in the context of a flow.
 
-Standalone exports (invoked via the API) are useful for Embedded Integrations where user actions in an external app (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone exports are also useful in Hooks to call back into an application dynamically (i.e. to get more data while a flow is running).
-
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/export.md) for more info regarding the export resource type and all its related API endpoints.
 
 ### Import
 
 Imports are used to insert data into an application. Imports can run standalone via the API, or in the context of a flow.
-
-Standalone imports (invoked via the API) are useful for Embedded Integrations where user actions in an external app (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone imports are also useful in Hooks to submit data into an application dynamically based on business logic.
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/import.md) for more info regarding the import resource type and all its related API endpoints.
 
