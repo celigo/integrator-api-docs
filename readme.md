@@ -20,7 +20,7 @@ Common Stuff
 Authentication
 --------------
 
-### Bearer Tokens
+#### Bearer Tokens
 
 Every integrator.io account has access to the API, and please go to Options -> Tokens to retrieve your API token.  API clients should transmit this token using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
 
@@ -43,7 +43,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-### One-time Tokens
+#### One-time Tokens
 When using the integrator.io extension framework one-time tokens are also used.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout). For SmartConnectors (i.e. managed integration apps), tokens passed are only granted access to invoke resources belonging to the SmartConnector itself (determined via the \_connectorId property). For hooks and wrappers not belonging to a SmartConnector, one-time tokens are limited to only a sub-set of the integrator.io API.
 
 Rate Limiting
