@@ -19,8 +19,9 @@ Connection
 |/connections/{_id}/import|POST|200||
 |/connections/{_id}/import/map|POST|200||
 
-## Schema
-### Common
+### Schema
+
+The following fields are common to all connection resources.
 | Field|Description|                                                                                                                                                                                               
 |:-------------------|:--------------------------------------------------------------------------------|
 | **_id**| System generated unique identifier for this connection.                                                                                                                                                         |
