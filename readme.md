@@ -9,7 +9,7 @@ The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The t
 
 3. **Hooks**.  integrator.io is all about creating and running data flows. A data flow is composed of one or more exports along with one or more imports.  Exports are responsible for pulling data out of an application, and imports are responsible for mapping and inserting data into an application.  Hooks are well defined points within the data flow where custom code can be run (i.e. to customize the data flow beyond what is possible in the integrator.io UI).  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
 
-4. **Wrappers**.  These can be used to connect with an application that is not natively supported by integrator.io.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
+4. **Wrappers**.  These can be used to connect applications that are not natively supported by integrator.io.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
 
 Enjoy, and happy integrating!
 
