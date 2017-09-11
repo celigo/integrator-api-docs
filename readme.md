@@ -19,7 +19,7 @@ Authentication
 
 ### Bearer Tokens
 
-Every Integrator account is provisioned with one API token. API clients should transmit this token using the "Authorization" request header field and the "Bearer" authentication scheme.
+Every integrator.io account has access to the API, and please go to Options -> Tokens to retrieve your API token.  API clients should transmit this token using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
 
 Sample HTTP Request:
 
@@ -42,7 +42,7 @@ Content-Type: application/json; charset=utf-8
 
 ### One Time Tokens
 
-The Integrator will also pass one-time tokens to backend components implementing hooks, wrappers, installer, uninstaller, or settings interfaces. These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into the Integrator. One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout). For Connectors (managed integration apps), tokens passed are only granted access to invoke resources belonging to the Connector itself (determined via the \_connectorId property). For hooks and wrappers not belonging to a Connector, one-time tokens are limited to only invoking Exports and Imports already defined in the Integrator account.
+When using the integrator.io extension framework one-time tokens are also used.  These tokens are passed in the options argument of each function, and can be used similarly to [Bearer Tokens](#Bearer Tokens) to call back into integrator.io. One-time tokens will auto expire after use (determined via a return statement, or after a 15 minute timeout). For SmartConnectors (i.e. managed integration apps), tokens passed are only granted access to invoke resources belonging to the SmartConnector itself (determined via the \_connectorId property). For hooks and wrappers not belonging to a SmartConnector, one-time tokens are limited to only a sub-set of the integrator.io API.
 
 Rate Limiting
 -------------
