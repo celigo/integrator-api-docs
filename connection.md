@@ -2,7 +2,7 @@ Connection
 ==========
 
 ### Endpoints
-| Relative URI       | Method | Success Code | Description                   |
+| Relative URI| Method | Success Code | Description|
 |:-------------------|:-------|:------------:|:------------------------------|
 |/connections|GET|200|List all connections.|
 |/connections|POST|201|Create new connection.|
@@ -18,10 +18,6 @@ Connection
 |/connections/{_id}/export/pages|POST|200||
 |/connections/{_id}/import|POST|200||
 |/connections/{_id}/import/map|POST|200||
-
-
-
-TODO here! lots of routes to add still. :( GET /connections/:\_id/ping POST /connections/ping etc...
 
 ### Schema
 Below are the common properties on all connections:
