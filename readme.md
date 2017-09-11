@@ -7,7 +7,7 @@ The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The t
 
 2. **Embedded Integrations**.  These are fully managed integrations where integrator.io remains completely invisible to the end user.  These integrations are typically enabled and/or configured within an external application's UI, where that application's backend servers use the integrator.io API to dynamically deploy and customize integration functionality.
 
-3. **Hooks**.  integrator.io is all about creating and running data flows. A data flow is composed of one or more exports along with one or more imports.  Exports are responsible for pulling data out of an application, and imports are responsible for mapping and inserting data into an application.  Hooks are well defined points within the data flow where custom code can be run (i.e. to customize the data flow beyond what is possible in the integrator.io UI).  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
+3. **Hooks**.  integrator.io is all about creating and running flows. A flow is composed of one or more exports along with one or more imports.  Exports are responsible for pulling data out of an application, and imports are responsible for mapping and inserting data into an application.  Hooks are well defined points within the flow where custom code can be run (i.e. to customize the flow beyond what is possible in the integrator.io UI).  See [here](https://github.com/celigo/integrator-extension#hooks) for more info.
 
 4. **Wrappers**.  These can be used to connect applications that are not natively supported by integrator.io.  See [here](https://github.com/celigo/integrator-extension#wrappers) for more info.
 
@@ -41,58 +41,50 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One-time Tokens
-When using the integrator.io extension framework one-time tokens are supported (and highly recommended).  The one-time tokens are passed in the options argument of each function, and can be used similar to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
+When using the integrator.io extension framework one-time tokens are supported (and highly recommended).  The one-time tokens are passed in the options argument to each your function, and can be used similar to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
 
 Resource Types
 =========
 
 ### Connection
 
-Connections are used to store credentials, along with other access information for an application or system. Currently the Integrator supports the following connection types.
+Connections are used to store credentials, along with other access information for the applications you are integrating.
 
--	[NetSuite](#NetSuite Connection)
--	[REST API](#REST Connection)
--	[SFTP/FTP](#FTP Connection)
--	[S3](#S3)
-
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for more info on connection
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for more info regarding the connection resource type and all its related API endpoints.
 
 ### Export
 
+Exports are used to extract data from an application. Exports can run standalone via the API, or in the context of a flow.
 
-Exports are used to extract data from an application or system. Exports can run standalone, or in the context of a [Flow](#Flow).
+Standalone exports (invoked via the API) are useful for Embedded Integrations where user actions in an external app (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone exports are also useful in Hooks to call back into an application dynamically (i.e. to get more data while a flow is running).
 
-Standalone Exports are useful for integrations where user actions (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone exports are especially useful for applications that need to integrate with more than one other applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive. Celigo uses standalone Exports extensively in its spreadsheet and email sync products.
-
-Exports running in the context of a Flow will execute asynchronously and automatically break exported data down into one or more pages and then stream those pages to one or more [Imports](#Import).
-
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/export.md) for more info on export
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/export.md) for more info regarding the export resource type and all its related API endpoints.
 
 ### Import
 
-Imports are used to insert data into an application. Like [Exports](#Export), Imports can run standalone, or in the context of a [Flow](#Flow).
+Imports are used to insert data into an application. Imports can run standalone via the API, or in the context of a flow.
 
-Standalone Imports are useful for integrations where user actions (like clicking a button) need to invoke an application's API in real-time and return the results immediately. Standalone imports are especially useful for applications that need to integrate with more than one other applications, and/or applications where the development environment is less than ideal and writing native API client code would be counter productive. Celigo uses standalone Imports extensively in its spreadsheet and email sync products.
+Standalone imports (invoked via the API) are useful for Embedded Integrations where user actions in an external app (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone imports are also useful in Hooks to submit data into an application dynamically based on business logic.
 
-Imports running in the context of a Flow will also execute synchronously but will channel results back to the flow so that stats can be reported in a job record.
-
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/import.md) for more info on import
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/import.md) for more info regarding the import resource type and all its related API endpoints.
 
 ### Flow
 
-Flows are used to export data out of one application and import it into another application. A Flow is basically an [Export](#Export) linked to one or more [Imports](#Import). A Flow can channel data generated by a real time export, or if real-time is not an options (based on the application where data is being exported) a Flow can be scheduled to run on a periodic basis. Flows can be scheduled to run as often as once per minute; however, only one instance of a Flow can run at any given time (i.e. you cannot run the same Flow more than once at the same time, and if a Flow is still running when it is scheduled to run again it will simply queue itself up and run when the currently running instance completes).
+Flows are used to comppose exports and imports so that data can exported out of one or more applications and then imported into one or more applications. 
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/flow.md) for more info on flow
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/flow.md) for more info regarding the flow resource type and all its related API endpoints.
 
 ### Integration
 
-Integrations are used group one or more [Imports](#Import), [Exports](#Export), or [Flows](#Flow). Integrations will show as tiles in the Integrator dashboard.
+Integrations are used group flows.  All flows that belong to the same integration will share the same permissions, and stats will bubble up to the same tile, etc...
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/integration.md) for more info on Integrations
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/integration.md) for more info regarding the integration resource type and all its related API endpoints.
 
 ### State
 
-TODO
+State is an API only resource type that can be used to store arbitrary JSON data.  Typically the state API is used to persist data about a flow's last execution, and then use that data to parameterize the flow the next time it runs.
+
+Click [here](https://github.com/celigo/integrator-api-docs/blob/master/state.md) for more info regarding the state resource type and all its related API endpoints.
 
 Less Popular Resource Types (from API standpoint)
 =========
