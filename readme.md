@@ -111,7 +111,7 @@ iClient provides the mode of authentication for the connectors to authenticate t
 
 Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for more info on iClient
 
-Less Popular Resource Types
+Less Popular Resource Types (from API standpoint)
 =========
 
 ### Connector
