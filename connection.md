@@ -21,7 +21,7 @@ Connection
 
 ### Schema
 
-The following fields are common to all connection resources.
+The following fields are common to all connection docs.
 
 | Field|Description|                                                                                                                                                                                               
 |:-------------------|:--------------------------------------------------------------------------------|
