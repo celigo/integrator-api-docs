@@ -1,9 +1,7 @@
 Connection
 ==========
 
-Endpoints
--------------
-
+### Endpoints
 | Relative URI       | Method | Success Code | Description                   |
 |:-------------------|:-------|:------------:|:------------------------------|
 | /connections       | GET    |     200      | List all connections.         |
@@ -14,9 +12,7 @@ Endpoints
 
 TODO here! lots of routes to add still. :( GET /connections/:\_id/ping POST /connections/ping etc...
 
-Schema
--------------
-
+### Schema
 Below are the common properties on all connections:
 
 | Field              | Description                                                                                                                                                                                                     |
