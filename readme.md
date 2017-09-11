@@ -49,7 +49,7 @@ Rate Limiting
 -------------
 The Integrator API is rate limited using a leaky bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
 
-Headers
+Valid Headers
 -------
 The Integrator API supports the following custom HTTP headers.
 
