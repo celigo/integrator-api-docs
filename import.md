@@ -1,6 +1,8 @@
 Import
 ======
 
+Standalone imports (invoked via the API) are useful for Embedded Integrations where user actions in an external app (like clicking a button) need to invoke an external application's API in real-time and return the results immediately. Standalone imports are also useful in Hooks to submit data into an application dynamically based on business logic.
+
 ##### What is an Import?
 
 Imports are used to insert data into an application. Like [Exports](#Export), Imports can run standalone, or in the context of a [Flow](#Flow).
