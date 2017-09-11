@@ -1,7 +1,7 @@
 Connection
 ==========
 
-#### Connection Related HTTP Endpoints
+### Connection Related HTTP Endpoints
 
 | Relative URI       | Method | Success Code | Description                   |
 |:-------------------|:-------|:------------:|:------------------------------|
