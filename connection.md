@@ -21,7 +21,7 @@ Connection
 
 ## Examples
 
-#### Get a specific connection.
+#### 1.  Get a specific connection.
 
 ```
 GET /v1/connections/{_id} HTTP/1.1
@@ -40,7 +40,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-#### Create a connection.
+#### 2.  Create a connection.
 
 ```
 POST /v1/connections HTTP/1.1
