@@ -45,7 +45,7 @@ When using the integrator.io extension framework one-time tokens are also suppor
 
 Resource Types
 =========
-***Very important tip!*** You can see the JSON data for any record in your integrator.io account by modifying the URL in your browser to https://integrator.io/api/ (i.e. you just need to add /api/ to the base URI in your browser), and then you can use GET, POST, PUT and DELETE to perform all the basic CRUD operations.
+***Very important tip!*** The integrator.io UI also uses the API, and if you ever get stuck using the API you can always revery to the UI to create and/or update records, and then use an API client to view the JSON for those records at each step.  You can see also the JSON data for any record in your integrator.io account by modifying the URL in your browser to https://integrator.io/api/ (i.e. you just need to add /api/ to the base URI).
 
 ### Connection
 
