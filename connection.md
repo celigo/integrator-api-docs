@@ -18,3 +18,6 @@ Connection
 |/connections/{_id}/export/pages|POST|200||
 |/connections/{_id}/import|POST|200||
 |/connections/{_id}/import/map|POST|200||
+
+### Examples
+# 
