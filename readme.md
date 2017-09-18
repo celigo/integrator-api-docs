@@ -45,7 +45,7 @@ When using the integrator.io extension framework one-time tokens are also suppor
 
 Resource Types
 =========
-> Very important tip.  The integrator.io UI also uses the API, and if you ever get stuck you can always revert back to the UI to create and/or update something.  You can also use the browser to see your JSON data by modifying the URL to the following. https://integrator.io/api/
+> Very important tip!  The integrator.io UI also uses the API, and if you ever get stuck with the API you can revert back to the UI to create and/or modify something; and then you can use an API client, or the browser (via https://integrator.io/api/) to see the resulting JSON data that can then be replicated via an API call.
 
 ### Connection
 
