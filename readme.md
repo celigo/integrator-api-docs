@@ -1,7 +1,7 @@
 Introduction
 ============
 
-The Integrator API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
+The integrator.io API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
 
 1. **SmartConnectors**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrator.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
 
@@ -45,6 +45,7 @@ When using the integrator.io extension framework one-time tokens are also suppor
 
 Resource Types
 =========
+Very important tip!  You can see the JSON data for any resource/record in your integrator.io account by using the following URL in your browser.  https://integrator.io/api/  If you are ever in doubt how to use the API to create something you can create it first in the UI and then view the JSON via the URL above.  
 
 ### Connection
 
