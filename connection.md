@@ -19,7 +19,7 @@ Connection
 |/connections/{_id}/import|POST|200|@TODO|
 |/connections/{_id}/import/map|POST|200|@TODO|
 
-### Examples
+## Examples
 
 #### Get a specific connection.
 
