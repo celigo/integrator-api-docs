@@ -5,8 +5,8 @@ Connection
 | Relative URI| Method | Success Code | Description|
 |:-------------------|:-------|:------------:|:------------------------------|
 |/connections|GET|200|Get all connections.|
-|/connections|POST|201|Create a new connection.|
 |/connections/{_id}|GET|200|Get a specific connection.|
+|/connections|POST|201|Create a new connection.|
 |/connections/{_id}|PUT|200|Update a specific connection.|
 |/connections/{_id}|DELETE|204|Delete a specific connection.|
 |/connections/{_id}/ping|GET|200|Test that a specific connection is operational.|
@@ -21,7 +21,7 @@ Connection
 
 ### Examples
 
-# Get a specific connection.
+#### Get a specific connection.
 
 ```
 GET /v1/connections/{_id} HTTP/1.1
@@ -40,7 +40,7 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-# Create a connection.
+#### Create a connection.
 
 ```
 POST /v1/connections HTTP/1.1
