@@ -144,8 +144,8 @@ The Integrator API is rate limited using a leaky bucket algorithm with a bucket 
 
 Headers
 ============
+@TODO - this section may be deleted. Waiting to hear back from devs on use of this header. 
 
 The Integrator API supports the following custom HTTP headers.
 
--	Integrator-Relative-URI
 -	Integrator-Record-Type
