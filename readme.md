@@ -51,7 +51,7 @@ Resource Types
 
 Connections are used to store credentials, along with any other information needed to access the applications you are integrating.
 
-Click [here](../blob/master/connection.md) for details.
+Click [here](../master/connection.md) for details.
 
 ### Export
 
