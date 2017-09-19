@@ -41,7 +41,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ### One-time Tokens
-When using the integrator.io extension framework one-time tokens are also supported (and highly recommended).  The one-time tokens are passed in the options argument to each of your functions, and can be used similar to [Bearer Tokens](https://github.com/celigo/integrator-api-docs/blob/master/readme.md#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
+When using the integrator.io extension framework one-time tokens are also supported (and highly recommended).  The one-time tokens are passed in the options argument to each of your functions, and can be used similar to [Bearer Tokens](#bearer-tokens) to call back into integrator.io. One-time tokens auto expire after being used (or after a 15 minute timeout if never used). For SmartConnectors (i.e. managed integration apps), one-time tokens passed are only granted access to invoke the resources that belong to the SmartConnector.
 
 Resource Types
 =========
@@ -51,37 +51,37 @@ Resource Types
 
 Connections are used to store credentials, along with any other information needed to access the applications you are integrating.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connection.md) for details.
+Click [here](../blob/master/connection.md) for details.
 
 ### Export
 
 Exports are used to extract data from an application. Exports can run standalone via the API, or in the context of a flow.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/export.md) for details.
+Click [here](../blob/master/export.md) for details.
 
 ### Import
 
 Imports are used to insert data into an application. Imports can run standalone via the API, or in the context of a flow.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/import.md) for details.
+Click [here](../blob/master/import.md) for details.
 
 ### Flow
 
 Flows are used to compose exports and imports so that data can be exported out of one or more applications and then imported into one or more applications. 
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/flow.md) for details.
+Click [here](../blob/master/flow.md) for details.
 
 ### Integration
 
 Integrations are used to group flows.  All flows that belong to the same integration will share the same permissions, and all stats will bubble up under the same tile on the home page.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/integration.md) for details.
+Click [here](../blob/master/integration.md) for details.
 
 ### State
 
 State is an API only resource type that can be used to store arbitrary JSON data (associated with a custom key).  Typically the state API is used to persist data about a flow's last execution, and then to use that same data to parameterize the next execution of the flow (i.e. the next time it runs).
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/state.md) for details.
+Click [here](../blob/master/state.md) for details.
 
 Less Common Resource Types
 -----------
@@ -90,51 +90,51 @@ Less Common Resource Types
 
 iClients are used (mostly) by SmartConnectors to store the authentication data required to connect with a specific API (on behalf of the SmartConnector).  For example, if you are building a SmartConnector for Salesforce you will be required (by Salesforce) to register your app, and Salesforce will proide you with a client id, token, etc... and then you can use an iClient to store this data and also make it available ONLY to your SmartConnector install base.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/iClient.md) for details.
+Click [here](../blob/master/iClient.md) for details.
 
 
 ### Connector
 
 Connectors represent SmartConnectors in the integrator.io marketplace.  This is the listing record for a SmartConnector, and also contains various fields to configure the installer, uninstaller, applications being integrated, etc...
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/connector.md) for details.
+Click [here](../blob/master/connector.md) for details.
 
 
 ### Template
 
 This is the listing record for Templates in the integrator.io marketplace.  Templates are different than SmartConnectors in that they are completely un-managed once installed by end users.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/template.md) for details.
+Click [here](../blob/master/template.md) for details.
 
 ### Job
 
 Jobs represent the state of a flow while it is running (start time, status, percentage complete, etc...), and then the final stats for a flow when it has finished running (num success, num error, end time, etc...). 
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/job.md) for details.
+Click [here](../blob/master/job.md) for details.
 
 ### Notification
 
 This resource type is used to subscribe to notifications for specific events in integrator.io.  For example, send me an email when a connection goes offline in my account.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/notification.md) for details.
+Click [here](../blob/master/notification.md) for details.
 
 ### Stack
 
 Stacks are used to register servers and/or AWS Lambda accounts that can be invoked by SmartConnectors, Hooks or Wrappers.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/stack.md) for details.
+Click [here](../blob/master/stack.md) for details.
 
 ### License
 
 Licenses are used to provide access to features, add-ons, SmartConnectors, etc...
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/license.md) for details.
+Click [here](../blob/master/license.md) for details.
 
 ### Usage
 
 Usage records track the amount of time your custom integrations are actively running on the integrator.io platform.
 
-Click [here](https://github.com/celigo/integrator-api-docs/blob/master/usage.md) for details.
+Click [here](../blob/master/usage.md) for details.
 
 
 Rate Limiting
