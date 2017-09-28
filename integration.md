@@ -9,7 +9,6 @@ Integration
 |/integrations|POST|201|Create a new integration.|
 |/integrations/{_id}|PUT|200|Update a specific integration.|
 |/integrations/{_id}|DELETE|204|Delete a specific integration.|
-|/integrations/:_importId/map|POST|200||
 
 ##### Schema
 
