@@ -10,7 +10,7 @@ Integration
 |/integrations/{_id}|PUT|200|Update a specific integration.|
 |/integrations/{_id}|DELETE|204|Delete a specific integration.|
 
-### Schema
+### Schem
 
 | Field                | Required | Description                                                                            |
 |:---------------------|:---------|:---------------------------------------------------------------------------------------|
