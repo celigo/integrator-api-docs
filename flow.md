@@ -1,4 +1,4 @@
-Flow
+Flow API
 ====
 
 ##### What is a Flow?
