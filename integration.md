@@ -1,4 +1,4 @@
-Integration
+Integration API
 ===========
 
 ### Endpoints
