@@ -1,4 +1,4 @@
-Connection
+Connection API
 ==========
 
 ### Endpoints
