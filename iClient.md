@@ -1,4 +1,4 @@
-iClient
+iClient API
 =======
 
 ##### What is an iClient?
