@@ -8,7 +8,12 @@ State
 |/state/{key}|GET|200|Get a specific state resource.|
 |/state/{key}|PUT|200|Create/update a specific state resource.|
 |/state/{key}|DELETE|204|Delete a specific state resource.|
-
+|/state/{key}|DELETE|204|Delete all state resources.|
+|/{resource_type}/{_id}/state|GET|200|Get all state resources associated with a resource type in your account.|
+|/{resource_type}/{_id}/state/{key}|GET|200|Get a specific state resource associated with a resource in your account.|
+|/{resource_type}/{_id}/state/{key}|PUT|200|Create/update a specific state resource associated with a resource in your account.|
+|/{resource_type}/{_id}/state/{key}|DELETE|200|Delete a specific state resource associated with a resource in your account.|
+|/{resource_type}/{_id}/state|DELETE|200|Delete all state resources associated with a resource in your account.|
 
 ## Examples
 
