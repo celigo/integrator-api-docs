@@ -1,5 +1,5 @@
 State API
-===========
+========
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
