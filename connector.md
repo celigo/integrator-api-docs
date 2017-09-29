@@ -1,4 +1,4 @@
-Connector
+Connector API
 =========
 
 ##### What is a Connector?
