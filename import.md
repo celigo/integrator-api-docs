@@ -9,7 +9,7 @@ Import API
 |/imports|POST|201|Create a new import.|
 |/imports/{_id}|PUT|200|Update a specific import.|
 |/imports/{_id}|DELETE|204|Delete a specific import.|
-|/imports/:_importId/map|POST|200||
+|/imports/{_id}/map|POST|200||
 
 ## Examples
 
