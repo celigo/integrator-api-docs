@@ -9,7 +9,6 @@ Export API
 |/exports|POST|201|Create a new export.|
 |/exports/{_id}|PUT|200|Update a specific export.|
 |/exports/{_id}|DELETE|204|Delete a specific export.|
-|/exports/preview|POST|200|Invoke a virtual export where all the details for the export are submitted in the POST body, but should not be saved.|
 |/exports/:_id/distributed|GET|200||
 |/exports/:_id/distributed|PUT|200||
 
