@@ -10,21 +10,16 @@ Integration API
 |/integrations/{_id}|PUT|200|Update a specific integration.|
 |/integrations/{_id}|DELETE|204|Delete a specific integration.|
 
-## Schema
+## SmartConnector Fields
 
-| Field                | Required | Description                                                                            |
-|:---------------------|:---------|:---------------------------------------------------------------------------------------|
-| **_id**|Yes|System generated unique identifier for this integration.|
-| **name**|Yes||
-| **description**|No||
-| **lastModified**|No|Read only field tracking last modified date/time.|
-| **_connectorId**|Yes|If this flow belongs to a connector, this value will be hold the _id of that connector.|
-| **mode**|No|Field that determines the mode of the integration i.e. install, settings, uninstall|
-| **settings**|No|???|
-| **version**|No|If this flow belongs to a connector, this value will be hold the id of that connector.|
-| **tag**|No|???|
-| **updateInProgress**|No|???|
-| **install**|No|???|
+| Field| Description|
+|:------------|:------------|
+| **mode**|???|
+| **settings**|???|
+| **version**|???|
+| **tag**|???|
+| **updateInProgress**|???|
+| **install**|???|
 
 ## Examples
 
