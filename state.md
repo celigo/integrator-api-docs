@@ -17,7 +17,7 @@ State API
 
 ## Examples
 
-#### 1.  Get state for specific key.
+#### 1.  Get state for key.
 
 ```
 GET /v1/state/{key} HTTP/1.1
