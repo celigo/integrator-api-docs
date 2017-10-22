@@ -4,12 +4,12 @@ State API
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
 |:-------------------|:-------|:------------:|:------------------------------|
-|/state|GET|200|Get all state resources.|
+|/state|GET|200|Get all state resource keys currently being stored.|
 |/state/{key}|GET|200|Get a specific state resource.|
 |/state/{key}|PUT|200|Create/update a specific state resource.|
 |/state/{key}|DELETE|204|Delete a specific state resource.|
 |/state/{key}|DELETE|204|Delete all state resources.|
-|/{resource_type}/{_id}/state|GET|200|Get all state resources associated with a resource type in your account.|
+|/{resource_type}/{_id}/state|GET|200|Get all state resource keys associated with a resource type in your account.|
 |/{resource_type}/{_id}/state/{key}|GET|200|Get a specific state resource associated with a resource in your account.|
 |/{resource_type}/{_id}/state/{key}|PUT|200|Create/update a specific state resource associated with a resource in your account.|
 |/{resource_type}/{_id}/state/{key}|DELETE|200|Delete a specific state resource associated with a resource in your account.|
