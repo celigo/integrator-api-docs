@@ -10,7 +10,7 @@ Connector API
 |/connectors/{_id}|PUT|200|Update a specific connector.|
 |/connectors/{_id}|DELETE|204|Delete a specific connector.|
 |/connectors/{_id}/installBase|GET|200|Get the install base for a specific connector.|
-|/connectors/{_id}/update|PUT|200|Push update to the _integrationIds[] sent in the request body.|
+|/connectors/{_id}/update|PUT|200|Push update to _integrationIds[] (sent via post body).|
 
 
 ## Examples
