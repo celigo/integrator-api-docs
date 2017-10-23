@@ -95,7 +95,7 @@ Click [here](/iClient.md) for details.
 
 ### Connector + License
 
-Connectors represent SmartConnectors in the integrator.io marketplace.  This is the listing record for a SmartConnector, and also contains various fields to configure the installer, uninstaller, applications being integrated, etc...  License records belonging to a connector are used to enable a user to install your SmartConnector, and then with the license record you can control the expires date, along with any other custom options you wish to support.  You can also use the licensing APIs to sync license records with your subscription and provisiong software (assuming you have such software, and that software has an API).  You can even use integrator.io to manage that integration!
+The connector resource type represents the SmartConnector solutions you build and list in the integrator.io marketplace.  This resource type has basic listing type fields to help market your solution, and then also developer type fields to specify the functions to invoke when the connector is installed, uninstalled, etc... Also, within the context of a connector there is a license resource type that is used to provision your solution to end users.  Using the related licensing APIs you can fully automate trials, expires, along with any other custom options between your integrator.io account and whatever software you are using for subscriptions and payments (assuming that software has an API).  You can even use integrator.io to manage these data flows!
 
 Click [here](/connector.md) for details.
 
