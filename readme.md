@@ -118,12 +118,6 @@ Licenses are used to provide access to features, add-ons, SmartConnectors, etc..
 
 Click [here](/license.md) for details.
 
-### Usage
-
-Usage records track the amount of time your custom integrations are actively running on the integrator.io platform.
-
-Click [here](/usage.md) for details.
-
 
 Rate Limiting
 ============
