@@ -32,7 +32,6 @@ Sample Response:
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-
 {
   "_userId": "5e03061cda20740022300f09",
   "scope":"*"
@@ -52,7 +51,6 @@ Sample Response:
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-
 {
   "_userId": "5e03061cda20740022300f09",
   "scope":"*"
