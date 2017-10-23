@@ -125,8 +125,3 @@ Headers
 The Integrator API supports the following custom HTTP headers.
 
 -    Integrator-Record-Type
-
-
--- 
-Scott Henderson | CTO
-Follow us for updates!   
