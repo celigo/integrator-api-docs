@@ -11,10 +11,10 @@ Job API
 
 ## Examples
 
-#### 1.  Get all jobs.
+#### 1.  Get all jobs where numError is greater than or equal to 1 (i.e. get all jobs that have at least 1 error).
 
 ```
-GET /v1/jobs/{_id} HTTP/1.1
+GET /v1/jobs?numError_gte=1 HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -24,7 +24,6 @@ Sample Response:
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-
 {
   "_userId": "5e03061cda20740022300f09",
   "scope":"*"
