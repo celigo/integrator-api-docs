@@ -67,7 +67,7 @@ Click [here](/import.md) for details.
 
 ### Flow
 
-Flows are used to compose exports and imports so that data can be exported out of one or more applications and then imported into one or more applications. 
+Flows are used to compose exports and imports so that data can be exported out of one or more applications and then imported into one or more applications.
 
 Click [here](/flow.md) for details.
 
@@ -88,14 +88,14 @@ Less Common Resource Types
 
 ### iClient
 
-iClients are used (mostly) by SmartConnectors to store the authentication data required to connect with a specific API (on behalf of the SmartConnector).  For example, if you are building a SmartConnector for Salesforce you will be required (by Salesforce) to register your app, and Salesforce will proide you with a client id, token, etc... and then you can use an iClient to store this data and also make it available ONLY to your SmartConnector install base.
+iClients are used (mostly) by SmartConnectors to store the authentication data required to connect with a specific API (on behalf of the SmartConnector).  For example, if you are building a SmartConnector for Salesforce you will be required (by Salesforce) to register your app, and Salesforce will provide you with a client id, token, etc... and then you can use an iClient to store this data and also make it available ONLY to your SmartConnector install base.
 
 Click [here](/iClient.md) for details.
 
 
 ### Connector + License
 
-The connector resource type represents the SmartConnector solutions you build and list in the integrator.io marketplace.  This resource type has basic listing type fields to help market your solution, and then also developer type fields to specify the functions to invoke when the connector is installed, uninstalled, etc... Also, within the context of a connector there is a license resource type that is used to provision your solution to end users.  Using the related licensing APIs you can fully automate trials, expires, along with any other custom options between your integrator.io account and whatever software you are using for subscriptions and payments (assuming that software has an API).  You can even use integrator.io to manage these data flows!
+The connector resource type represents the SmartConnector solutions you build and list in the integrator.io marketplace.  This resource type has basic listing type fields to help market your solution, and then developer type fields to specify which functions on your server stack to invoke when the connector is installed, uninstalled, etc... There is a license resource type available too (within the context of a connector) to formally provision your solution to an end user.  And, using the related licensing APIs you can fully automate provisioning of your solution with your external subscription and/or recurring payments platform.  You can even use an integrator.io account to manage the data flows between those apps (i.e. integrator.io and subscription/payment platform)!
 
 Click [here](/connector.md) for details.
 
@@ -108,7 +108,7 @@ Click [here](/template.md) for details.
 
 ### Job
 
-Jobs represent the state of a flow while it is running (start time, status, percentage complete, etc...), and then the final stats for a flow when it has finished running (num success, num error, end time, etc...). 
+Jobs represent the state of a flow while it is running (start time, status, percentage complete, etc...), and then the final stats for a flow when it has finished running (num success, num error, end time, etc...).
 
 Click [here](/job.md) for details.
 
@@ -120,8 +120,13 @@ The Integrator API is rate limited using a leaky bucket algorithm with a bucket 
 
 Headers
 ============
-@TODO - this section may be deleted. Waiting to hear back from devs on use of this header. 
+@TODO - this section may be deleted. Waiting to hear back from devs on use of this header.
 
 The Integrator API supports the following custom HTTP headers.
 
--	Integrator-Record-Type
+-    Integrator-Record-Type
+
+
+-- 
+Scott Henderson | CTO
+Follow us for updates!   
