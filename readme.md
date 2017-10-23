@@ -93,7 +93,7 @@ iClients are used (mostly) by SmartConnectors to store the authentication data r
 Click [here](/iClient.md) for details.
 
 
-### Connector + Connector Licensing
+### Connector + Licensing
 
 Connectors represent SmartConnectors in the integrator.io marketplace.  This is the listing record for a SmartConnector, and also contains various fields to configure the installer, uninstaller, applications being integrated, etc...  There are APIs available to automate licensing controls and trials for your install base.
 
