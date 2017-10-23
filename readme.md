@@ -95,7 +95,7 @@ Click [here](/iClient.md) for details.
 
 ### Connector + License
 
-The connector resource type represents the SmartConnector solutions you build and list in the integrator.io marketplace.  This resource type has basic listing type fields to help market your solution, and then developer type fields to specify which functions on your server stack to invoke when the connector is installed, uninstalled, etc... There is a license resource type available too (within the context of a connector) to formally provision your solution to an end user.  And, using the related licensing APIs you can fully automate provisioning of your solution with your external subscription and/or recurring payments platform.  You can even use an integrator.io account to manage the data flows between those apps (i.e. integrator.io and subscription/payment platform)!
+The connector resource type represents the SmartConnector solutions you build and list in the integrator.io marketplace.  This resource type has basic listing type fields to help market your solution, and then developer type fields to specify which functions on your server stack should be invoked when the connector is installed, uninstalled, etc... There is a license resource type available too (within the context of a connector) to formally provision your solution to an end user.  And, using the related licensing APIs you can fully automate provisioning of your solution with an external subscription and/or recurring payments platform.  You can even use an integrator.io account to manage the data flows between those apps (i.e. integrator.io and subscription/payment platform)!
 
 Click [here](/connector.md) for details.
 
