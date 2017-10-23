@@ -4,7 +4,7 @@ Connector API
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
 |:-----------|:-------|:------------:|:-------------|
-|/licenses|GET|200|Get all connectors.|
+|/connectors|GET|200|Get all connectors.|
 |/connectors/{_id}|GET|200|Get a specific connector.|
 |/connectors|POST|201|Create a new connector.|
 |/connectors/{_id}|PUT|200|Update a specific connector.|
