@@ -112,12 +112,6 @@ Jobs represent the state of a flow while it is running (start time, status, perc
 
 Click [here](/job.md) for details.
 
-### Stack
-
-Stacks are used to register servers and/or AWS Lambda accounts that can be invoked by SmartConnectors, Hooks or Wrappers.
-
-Click [here](/stack.md) for details.
-
 ### License
 
 Licenses are used to provide access to features, add-ons, SmartConnectors, etc...
