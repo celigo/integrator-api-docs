@@ -93,9 +93,9 @@ iClients are used (mostly) by SmartConnectors to store the authentication data r
 Click [here](/iClient.md) for details.
 
 
-### Connector
+### Connector + Connector Licensing
 
-Connectors represent SmartConnectors in the integrator.io marketplace.  This is the listing record for a SmartConnector, and also contains various fields to configure the installer, uninstaller, applications being integrated, etc...
+Connectors represent SmartConnectors in the integrator.io marketplace.  This is the listing record for a SmartConnector, and also contains various fields to configure the installer, uninstaller, applications being integrated, etc...  There are APIs available to automate licensing controls and trials for your install base.
 
 Click [here](/connector.md) for details.
 
@@ -111,12 +111,6 @@ Click [here](/template.md) for details.
 Jobs represent the state of a flow while it is running (start time, status, percentage complete, etc...), and then the final stats for a flow when it has finished running (num success, num error, end time, etc...). 
 
 Click [here](/job.md) for details.
-
-### License
-
-Licenses are used to provide access to features, add-ons, SmartConnectors, etc...
-
-Click [here](/license.md) for details.
 
 
 Rate Limiting
