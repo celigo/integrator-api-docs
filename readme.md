@@ -112,12 +112,6 @@ Jobs represent the state of a flow while it is running (start time, status, perc
 
 Click [here](/job.md) for details.
 
-### Notification
-
-This resource type is used to subscribe to notifications for specific events in integrator.io.  For example, send me an email when a connection goes offline in my account.
-
-Click [here](/notification.md) for details.
-
 ### Stack
 
 Stacks are used to register servers and/or AWS Lambda accounts that can be invoked by SmartConnectors, Hooks or Wrappers.
