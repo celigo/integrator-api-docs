@@ -5,8 +5,8 @@ Job API
 | Relative URI| Method | Success Code | Description|
 |:-----------|:-------|:------------:|:-------------|
 |/jobs|GET|200|Get all jobs.  The following query parameters are supported:   |
-|/jobs/:_jobId/joberrors|GET|200|If a job has <= 1000 errors use this API to retrieve the errors directly.|
-|/jobs/:_jobId/errorFile/signedURL|GET|200|If a job has > 1000 errors, or you prefer to get a file, use this API to get a signed URL that can then be used to download an error file directly from S3.|
+|/jobs/{_id}/joberrors|GET|200|If a job has <= 1000 errors use this API to retrieve the errors directly.|
+|/jobs/{_id}/errorFile/signedURL|GET|200|If a job has > 1000 errors, or you prefer to get a file, use this API to get a signed URL that can then be used to download an error file directly from S3.|
 
 
 ## Examples
