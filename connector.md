@@ -3,7 +3,7 @@ Connector API
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
-|:-------------------|:-------|:------------:|:------------------------------|
+|:---------------------------|:-------|:------------:|:------------------------------|
 |/connectors|GET|200|Get all connectors.|
 |/connectors/{_id}|GET|200|Get a specific connector.|
 |/connectors|POST|201|Create a new connector.|
