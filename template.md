@@ -69,7 +69,7 @@ Sample Response:
     }
 ]
 ```
-#### 1.  Update a specific template record in my account.
+#### 2.  Update a specific template record in my account.
 
 ```
 PUT /v1/template/58f12659c468a47a9489242c HTTP/1.1
