@@ -130,3 +130,57 @@ Sample Response:
     }
 ]
 ```
+
+#### 2.  Update a specific license.
+
+```
+PUT /v1/connectors/54fa0b38a7044f9252000036/licenses/59ef03a31ce1f53606837667 HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{
+    "expires": "2020-11-16T18:29:59.999Z",
+    "opts": {
+        "addonLicenses": [
+            {
+                "licenses": [
+                    {
+                        "addOnEdition": "enterprise"
+                    }
+                ],
+                "type": "store"
+            }
+        ],
+        "connectorEdition": "enterprise"
+    }
+}
+```
+
+Sample Response:
+
+```
+{
+    "_id": "59ef03a31ce1f53606837667",
+    "expires": "2020-11-16T18:29:59.999Z",
+    "created": "2017-10-24T09:10:59.408Z",
+    "opts": {
+        "addonLicenses": [
+            {
+                "licenses": [
+                    {
+                        "addOnEdition": "enterprise"
+                    }
+                ],
+                "type": "store"
+            }
+        ],
+        "connectorEdition": "enterprise"
+    },
+    "user": {
+        "email": "sathvika.dogiparthi@celigo.com",
+        "_id": "585222eb73409e646b7375ed",
+        "name": "Sathvika Dogiparthi"
+    },
+    "_integrationId": "59ef03c4b62d305b3c4534d5"
+}
+```
