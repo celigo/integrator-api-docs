@@ -75,6 +75,7 @@ Sample Response:
 PUT /v1/template/58f12659c468a47a9489242c HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
+
 {
     "name": "Give your template a really great name!",
     "description": "A good description helps a lot too.",
