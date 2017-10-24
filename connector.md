@@ -131,7 +131,7 @@ Sample Response:
 ]
 ```
 #### 3.  Create a new license for a specific connector.
-**Important**: the API to create a new license (vs update an existing license) is somewhat unique in that you need to supply the email address of the integrator.io user in the post body, and then the integrator.io backend will use the email to dynamically find the correct user.  Assuming the email is a valid user, you will see a read-only "user" property in the response, and then once the user clicks the install button from their integrator.io account you will see their "\_id" and "name" values as well if you do a GET on the licnses again (or just view it in your integrator.io account).  
+**Important**: the API to create a new license (vs update an existing license) is somewhat unique in that you need to supply the email address of the integrator.io user in the post body, and then the integrator.io backend will use the email to dynamically find the correct user.  Assuming the email is a valid user, you will see a read-only "user" property in the response, and then once the user clicks the install button from within their integrator.io account you will then see their "\_id" and "name" values as well if you do another GET on the license resource (or just view it in your integrator.io account UI).  
 
 ```
 POST /v1/connectors/54fa0b38a7044f9252000036/licenses HTTP/1.1
@@ -185,7 +185,7 @@ Sample Response:
 ```
 
 #### 4.  Update the license created above to change the expires date and also provision the enterprise version of the connector.
-Small note: you do NOT need to provide the email for the user in update requests.
+**Small note**: unlike the API to create new licenses (detailed above), you do NOT need to send "email" to update existing license records.
 ```
 PUT /v1/connectors/54fa0b38a7044f9252000036/licenses/59ef68b384b38c7986d54549 HTTP/1.1
 Host: api.integrator.io
