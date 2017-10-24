@@ -5,15 +5,15 @@ State API
 | Relative URI| Method | Success Code | Description|
 |:-------------------|:-------|:------------:|:------------------------------|
 |/state|GET|200|Get all global keys.|
-|/state/{key}|GET|200|Get a specific value.|
-|/state/{key}|PUT|200|Create/update a specific value.|
-|/state/{key}|DELETE|204|Delete a specific key and value.|
+|/state/{key}|GET|200|Get the value associated with the key.|
+|/state/{key}|PUT|200|Create/update the value associated with the key.|
+|/state/{key}|DELETE|204|Delete the key and value.|
 |/state|DELETE|204|Delete all keys and values.  Be careful with this API!|
-|/{resource_type}/{_id}/state|GET|200|Get all keys associated with a specific resource in your account.|
-|/{resource_type}/{_id}/state/{key}|GET|200|Get a specific value associated with a specific resource in your account.|
-|/{resource_type}/{_id}/state/{key}|PUT|200|Create/update a specific value associated with a specific resource in your account.|
-|/{resource_type}/{_id}/state/{key}|DELETE|200|Delete a specific key and value associated with a specific resource in your account.|
-|/{resource_type}/{_id}/state|DELETE|200|Delete all keys and values associated with a specific resource in your account.  Be careful with this API!|
+|/{resource_type}/{_id}/state|GET|200|Get all keys stored underneath specific resource in your account.|
+|/{resource_type}/{_id}/state/{key}|GET|200|Get the resource specific value associated with the key.|
+|/{resource_type}/{_id}/state/{key}|PUT|200|Create/update the resource specific value associated with the key.|
+|/{resource_type}/{_id}/state/{key}|DELETE|200|Delete the resource specific key and value.|
+|/{resource_type}/{_id}/state|DELETE|200|Delete all keys and values stored undernath the resource.  Be careful with this API!|
 
 ## Examples
 
