@@ -14,7 +14,7 @@ Integration API
 
 | Field| Description|
 |:------------|:------------|
-| **mode**|???|
+| **mode**|Can be either install, settings, or uninstall.  The purpose of this field is to let the integrator.io UI know what links to display on the user's home page for the integration tile. For example, if the value is 'install' then the UI will display a Setup link to continue the installer wizard. If the value is 'settings', then the UI will display a Settings link.  If the value is 'uninstall' then the UI will display a link to continue the uninstall wizard.  **Important**: your connector backend is only responsible for transitioning/setting this field from 'install' to 'settings', and you would do this in the final step of your installer.  For all the other modes and transitions the integrator.io backend will automatically set the field accordingly.|
 | **settings**|???|
 | **version**|???|
 | **updateInProgress**|???|
@@ -25,7 +25,7 @@ Integration API
 #### 1.  Get a specific integration.
 
 ```
-GET /v1/integrations/{_id} HTTP/1.1
+GET /v1/integrations/57974ed227a82a3475cecb15 HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -33,11 +33,62 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
+    "_id": "57974ed227a82a3475cecb15",
+    "lastModified": "2017-09-15T10:55:15.675Z",
+    "name": "BigCommerce - NetSuite Connector",
+    "_connectorId": "57179182e0a908200c2781d9",
+    "install": [
+        {
+            "name": "NetSuite Connection",
+            "description": "Configure NetSuite account credentials",
+            "imageURL": "/images/company-logos/netsuite.png",
+            "completed": false,
+            "installerFunction": "verifyNetSuiteConnection",
+            "uninstallerFunction": "deleteNetSuiteConnection",
+            "_connectionId": "57974ed21d2e4ab87ae46d99"
+        },
+        {
+            "name": "BigCommerce Connection",
+            "description": "Configure BigCommerce store credentials",
+            "imageURL": "/images/company-logos/BigCommerce.png",
+            "completed": false,
+            "installerFunction": "verifyBigCommerceConnection",
+            "uninstallerFunction": "deleteBigCommerceConnection",
+            "_connectionId": "57974ed227a82a3475cecb17"
+        },
+        {
+            "name": "Integrator Bundle",
+            "description": "Install Integrator Bundle in NetSuite",
+            "imageURL": "/images/company-logos/netsuite.png",
+            "installURL": "",
+            "completed": false,
+            "installerFunction": "verifyIntegratorBundleInstallation",
+            "uninstallerFunction": "uninstallVerifyIntegratorBundle"
+        },
+        {
+            "name": "BigCommerce Bundle",
+            "description": "Install BigCommerce Bundle in NetSuite",
+            "imageURL": "/images/company-logos/netsuite.png",
+            "installURL": "",
+            "completed": false,
+            "installerFunction": "verifyBigCommerceBundleInstallation",
+            "uninstallerFunction": "uninstallVerifyBigCommerceBundle"
+        }
+    ],
+    "mode": "install",
+    "settings": {
+        "sections": [
+            {
+                "temp": "remove_me"
+            }
+        ],
+        "commonresources": {
+            "genericExportApiIdentifier": "e7654358b7",
+            "bigcommerceConnectionId": "57974ed227a82a3475cec222",
+            "netsuiteConnectionId": "57464ed11d2e4ab87ae46d99"
+        }
+    },
+    "version": "1.0.1"
 }
 ```
