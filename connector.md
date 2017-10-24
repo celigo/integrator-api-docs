@@ -22,7 +22,7 @@ Connector API
 #### 1.  Get a specific connector.
 
 ```
-GET /v1/connectors/{_id} HTTP/1.1
+GET /v1/connectors/54fa0b38a7044f9252000036 HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -30,11 +30,43 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
+    "_id": "54fa0b38a7044f9252000036",
+    "name": "Shopify - NetSuite Connector",
+    "description": "Shopify - NetSuite Connector helps retailers combine the powerful Shopify eCommerce platform with the proven back-office features of NetSuite and keep the orders, customers, fulfillments, billings, items & inventory levels in sync.",
+    "imageURL": "/images/company-logos/shopify-netsuite.png",
+    "websiteURL": "http://www.celigo.com/products/netsuite-shopify-connector/",
+    "contactEmail": "sales@celigo.com",
+    "handle": "sc4n",
+    "published": true,
+    "managed": true,
+    "_integrationId": "551c7be9accca83b3e00000c",
+    "_stackId": "5593228187085d362c000009",
+    "installerFunction": "installConnector",
+    "updateFunction": "updateConnector",
+    "preUninstallFunction": "preUninstallFunction",
+    "uninstallerFunction": "uninstallConnector",
+    "externalInstallerFunction": "installConnectorFromExternalApp",
+    "lastModified": "2017-09-12T11:47:25.957Z",
+    "_sharedImportIds": [],
+    "_sharedExportIds": [],
+    "_iClientIdMap": [
+        {
+            "_id": false,
+            "_iClientIds": [
+                "58f9dfc4a7d2ca3238e19c89"
+            ],
+            "connection": {
+                "type": "netsuite"
+            }
+        }
+    ],
+    "applications": [
+        "netsuite",
+        "shopify"
+    ],
+    "oAuthServerFlow": {
+        "_iClientId": "54fa0c93a7044f9252000038"
+    }
 }
 ```
