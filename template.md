@@ -69,25 +69,24 @@ Sample Response:
     }
 ]
 ```
-#### 2.  Update a specific template record in my account.
+#### 2.  Update a specific template in my account.
 
 ```
 PUT /v1/template/58f12659c468a47a9489242c HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
-
 {
-        "name": "Give your template a really great name!",
-        "description": "A good description helps a lot too.",
-        "imageURL": "https://secure.gravatar.com/avatar/33895cc016e520a2a07131c3753d8d4f?d=mm&s=55",
-        "websiteURL": "http://www.celigo.com/",
-        "contactEmail": "template@celigo.com",
-        "published": true,
-        "applications": [
-            "slack",
-            "zendesk"
-        ]
-    }
+    "name": "Give your template a really great name!",
+    "description": "A good description helps a lot too.",
+    "imageURL": "https://secure.gravatar.com/avatar/33895cc016e520a2a07131c3753d8d4f?d=mm&s=55",
+    "websiteURL": "http://www.celigo.com/",
+    "contactEmail": "template@celigo.com",
+    "published": true,
+    "applications": [
+      "slack",
+      "zendesk"
+    ]
+}
 ```
 
 Sample Response:
