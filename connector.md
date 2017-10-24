@@ -130,16 +130,68 @@ Sample Response:
     }
 ]
 ```
-
-#### 3.  Update a specific license.
+#### 3.  Create new license for a specific connector.
 
 ```
-PUT /v1/connectors/54fa0b38a7044f9252000036/licenses/59ef03a31ce1f53606837667 HTTP/1.1
+POST /v1/connectors/54fa0b38a7044f9252000036/licenses HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 
 {
-    "expires": "2020-11-16T18:29:59.999Z",
+    "email": "test@celigo.com",
+    "expires": "2017-11-01T18:29:59.999Z",
+    "opts": {
+        "addonLicenses": [
+            {
+                "licenses": [
+                    {
+                        "addOnEdition": "standard"
+                    }
+                ],
+                "type": "store"
+            }
+        ],
+        "connectorEdition": "standard"
+    }
+}
+
+```
+
+Sample Response:
+
+```
+{
+    "_id": "59ef68b384b38c7986d54549",
+    "expires": "2017-11-01T18:29:59.999Z",
+    "created": "2017-10-24T16:22:11.448Z",
+    "opts": {
+        "connectorEdition": "standard",
+        "addonLicenses": [
+            {
+                "type": "store",
+                "licenses": [
+                    {
+                        "addOnEdition": "standard"
+                    }
+                ]
+            }
+        ]
+    },
+    "user": {
+        "email": "test@celigo.com"
+    }
+}
+```
+
+#### 4.  Update the license created above to change the expires date and also provision the enterprise version of the connector.
+
+```
+PUT /v1/connectors/54fa0b38a7044f9252000036/licenses/59ef68b384b38c7986d54549 HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{
+    "expires": "2020-11-01T18:29:59.999Z",
     "opts": {
         "addonLicenses": [
             {
@@ -160,27 +212,63 @@ Sample Response:
 
 ```
 {
-    "_id": "59ef03a31ce1f53606837667",
-    "expires": "2020-11-16T18:29:59.999Z",
-    "created": "2017-10-24T09:10:59.408Z",
+    "_id": "59ef68b384b38c7986d54549",
+    "expires": "2020-11-01T18:29:59.999Z",
+    "created": "2017-10-24T16:22:11.448Z",
+    "opts": {
+        "connectorEdition": "enterprise",
+        "addonLicenses": [
+            {
+                "type": "store",
+                "licenses": [
+                    {
+                        "addOnEdition": "enterprise"
+                    }
+                ]
+            }
+        ]
+    },
+    "user": {
+        "email": "test@celigo.com"
+    }
+}
+```
+
+#### 5.  Create new license for a user that has not signed up yet for integrator.io.
+
+```
+POST /v1/connectors/54fa0b38a7044f9252000036/licenses HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{
+    "email": "does_not_exist@celigo.com",
+    "expires": "2017-11-01T18:29:59.999Z",
     "opts": {
         "addonLicenses": [
             {
                 "licenses": [
                     {
-                        "addOnEdition": "enterprise"
+                        "addOnEdition": "standard"
                     }
                 ],
                 "type": "store"
             }
         ],
-        "connectorEdition": "enterprise"
-    },
-    "user": {
-        "email": "sathvika.dogiparthi@celigo.com",
-        "_id": "585222eb73409e646b7375ed",
-        "name": "Sathvika Dogiparthi"
-    },
-    "_integrationId": "59ef03c4b62d305b3c4534d5"
+        "connectorEdition": "standard"
+    }
+}
+```
+
+Sample Response:
+
+```
+{
+    "errors": [
+        {
+            "code": "invalid_user",
+            "message": "We were not able to find any user with the provided email address.  Please ask the user to first create an integrator.io account."
+        }
+    ]
 }
 ```
