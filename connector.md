@@ -130,7 +130,7 @@ Sample Response:
     }
 ]
 ```
-#### 3.  Create new license for a specific connector.
+#### 3.  Create a new license for a specific connector.
 
 ```
 POST /v1/connectors/54fa0b38a7044f9252000036/licenses HTTP/1.1
@@ -204,7 +204,7 @@ Authorization: Bearer my_api_token
             }
         ],
         "connectorEdition": "enterprise"
-    }
+    } 
 }
 ```
 
@@ -229,12 +229,15 @@ Sample Response:
         ]
     },
     "user": {
-        "email": "test@celigo.com"
-    }
+        "email": "test@celigo.com",
+        "_id": "585222eb73409e646b7375ff",
+        "name": "Celigo Tester"
+    },
+    "_integrationId": "59ef03c4b62d305b3c45f4ee"
 }
 ```
 
-#### 5.  Create new license for a user that has not signed up yet for integrator.io.
+#### 5.  Create a license for someone that has not signed up for integrator.io yet.
 
 ```
 POST /v1/connectors/54fa0b38a7044f9252000036/licenses HTTP/1.1
