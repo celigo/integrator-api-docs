@@ -12,10 +12,10 @@ Job API
 
 ## Examples
 
-#### 1.  Get all jobs of type 'flow' that are currently 'running'.
+#### 1.  Get all jobs where type = 'import' and status = 'running'.
 
 ```
-GET /v1/jobs?type=flow&status=running HTTP/1.1
+GET /v1/jobs?type=import&status=running HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -25,30 +25,50 @@ Sample Response:
 ```
 [
     {
-        "_id": "59ee88c8e41d93365ef1adad",
-        "type": "flow",
-        "_integrationId": "55402ef64de3779c540000ab",
-        "_flowId": "537d230f7ab1870200000001",
-        "startedAt": "2017-10-24T00:27:19.259Z",
-        "status": "running",
-        "doneExporting": false,
-        "createdAt": "2017-10-24T00:26:48.120Z",
-        "lastModified": "2017-10-24T00:27:19.261Z"
-    },
-    {
-        "_id": "59ee88c8e41d93365ef1adad",
-        "type": "flow",
-        "_integrationId": "55402ef64de3779c540000ab",
-        "_flowId": "537d230f7ab1870200000004",
-        "startedAt": "2017-10-24T00:27:19.259Z",
+        "_id": "59ee8f9503785d04d846a88e",
+        "type": "import",
+        "_importId": "537d1ff57ab1870200000002",
+        "_flowJobId": "59ee8f80e41d93365ef1b9a9",
+        "startedAt": "2017-10-24T00:55:49.128Z",
         "status": "running",
         "numError": 0,
         "numSuccess": 1,
         "numIgnore": 0,
-        "numPagesExported": 1,
-        "doneExporting": true,
-        "createdAt": "2017-10-24T00:26:48.120Z",
-        "lastModified": "2017-10-24T00:27:24.842Z"
+        "numPagesProcessed": 1,
+        "oIndex": 1,
+        "retriable": false,
+        "createdAt": "2017-10-24T00:55:49.128Z",
+        "lastModified": "2017-10-24T00:55:49.642Z"
+    }
+]
+```
+
+#### 2.  Get job errors for a specific import job.
+
+```
+GET /v1/jobs/59ee8cad03785d04d8469918/jobErrors HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+```
+[
+    {
+        "resolve": false,
+        "retry": false,
+        "createdAt": "2017-10-24T00:43:30.434Z",
+        "code": "422",
+        "extract": "",
+        "generate": "",
+        "extracted": "",
+        "generated": "",
+        "message": "'{\"errors\":[{\"field\":\"expires\",\"code\":\"missing_required_field\"}]}'",
+        "source": "integrator.io",
+        "exportDataURI": "",
+        "importDataURI": "",
+        "_retryId": "59ee8cb203785d04d8469919",
+        "_jobId": "59ee8cad03785d04d8469918"
     }
 ]
 ```
