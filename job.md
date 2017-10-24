@@ -11,10 +11,10 @@ Job API
 
 ## Examples
 
-#### 1.  Get all jobs where numError is greater than or equal to 1 (i.e. get all jobs that have at least 1 error).
+#### 1.  Get all jobs of type 'flow' that are currently 'running'.
 
 ```
-GET /v1/jobs?numError_gte=1 HTTP/1.1
+GET /v1/jobs?type=flow&status=running HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -24,8 +24,32 @@ Sample Response:
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-{
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
-}
+[
+    {
+        "_id": "59ee88c8e41d93365ef1adad",
+        "type": "flow",
+        "_integrationId": "55402ef64de3779c540000ab",
+        "_flowId": "537d230f7ab1870200000001",
+        "startedAt": "2017-10-24T00:27:19.259Z",
+        "status": "running",
+        "doneExporting": false,
+        "createdAt": "2017-10-24T00:26:48.120Z",
+        "lastModified": "2017-10-24T00:27:19.261Z"
+    },
+    {
+        "_id": "59ee88c8e41d93365ef1adad",
+        "type": "flow",
+        "_integrationId": "55402ef64de3779c540000ab",
+        "_flowId": "537d230f7ab1870200000004",
+        "startedAt": "2017-10-24T00:27:19.259Z",
+        "status": "running",
+        "numError": 0,
+        "numSuccess": 1,
+        "numIgnore": 0,
+        "numPagesExported": 1,
+        "doneExporting": true,
+        "createdAt": "2017-10-24T00:26:48.120Z",
+        "lastModified": "2017-10-24T00:27:24.842Z"
+    }
+]
 ```
