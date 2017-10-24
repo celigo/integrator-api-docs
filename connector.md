@@ -131,6 +131,7 @@ Sample Response:
 ]
 ```
 #### 3.  Create a new license for a specific connector.
+Important: the API to create a new license (vs update an existing license) is somewhat unique in that you need to supply the email address of the integrator.io user in the post body, and then the integrator.io backend will use this email to dynamically find the correct user.  Assuming the email is a valid user, you will then see a read-only 'user' property returned, and then once the user clicks the install button for your connector in their integrator.io account you will see their '\_id' and 'name' values as well.
 
 ```
 POST /v1/connectors/54fa0b38a7044f9252000036/licenses HTTP/1.1
