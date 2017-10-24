@@ -131,7 +131,7 @@ Sample Response:
 ]
 ```
 
-#### 2.  Update a specific license.
+#### 3.  Update a specific license.
 
 ```
 PUT /v1/connectors/54fa0b38a7044f9252000036/licenses/59ef03a31ce1f53606837667 HTTP/1.1
