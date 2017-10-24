@@ -14,7 +14,7 @@ iClient API
 
 | Field| Description|
 |:------------|:------------|
-| **provider**|Supported values include the following.  'google', 'salesforce', 'azureoauth', 'windowslive', 'shopify', 'integrator', 'zendesk', 'bigcommerce', 'netsuite', 'ebay', 'amazonmws', 'ebay-xml', 'asana', 'box', 'dropbox', 'clover', 'servicenow', 'jobvite', 'twilio', 'certify', 'dropbox', 'squareup', 'docusign', 'woocommerce'|
+| **provider**|Supported providers include the following: 'google', 'salesforce', 'azureoauth', 'windowslive', 'shopify', 'integrator', 'zendesk', 'bigcommerce', 'netsuite', 'ebay', 'amazonmws', 'ebay-xml', 'asana', 'box', 'dropbox', 'clover', 'servicenow', 'jobvite', 'twilio', 'certify', 'dropbox', 'squareup', 'docusign', and 'woocommerce'|
 | **oauth2.clientId**||
 | **oauth2.clientSecret**||
 | **oauth2.scope**||
