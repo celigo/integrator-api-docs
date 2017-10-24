@@ -9,7 +9,7 @@ State API
 |/state/{key}|PUT|200|Create/update the value associated with the key.|
 |/state/{key}|DELETE|204|Delete the key and value.|
 |/state|DELETE|204|Delete all global keys and values.  Be careful with this API!|
-|/{resource_type}/{_id}/state|GET|200|Get all keys stored underneath specific resource in your account.|
+|/{resource_type}/{_id}/state|GET|200|Get all keys stored underneath a specific resource in your account.|
 |/{resource_type}/{_id}/state/{key}|GET|200|Get the resource specific value associated with the key.|
 |/{resource_type}/{_id}/state/{key}|PUT|200|Create/update the resource specific value associated with the key.|
 |/{resource_type}/{_id}/state/{key}|DELETE|200|Delete the resource specific key and value.|
