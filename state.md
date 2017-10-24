@@ -13,7 +13,7 @@ State API
 |/{resource_type}/{_id}/state/{key}|GET|200|Get the resource specific value associated with the key.|
 |/{resource_type}/{_id}/state/{key}|PUT|200|Create/update the resource specific value associated with the key.|
 |/{resource_type}/{_id}/state/{key}|DELETE|200|Delete the resource specific key and value.|
-|/{resource_type}/{_id}/state|DELETE|200|Delete all keys and values stored undernath the resource.  Be careful with this API!|
+|/{resource_type}/{_id}/state|DELETE|200|Delete all keys and values stored underneath the resource.  Be careful with this API!|
 
 ## Examples
 
