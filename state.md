@@ -17,10 +17,10 @@ State API
 
 ## Examples
 
-#### 1.  Get state for key.
+#### 1.  Get all keys.
 
 ```
-GET /v1/state/{key} HTTP/1.1
+GET /v1/state HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -28,11 +28,126 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
-  "myField1": "",
-  "myField2":"*"
+    "keys": [
+        "apple",
+        "banana"
+    ]
+}
+```
+
+#### 2.  Get the value for the key "banana".
+
+```
+GET /v1/state/banana HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+
+```
+{
+    "message": "Don't slip!"
+}
+```
+
+#### 3.  Update the value for the key "banana".
+
+```
+GET /v1/state/banana HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{"message": "Don't slip!", "reply": "i didn't!"}
+```
+
+Sample Response:
+
+```
+OK
+```
+
+#### 4.  Get the value for the key "banana" (again).
+
+```
+GET /v1/state/banana HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+
+```
+{
+    "message": "Don't slip!",
+    "reply": "i didn't!"
+}
+```
+
+#### 5.  Create a value to track a sequence number for an EDI data import (that would be updated every time the import is run).  Note that this state value is stored underneath the related import resource.
+
+```
+PUT /v1/imports/55cca9d6f7dc37597700005d/state/sequenceNumber HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{"counter": 1}
+```
+
+Sample Response:
+
+```
+Created
+```
+
+#### 6.  Get the value just created above.
+
+```
+GET /v1/imports/55cca9d6f7dc37597700005d/state/sequenceNumber HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+
+```
+{
+    "counter": 1
+}
+```
+
+#### 7.  Get all keys (again).
+Note that the key stored underneath the import (that we just created above) was not returned.  Only global keys are returned by the top level GET /state API.  To return all keys underneath a specific resource you would need to use the more specific state API for that resource.  i.e. GET /imports/55cca9d6f7dc37597700005d/state
+
+```
+GET /v1/state HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+
+```
+{
+    "keys": [
+        "apple",
+        "banana"
+    ]
+}
+```
+```
+GET /v1/imports/55cca9d6f7dc37597700005d/state HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+
+```
+{
+    "keys": [
+        "sequenceNumber"
+    ]
 }
 ```
