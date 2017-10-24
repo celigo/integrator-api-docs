@@ -22,8 +22,6 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
 [
     {
         "_id": "59ee88c8e41d93365ef1adad",
