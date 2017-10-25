@@ -14,7 +14,7 @@ Integration API
 
 | Field| Description|
 |:------------|:------------|
-| **mode**|The following modes are supported for an integration: install, settings, and uninstall.  The purpose of this field is to let the integrator.io UI know what links to display on the user's home page for the related integration tile. For example, if the value is 'install' then the UI will display a Setup link to continue the installer wizard. If the value is 'settings', then the UI will display a Settings link.  If the value is 'uninstall' then the UI will display a link to continue the uninstall wizard.  **Important**: your connector backend is only responsible for transitioning this field from 'install' to 'settings', and you would do this in the final step of your installer.  For all the other modes and transitions the integrator.io backend will automatically set the field accordingly.|
+| **mode**|For the most part this is a read-only field used only by the integrator.io UI.  Valid values are 'install', 'settings', and 'uninstall'.  The mode will be 'install' when a user is still working through the install wizard.  The mode will be 'settings' when the integration is fully installed, and the user is allowed to access the settings page.  The mode will be 'uninstall' when the user is working through the uninstall wizard.|
 | **settings**|???|
 | **version**|???|
 | **updateInProgress**|???|
