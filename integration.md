@@ -10,13 +10,13 @@ Integration API
 |/integrations/{_id}|PUT|200|Update a specific integration.|
 |/integrations/{_id}|DELETE|204|Delete a specific integration.|
 
-### SmartConnector Only Fields
+### SmartConnector Only (Backend Fields)
 
 | Field| Description|
 |:------------|:------------|
 | **mode**|For the most part this is a read-only field used by the integrator.io UI.  Valid values are 'install', 'settings', and 'uninstall'.  The value 'install' is used to indicate that the integration is still being installed by the user.  The value 'settings' is used to indicate that the integration is done installing, and that the user has access to the settings page for the integration.  The value 'uninstall' is used to indicate that the integration is being uninstalled.|
-| **settings**|???|
-| **version**|???|
+| **settings**|This field is used to store the settings (i.e. the configuration) for a SmartConnector integration.  For example, when a user opens the settings page for a SmartConnector integration running in their account, and they change a setting, this field is updated, and then also propagated accordingly to the SmartConnector's backend to adjust the integration accordingly.|
+| **version**|It is helpful to assign a version number to your SmartConnector releases so that every time you build an enhancement and push out a new release to your install base you can see who was updates successfully (vs not).  You can also use this field to coordinate phased releases whereby you update some of your users first, and then after a period of time you can update the rest.  It is highly recommended that you always (eventually) get everyone onto the same version of your SmartConnector.|
 | **updateInProgress**|???|
 | **install**|???|
 
