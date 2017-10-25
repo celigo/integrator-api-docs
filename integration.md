@@ -14,7 +14,7 @@ Integration API
 
 | Field| Description|
 |:------------|:------------|
-| **mode**|For the most part this is a read-only field used by the integrator.io UI.  Valid values are 'install', 'settings', and 'uninstall'.  The mode will be 'install' when a user is still working through the install wizard.  The mode will be 'settings' when the integration is fully installed, and the user is allowed to access the settings page.  The mode will be 'uninstall' when the user is working through the uninstall wizard.|
+| **mode**|For the most part this is a read-only field used by the integrator.io UI.  Valid values are 'install', 'settings', and 'uninstall'.  The value 'install' is used to indicate that an integration is still in the process of being installed.  The value 'settings' is used to indicate that an integration has been installed and the settings page is now accessible.  The value 'uninstall' is used to indicate that the user is uninstalling the integration.|
 | **settings**|???|
 | **version**|???|
 | **updateInProgress**|???|
