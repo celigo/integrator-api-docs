@@ -1,6 +1,6 @@
 iClient API
 ===========
->**Guidance**: currently the integrator.io UI does not support creating and/or editing iClient resources, and the API is the only way to work with this resource type.  Once the integrator.io UI exposes this resource type there will not be any known reasons to use this API.   
+>**Guidance**: currently the integrator.io UI does not support creating and/or editing iClient resources, and using the API is the only way to work with this resource type.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
