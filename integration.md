@@ -10,7 +10,7 @@ Integration API
 |/integrations/{_id}|PUT|200|Update a specific integration.|
 |/integrations/{_id}|DELETE|204|Delete a specific integration.|
 
-### SmartConnector Only (Backend Fields)
+### SmartConnectors Only (Backend Fields)
 
 | Field| Description|
 |:------------|:------------|
