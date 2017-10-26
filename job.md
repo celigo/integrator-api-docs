@@ -1,6 +1,6 @@
 Job API
 ===========
->**Guidance**: there are a broad range of use cases for using this API.  For example, you can collect stats about running integrations, or extract errors to better process them in an external system.  The integrator.io UI is always evolving to make these same types of tasks better, but when the UI falls short this API can be used to get the raw data to process it elsewhere. 
+>**Guidance**: there are a broad range of use cases for using this API.  For example, you can collect stats about running integrations and send them to an anayltics platform, or you can extract errors to process them in an external database.  The integrator.io UI is always evolving to make these same types of tasks better, but when the UI falls short this API can be used to get the raw data to process it elsewhere. 
 
 
 ### Endpoints
