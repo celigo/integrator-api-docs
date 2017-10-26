@@ -1,6 +1,6 @@
 Integration API
 ===========
->**Guidance**: this API is typically only needed for SmartConnector development where you need to configure SmartConnector only fields via your installer code, and push out managed updates to your users via your update code, etc... 
+>**Guidance**: this API is typically only needed for SmartConnector development where you need to configure the SmartConnector only fields listed below in your installer code, or push out managed updates to your users via your update code, etc... 
 
 
 ### Endpoints
