@@ -1,6 +1,6 @@
 Template API
 ===========
->**Guidance**: there are no known reasons for accessing template resources via API.  This page is here purely for reference right now.
+>**Guidance**: there are no known use cases for accessing the template resource type via API (vs just using the integrator.io UI). Everything in the integrator.io UI is ultimately available via API, but we are trying to limit what gets documented so that we do not bloat the API guide.  For now, this page is more of a placeholder in case a valid use case arises, in which case we will update this content to mention that use case, etc...
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
