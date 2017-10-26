@@ -1,6 +1,6 @@
 Connector API
 ===========
->**Guidance**: the primary use case for using this API is to automate provisioning and de-provisioning your SmartConnector product (i.e. based on your website sign ups, or web store purcahses, or a subscription management platform).  For example, you might want to allow users to register on your website for a free trial, and then when they click submit your server creates a 30 day trial license using the API below.  Or, if you are using a formal subscription management platform and a user's subscription ends, or a user does not submit payment on time, then you can use the API below to automatically expire their license (thus shutting off their integration).
+>**Guidance**: the primary use case for using this API is to automate provisioning and de-provisioning of your SmartConnector product (i.e. based on your website sign ups, or web store purcahses, or a subscription management platform).  For example, you might want to allow users to register on your website for a free trial, and then when they click submit your server creates a 30 day trial license using the API below.  Or, if you are using a formal subscription management platform and a user's subscription ends, or a user does not submit payment on time, then you can use the API below to automatically expire their license (thus shutting off their integration).
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
