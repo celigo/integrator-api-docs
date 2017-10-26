@@ -1,5 +1,6 @@
 Template API
 ===========
+>**Guidance**: there are no known reasons for accessing template resources via API.  This page is here purely for reference right now.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
