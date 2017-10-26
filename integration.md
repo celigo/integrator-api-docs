@@ -15,10 +15,10 @@ Integration API
 | Field| Description|
 |:------------|:------------|
 | **mode**|For the most part this is a read-only field used by the integrator.io UI.  Valid values are 'install', 'settings', and 'uninstall'.  The value 'install' is used to indicate that the integration is still being installed by the user.  The value 'settings' is used to indicate that the integration is done installing, and that the user has access to the settings page for the integration.  The value 'uninstall' is used to indicate that the integration is being uninstalled.|
-| **settings**|This field is used to store the settings (i.e. the configuration) for a SmartConnector integration.  For example, when a user opens the settings page for a SmartConnector integration running in their account, and they change a setting, this field is updated, and then also propagated accordingly to the SmartConnector's backend to adjust the integration accordingly.|
-| **version**|This field is used to store the version of the integration running in the user's integrator.io account.  Whenever you push any managed updates to a user's integrator.io account you should always increment the version field as the final step.|
+| **settings**|This field is used to store the settings (i.e. the configuration) for the SmartConnector integration.  For example, when a user opens the settings page for a SmartConnector integration running in their account, and they change a setting, this field is updated, and then also propagated to the SmartConnector's backend to adjust the integration accordingly.|
+| **version**|This field is used to store the version of an integration running in the user's integrator.io account.  Whenever you push any managed updates to a user's integrator.io account you should always increment the version field as the final step.|
 | **updateInProgress**|This field is automatically set to 'true' whenever you push a managed update to a user's integrator.io account.  You must explicitly set this field back to 'false' when your update is done.  While updateInProgress is 'true' the user will not be allowed to change any settings or mappings in their integration.|
-| **install**|???|
+| **install**|This array field is used to specifcy all of the steps that are needed to install the SmartConnector integration in a user's integrator.io account, and is also used to track the state of each step so that the integrator.io UI knows which ones are done vs which one the user should do next, etc...|
 
 ## Examples
 
