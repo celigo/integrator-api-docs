@@ -1,5 +1,6 @@
 State API
 ========
+>**Guidance**: there are lots of use cases for using this API.  Basically, any time you need to persist custom data that relates to your integration then this very generic key value storage API can be used.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
