@@ -1,5 +1,6 @@
 Connector API
 ===========
+>**Guidance**: the primary use case for using tthis API is to automate provisioning and de-provisioning your SmartConnector based on an external sign up, subscription, or payments platform.  For example, you might allow users to register on your website for a trial, and when they click submit then your servers automatically create the license record using the API (with a 1 month expires date).  Or, if you are using subscription management platform and a subscription ends, or a user does not submit payment on time, you can use the APIs below to automatically expire their license (thus shutting off their integration).
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
