@@ -1,6 +1,6 @@
 State API
 ========
->**Guidance**: there are lots of use cases for using this API.  Basically, any time you need to persist anything for your integration then this very generic key value storage API can be used.
+>**Guidance**: there are lots of use cases for using this very generic key value storage API.  The most popular use case is probably storing state about the execution of a flow, so that the next time the flow runs the state for the last run can be used to modify the data for the new run. 
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
