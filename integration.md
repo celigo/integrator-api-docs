@@ -1,5 +1,7 @@
 Integration API
 ===========
+>Guidance: this API is typically only used for SmartConnector development, and if you are not building a SmartConnector then this page can be skipped.
+
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
