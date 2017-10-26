@@ -1,6 +1,6 @@
 State API
 ========
->**Guidance**: there are lots of use cases for using this very generic key value storage API.  The most popular use case is probably storing state about the execution of a flow, and then using the state to parameterize the flow the next time it runs. 
+>**Guidance**: there are lots of use cases for using this very generic key value storage API.  The most popular use case is probably storing state about the execution of a flow, and then using the state to parameterize the flow the next time it runs.  For example, every time a flow runs increment a sequence counter so that files uploaded to an FTP site can include a unique sequence id (for the system processing the files to reject accidental duplicate files, or flag missing files).
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
