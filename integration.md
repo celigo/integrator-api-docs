@@ -22,7 +22,27 @@ Integration API
 
 ## Examples
 
-#### 1.  Get a specific integration.
+#### 1.  Get a specific DIY integration.
+
+```
+GET /v1/integrations/554155c853bb53af2900000b HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+```
+
+Sample Response:
+
+```
+{
+    "_id": "554155c853bb53af2900000b",
+    "lastModified": "2017-08-07T18:34:07.786Z",
+    "name": "Licensing and Usage",
+    "readme": "This integration is mission critical and keeps the licensing data..."
+}
+```
+
+
+#### 2.  Get a specific SmartConnector integration (notice all the extra fields related to SmartConnectors).
 
 ```
 GET /v1/integrations/57974ed227a82a3475cecb15 HTTP/1.1
