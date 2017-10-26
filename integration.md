@@ -1,6 +1,6 @@
 Integration API
 ===========
->**Guidance**: this API is typically only needed for SmartConnector development.  If you are **not** building a SmartConnector then you can skip over this page.
+>**Guidance**: this API is typically only needed for SmartConnector development.
 
 
 ### Endpoints
