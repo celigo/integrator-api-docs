@@ -45,7 +45,7 @@ When using the integrator.io extension framework one-time tokens are also suppor
 
 Resource Types
 =========
-> Very important tip!  The integrator.io UI also uses the API, and if you ever get stuck with the API you can always revert back to the UI to create and/or modify something, and then use your API client, or the browser (via https://integrator.io/api/) to see the resulting JSON.
+> **Very important tip!**  The integrator.io UI also uses the API, and if you ever get stuck with the API you can always revert back to the UI to create and/or modify something, and then use your API client, or the browser (via https://integrator.io/api/) to see the resulting JSON.
 
 ### Connection
 
