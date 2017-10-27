@@ -1,6 +1,6 @@
 Flow API
 ==========
->**Guidance**: this API is typically only needed for SmartConnector development where you need to work with the SmartConnector only fields listed below.
+>**Guidance**: this API is typically only needed for SmartConnector development where you are installing flows via your installer, or you are dynamically configuring flows based on the settings that you expose in your SmartConnector app.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
