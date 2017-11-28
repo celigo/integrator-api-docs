@@ -10,8 +10,8 @@ Export API
 |/exports|POST|201|Create a new export.|
 |/exports/{_id}|PUT|200|Update a specific export.|
 |/exports/{_id}|DELETE|204|Delete a specific export.|
-|/exports/:_id/distributed|GET|200||
-|/exports/:_id/distributed|PUT|200||
+|/exports/:_id/distributed|GET|200|Get the part of the export record that is stored directly in the export application.  This API is only relevant for Salesforce and NetSuite real-time exports.|
+|/exports/:_id/distributed|PUT|200|Update the part of the export record that is stored directly in the export application.  This API is only relevant for Salesforce and NetSuite real-time exports.|
 
 ## Examples
 
