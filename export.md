@@ -10,8 +10,8 @@ Export API
 |/exports|POST|201|Create a new export.|
 |/exports/{_id}|PUT|200|Update a specific export.|
 |/exports/{_id}|DELETE|204|Delete a specific export.|
-|/exports/:_id/distributed|GET|200|Get the distributed configuration stored directly in the export application.  Note that this API is currently only relevant for Salesforce and NetSuite real-time exports.|
-|/exports/:_id/distributed|PUT|200|Update the distributed configuration stored directly in the export application.  Note that this API is currently only relevant for Salesforce and NetSuite real-time exports.|
+|/exports/:_id/distributed|GET|200|Get the distributed configuration for a specific export (i.e. the fields stored directly in the export application).  Note that this API is currently only relevant for Salesforce and NetSuite real-time exports.|
+|/exports/:_id/distributed|PUT|200|Update the distributed configuration for a specific export (i.e. the fields stored directly in the export application).  Note that this API is currently only relevant for Salesforce and NetSuite real-time exports.|
 
 ## Examples
 
