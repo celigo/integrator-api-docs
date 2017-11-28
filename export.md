@@ -44,7 +44,7 @@ Sample Response:
 }
 ```
 
-#### 2.  Update a specific export.
+#### 2.  Update the name field for a specific export.
 
 ```
 PUT /v1/exports/55ea776bb751843c37b7b366 HTTP/1.1
