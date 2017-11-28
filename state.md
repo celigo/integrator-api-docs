@@ -56,7 +56,7 @@ Sample Response:
 #### 3.  Update the value for the key "banana".
 
 ```
-GET /v1/state/banana HTTP/1.1
+PUT /v1/state/banana HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 
