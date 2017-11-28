@@ -1,5 +1,6 @@
 Export API
 ==========
+>**Guidance**: this API is typically only needed for SmartConnector development where you need to create exports in your installer, or you need to dynamically configure exports based on settings that you expose in your app.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
@@ -17,7 +18,7 @@ Export API
 #### 1.  Get a specific export.
 
 ```
-GET /v1/exports/{_id} HTTP/1.1
+GET /v1/exports/55ea776bb751843c37b7b366 HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -25,31 +26,60 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
+    "_id": "55ea776bb751843c37b7b366",
+    "lastModified": "2017-04-16T18:56:15.879Z",
+    "name": "GitHub Event Listener",
+    "type": "webhook",
+    "hooks": {
+        "preSavePage": {
+            "_stackId": null,
+            "function": null
+        }
+    },
+    "webhook": {
+        "provider": "github",
+        "key": "******"
+    }
 }
 ```
 
-#### 2.  Create an export.
+#### 2.  Update a specific export.
 
 ```
-POST /v1/exports HTTP/1.1
+PUT /v1/exports/55ea776bb751843c37b7b366 HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
+
+{
+    "_id": "55ea776bb751843c37b7b366",
+    "lastModified": "2017-04-16T18:56:15.879Z",
+    "name": "GitHub Event Listener (updated!)",
+    "type": "webhook",
+    "hooks": {
+        "preSavePage": {
+            "_stackId": null,
+            "function": null
+        }
+    },
+    "webhook": {
+        "provider": "github",
+        "key": "******"
+    }
+}
 ```
 
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
 {
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
+    "_id": "55ea776bb751843c37b7b366",
+    "lastModified": "2017-11-28T19:37:04.180Z",
+    "name": "GitHub Event Listener (updated!)",
+    "type": "webhook",
+    "webhook": {
+        "provider": "github",
+        "key": "******"
+    }
 }
 ```
