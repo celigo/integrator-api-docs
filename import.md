@@ -50,7 +50,7 @@ Sample Response:
 }
 ```
 
-#### 2.  Update a specific import.
+#### 2.  Update the name field for a specific import.
 
 ```
 PUT /v1/imports/594d5058c5a4c41a4ba4b662 HTTP/1.1
