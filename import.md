@@ -46,6 +46,34 @@ Sample Response:
     "ftp": {
         "directoryPath": "/test",
         "fileName": "file-{{timestamp}}.csv"
+    },
+    "mapping": {
+        "fields": [
+            {
+                "extract": "internal_id",
+                "generate": "id"
+            },
+            {
+                "extract": "item_id",
+                "generate": "sku"
+            },
+            {
+                "extract": "name",
+                "generate": "name"
+            },
+            {
+                "extract": "sales_description",
+                "generate": "description"
+            },
+            {
+                "extract": "rate",
+                "generate": "price"
+            },
+            {
+                "extract": "qty_on_hand",
+                "generate": "qty"
+            }
+        ]
     }
 }
 ```
@@ -80,6 +108,34 @@ Authorization: Bearer my_api_token
     "ftp": {
         "directoryPath": "/test",
         "fileName": "file-{{timestamp}}.csv"
+    },
+    "mapping": {
+        "fields": [
+            {
+                "extract": "internal_id",
+                "generate": "id"
+            },
+            {
+                "extract": "item_id",
+                "generate": "sku"
+            },
+            {
+                "extract": "name",
+                "generate": "name"
+            },
+            {
+                "extract": "sales_description",
+                "generate": "description"
+            },
+            {
+                "extract": "rate",
+                "generate": "price"
+            },
+            {
+                "extract": "qty_on_hand",
+                "generate": "qty"
+            }
+        ]
     }
 }
 ```
@@ -109,6 +165,34 @@ Sample Response:
     "ftp": {
         "directoryPath": "/test",
         "fileName": "file-{{timestamp}}.csv"
+    },
+    "mapping": {
+        "fields": [
+            {
+                "extract": "internal_id",
+                "generate": "id"
+            },
+            {
+                "extract": "item_id",
+                "generate": "sku"
+            },
+            {
+                "extract": "name",
+                "generate": "name"
+            },
+            {
+                "extract": "sales_description",
+                "generate": "description"
+            },
+            {
+                "extract": "rate",
+                "generate": "price"
+            },
+            {
+                "extract": "qty_on_hand",
+                "generate": "qty"
+            }
+        ]
     }
 }
 ```
