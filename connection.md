@@ -1,6 +1,6 @@
 Connection API
 ==========
->**Guidance**: this API is typically only needed for Embedded Integration development where you expose a form in your application for a user to submit and manage their credentials to another application, and then the virtual export and import APIs are used to get and submit data from different applications.
+>**Guidance**: this API is typically only needed for Embedded Integration development.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
