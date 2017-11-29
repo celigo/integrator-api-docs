@@ -78,7 +78,7 @@ Sample Response:
 }
 ```
 
-#### 2.  Update the name field for a specific import.
+#### 2.  Update the name field and also a field mapping for a specific import.
 
 ```
 PUT /v1/imports/594d5058c5a4c41a4ba4b662 HTTP/1.1
@@ -113,7 +113,7 @@ Authorization: Bearer my_api_token
         "fields": [
             {
                 "extract": "internal_id",
-                "generate": "id"
+                "generate": "updated_mapping_id"
             },
             {
                 "extract": "item_id",
