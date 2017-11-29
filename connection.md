@@ -12,8 +12,8 @@ Connection API
 |/connections/{_id}|DELETE|204|Delete a specific connection.|
 |/connections/{_id}/ping|GET|200|Test that a specific connection is operational.|
 |/connections/ping|POST|200|Test a virtual connection where all details for the connection are submitted in the POST body, but are not saved.|
-|/connections/{_id}/debug/{resourceId}|GET|200|Get debug logs for a given connection by Id. Use Optional resourceId to filter logs by a specific import or export.|
-|/connections/{_id}/export|POST|200|Execute a 'virtual' export using a connection identified by id by posting the export model to this endpoint.|
+|/connections/{_id}/debug/{_resourceId}|GET|200|Get debug logs for a given connection by _id. Use optional _resourceId to filter logs by a specific import or export.|
+|/connections/{_id}/export|POST|200|Execute a 'virtual' export using a connection identified by _id by posting the export model to this endpoint.|
 |/connections/{_id}/export/pages|POST|200|Alternative virtual export execution with paging support.|
 |/connections/{_id}/import|POST|200|Execute virtual import for a specific connection.|
 |/connections/{_id}/import/map|POST|200|Evaluate only the mapping step in a virtual import and return the set of post-mapped records.|
