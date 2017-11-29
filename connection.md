@@ -23,7 +23,7 @@ Connection API
 #### 1.  Get a specific connection.
 
 ```
-GET /v1/connections/{_id} HTTP/1.1
+GET /v1/connections/5541e17a1383a6ce6e00000d HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -31,18 +31,36 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
 {
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
+    "_id": "5541e17a1383a6ce6e00000d",
+    "lastModified": "2015-05-02T05:13:43.736Z",
+    "type": "rest",
+    "name": "Slack API",
+    "rest": {
+        "baseURI": "https://slack.com/api",
+        "bearerToken": "******",
+        "tokenLocation": "url",
+        "tokenParam": "token",
+        "mediaType": "urlencoded",
+        "authType": "token",
+        "encryptedFields": [],
+        "unencryptedFields": [],
+        "scope": [],
+        "pingRelativeURI": "api.test"
+    },
+    "queues": [
+        {
+            "name": "5541e17a1383a6ce6e00000d",
+            "size": 8
+        }
+    ]
 }
 ```
 
-#### 2.  Create a connection.
+#### 2.  Ping a specific connection.
 
 ```
-POST /v1/connections HTTP/1.1
+GET /v1/connections/5541e17a1383a6ce6e00000d/ping HTTP/1.1
 Host: api.integrator.io
 Authorization: Bearer my_api_token
 ```
@@ -50,10 +68,7 @@ Authorization: Bearer my_api_token
 Sample Response:
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
 {
-  "_userId": "5e03061cda20740022300f09",
-  "scope":"*"
+    "code": 200
 }
 ```
