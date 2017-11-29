@@ -170,7 +170,7 @@ Sample Response:
         "fields": [
             {
                 "extract": "internal_id",
-                "generate": "id"
+                "generate": "updated_id"
             },
             {
                 "extract": "item_id",
