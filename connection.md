@@ -1,5 +1,6 @@
 Connection API
 ==========
+>**Guidance**: this API is typically only needed for Embedded Integration development where you expose a form in your application for a user to submit and manage their credentials to another application, and then the virtual export and import APIs are used to get and submit data from different applications.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
@@ -10,12 +11,12 @@ Connection API
 |/connections/{_id}|PUT|200|Update a specific connection.|
 |/connections/{_id}|DELETE|204|Delete a specific connection.|
 |/connections/{_id}/ping|GET|200|Test that a specific connection is operational.|
-|/connections/ping|POST|200|Test a virtual connection where all details for the connection are submitted in the POST body, but should not be saved.|
+|/connections/ping|POST|200|Test a virtual connection where all details for the connection are submitted in the POST body, but are not saved.|
 |/connections/{_id}/debug/{resourceId}|GET|200|Get debug logs for a given connection by Id. Use Optional resourceId to filter logs by a specific import or export.|
 |/connections/{_id}/export|POST|200|Execute a 'virtual' export using a connection identified by id by posting the export model to this endpoint.|
 |/connections/{_id}/export/pages|POST|200|Alternative virtual export execution with paging support.|
 |/connections/{_id}/import|POST|200|Execute virtual import for a specific connection.|
-|/connections/{_id}/import/map|POST|200|Exaluate only the mapping step in a virtual import and return the set of post-mapped records.|
+|/connections/{_id}/import/map|POST|200|Evaluate only the mapping step in a virtual import and return the set of post-mapped records.|
 
 ## Examples
 
