@@ -1,6 +1,6 @@
 Connection API
 ==========
->**Guidance**: this API is typically only needed for Embedded Integration development where you want to expose a form in your application's UI to collect a user's credentials to the application being integrated, and then use the virtual export and import APIs below to sync data with that integrated application.
+>**Guidance**: this API is typically only needed for Embedded Integration development where you want to expose a form in your application's UI to collect a user's credentials to the application being integrated, and then once their credentials are persisted you can then use the larger integrator.io API to enable any sort of integration (including real-time syncronous using the cirtual endpoints below) with that application and your application.
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
