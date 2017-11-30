@@ -122,6 +122,7 @@ Headers
 ============
 @TODO - this section may be deleted. Waiting to hear back from devs on use of this header.
 
-The Integrator API supports the following custom HTTP headers.
+The Integrator API supports the following custom HTTP headers to facilitate sending requests directly to a NetSuite RESTlet and to get back a response that has not been modfied.
 
--    Integrator-Record-Type
+-    Integrator-NetSuite-ScriptId
+-    Integrator-NetSuite-DeployId
