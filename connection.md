@@ -190,7 +190,7 @@ Sample Response:
 }
 ```
 
-#### 4.  Building on example #3, let's get the next page of data for the virtual export by including the exact pagedExportState obj that was returned by the first API response.  And then of course to get the next next page after this one you would just submit the pagedExportState returned by this API response.
+#### 4.  Building on example #3, let's get the next page of data for the same virtual export by including the exact pagedExportState obj that was returned by the first API response.  And then of course to get the next next page after this one you would just submit the pagedExportState returned by this API response.
 
 ```
 POST /v1/connections/5541489353bb53af29000009/export/pages HTTP/1.1
