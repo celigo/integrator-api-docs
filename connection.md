@@ -287,3 +287,95 @@ Sample Response:
     }
 }
 ```
+
+#### 5.  Import 4 records into an external application using a virtual import.  The 'import' obj in the request defines how the data should be imported, and the 'data' array contains all the records that you want to import.
+```
+POST /v1/connections/5a1498b3bc227369ab2aa77b/import HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{
+    "import": {
+        "mapping": {
+            "fields": [
+                {
+                    "extract": "timestamp",
+                    "generate": "timestamp"
+                },
+                {
+                    "generate": "key",
+                    "hardCodedValue": "sqs_flow"
+                }
+            ]
+        },
+        "rest": {
+            "relativeURI": [
+                "/system/v1/heartbeat"
+            ],
+            "method": [
+                "PUT"
+            ]
+        }
+    },
+    "data": [
+    	{"timestamp": 1512012818751}, 
+    	{"timestamp": 1512012818751}, 
+    	{"timestamp": 1512012818751},
+    	{"timestamp": 1512012818751}
+    ]
+}
+```
+Sample Response:
+
+```
+[
+    {
+        "statusCode": 200,
+        "id": "5a149c86bc227369ab2aaab6",
+        "_json": {
+            "_id": "5a149c86bc227369ab2aaab6",
+            "lastModified": "2017-11-30T03:33:51.703Z",
+            "createdAt": "2017-11-21T21:37:10.497Z",
+            "key": "sqs_flow",
+            "timestamp": "2017-11-30T03:33:38.751Z",
+            "__v": 0
+        }
+    },
+    {
+        "statusCode": 200,
+        "id": "5a149c86bc227369ab2aaab6",
+        "_json": {
+            "_id": "5a149c86bc227369ab2aaab6",
+            "lastModified": "2017-11-30T03:33:51.704Z",
+            "createdAt": "2017-11-21T21:37:10.497Z",
+            "key": "sqs_flow",
+            "timestamp": "2017-11-30T03:33:38.751Z",
+            "__v": 0
+        }
+    },
+    {
+        "statusCode": 200,
+        "id": "5a149c86bc227369ab2aaab6",
+        "_json": {
+            "_id": "5a149c86bc227369ab2aaab6",
+            "lastModified": "2017-11-30T03:33:51.700Z",
+            "createdAt": "2017-11-21T21:37:10.497Z",
+            "key": "sqs_flow",
+            "timestamp": "2017-11-30T03:33:38.751Z",
+            "__v": 0
+        }
+    },
+    {
+        "statusCode": 200,
+        "id": "5a149c86bc227369ab2aaab6",
+        "_json": {
+            "_id": "5a149c86bc227369ab2aaab6",
+            "lastModified": "2017-11-30T03:33:51.701Z",
+            "createdAt": "2017-11-21T21:37:10.497Z",
+            "key": "sqs_flow",
+            "timestamp": "2017-11-30T03:33:38.751Z",
+            "__v": 0
+        }
+    }
+]
+```
