@@ -73,7 +73,7 @@ Sample Response:
 }
 ```
 
-#### 3.  Export data out of an external application using a virtual export, with paging (page size 8).
+#### 3.  Export data out of an external application using a virtual export, with paging (page size 5).
 
 ```
 POST /v1/connections/5541489353bb53af29000009/export/pages HTTP/1.1
@@ -96,7 +96,6 @@ Authorization: Bearer my_api_token
 }
 ```
 Sample Response:
-
 ```
 {
     "data": [
@@ -104,40 +103,70 @@ Sample Response:
             "recType": "813",
             "Trial Start": "2017-09-15T14:02:00.000-07:00",
             "custrecord_license2_trial_end_date": "2017-10-19T07:00:00.000+00:00",
+            "custrecord_usage_diy_phone": "614-286-9031",
+            "custrecord_usage_diy_ms": 65894782,
             "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_company": "Socius1",
+            "custrecord_usage_diy_userid": "59bc3e4d2561c707bd1d39e1",
+            "custrecord_usage_diy_name": "Matthew Holden",
             "custrecord_usage_diy_hours": 18,
+            "custrecord_usage_diy_role": "Consultant",
+            "custrecord_usage_diy_email": "mholden@socius1.com",
             "custrecord_usage_diy_month_s": "November"
         },
         {
             "recType": "813",
             "Trial Start": "2016-11-22T12:26:00.000-08:00",
             "custrecord_license2_trial_end_date": "2017-06-22T07:00:00.000+00:00",
+            "custrecord_usage_diy_phone": "6102340512",
+            "custrecord_usage_diy_ms": 44439899,
             "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_company": "Pet360",
+            "custrecord_usage_diy_userid": "58349ead27b52153647f4810",
+            "custrecord_usage_diy_name": "Nicole Jimenez",
             "custrecord_usage_diy_hours": 12,
+            "custrecord_usage_diy_role": "Technology",
+            "custrecord_usage_diy_email": "njimenez@pet360.com",
             "custrecord_usage_diy_month_s": "November"
         },
         {
             "recType": "813",
             "Trial Start": "2017-11-13T01:31:00.000-08:00",
             "custrecord_license2_trial_end_date": "2017-12-13T08:00:00.000+00:00",
+            "custrecord_usage_diy_phone": "+78124632456",
+            "custrecord_usage_diy_ms": 33199382,
             "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_company": "Zodiac TV",
+            "custrecord_usage_diy_userid": "5a0963e69b897a162637f589",
+            "custrecord_usage_diy_name": "Peter Glebovskiy",
             "custrecord_usage_diy_hours": 9,
+            "custrecord_usage_diy_role": "Manager",
+            "custrecord_usage_diy_email": "petr.glebovskiy@dev.zodiac.tv",
             "custrecord_usage_diy_month_s": "November"
         },
         {
             "recType": "813",
             "Trial Start": "2016-03-02T16:20:00.000-08:00",
             "custrecord_license2_trial_end_date": "2017-08-01T07:00:00.000+00:00",
+            "custrecord_usage_diy_ms": 24450156,
             "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_userid": "56d7529b00cc8ed70dd4f0c9",
+            "custrecord_usage_diy_name": "Ko Kiuchi",
             "custrecord_usage_diy_hours": 7,
+            "custrecord_usage_diy_email": "kkiuchi@luxurylane.com",
             "custrecord_usage_diy_month_s": "November"
         },
         {
             "recType": "813",
             "Trial Start": "2016-12-20T04:26:00.000-08:00",
             "custrecord_license2_trial_end_date": "2017-12-31T08:00:00.000+00:00",
+            "custrecord_usage_diy_ms": 20146954,
             "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_company": "Velasca",
+            "custrecord_usage_diy_userid": "5858f2b08975b829ea8e164d",
+            "custrecord_usage_diy_name": "Marco Lacchini",
             "custrecord_usage_diy_hours": 6,
+            "custrecord_usage_diy_email": "marco.lacchini@velasca.com",
             "custrecord_usage_diy_month_s": "November"
         }
     ],
@@ -149,14 +178,112 @@ Sample Response:
         null
     ],
     "pagedExportState": {
-        "searchId": "WEBSERVICES_589861_112920171426266131263300914_3f26f3b32b360",
+        "searchId": "WEBSERVICES_589861_11292017182391545425518660_73666d20757aff",
         "pageIndex": 2,
         "pageSize": 5,
         "totalPages": 165,
-        "totalRecords": 821,
+        "totalRecords": 822,
         "done": false,
-        "issuedAt": 1511971115,
-        "sig": "c796d1be0d905c184eacbc2ce06679f6d3ecab158bc88fc976516a1c6fe5af4b"
+        "issuedAt": 1512010880,
+        "sig": "ac7463cf6160937468e5cc575f541d438763719f5985c0ee85642e0de4d75d0d"
+    }
+}
+```
+
+#### 4.  Building on example #3, let's get the next page of data for the virtual export by including the exact pagedExportState obj that was returned by the first API response.  And then of course to get the next next page after this one you would just submit the pagedExportState returned by this API response.
+
+```
+POST /v1/connections/5541489353bb53af29000009/export/pages HTTP/1.1
+Host: api.integrator.io
+Authorization: Bearer my_api_token
+
+{
+    "pagedExportState": {
+        "searchId": "WEBSERVICES_589861_11292017182391545425518660_73666d20757aff",
+        "pageIndex": 2,
+        "pageSize": 5,
+        "totalPages": 165,
+        "totalRecords": 822,
+        "done": false,
+        "issuedAt": 1512010880,
+        "sig": "ac7463cf6160937468e5cc575f541d438763719f5985c0ee85642e0de4d75d0d"
+    },
+    "export": {
+    	"asynchronous": true,
+    	"pageSize": 5,
+    	"netsuite": {
+        	"type": "search",
+        	"searches": [{
+              "recordType": "customRecord",
+              "savedSearchId": "131298"
+            }],
+            "skipGrouping": true
+    	}
+    }
+}
+```
+
+Sample Response:
+```
+{
+    "data": [
+        {
+            "recType": "813",
+            "Trial Start": "2017-06-14T09:02:00.000-07:00",
+            "custrecord_license2_trial_end_date": "2017-09-30T07:00:00.000+00:00",
+            "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_hours": 4,
+            "custrecord_usage_diy_month_s": "November"
+        },
+        {
+            "recType": "813",
+            "Trial Start": "2016-03-09T08:18:00.000-08:00",
+            "custrecord_license2_trial_end_date": "2017-09-02T07:00:00.000+00:00",
+            "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_hours": 2,
+            "custrecord_usage_diy_month_s": "November"
+        },
+        {
+            "recType": "813",
+            "Trial Start": "2016-11-17T12:25:00.000-08:00",
+            "custrecord_license2_trial_end_date": "2017-12-04T08:00:00.000+00:00",
+            "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_hours": 2,
+            "custrecord_usage_diy_month_s": "November"
+        },
+        {
+            "recType": "813",
+            "Trial Start": "2017-10-31T11:30:00.000-07:00",
+            "custrecord_license2_trial_end_date": "2017-12-02T08:00:00.000+00:00",
+            "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_hours": 1,
+            "custrecord_usage_diy_month_s": "November"
+        },
+        {
+            "recType": "813",
+            "Trial Start": "2017-09-16T16:02:00.000-07:00",
+            "custrecord_license2_trial_end_date": "2017-12-25T08:00:00.000+00:00",
+            "custrecord_usage_diy_year": 2017,
+            "custrecord_usage_diy_hours": 1,
+            "custrecord_usage_diy_month_s": "November"
+        }
+    ],
+    "dataURIs": [
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "pagedExportState": {
+        "searchId": "WEBSERVICES_589861_11292017182391545425518660_73666d20757aff",
+        "pageIndex": 3,
+        "pageSize": 5,
+        "totalPages": 165,
+        "totalRecords": 822,
+        "done": false,
+        "issuedAt": 1512010952,
+        "sig": "de523935aa3831a8d4ab49e788b22ba5c1be021a60db597b7c5a0033a669af9f"
     }
 }
 ```
