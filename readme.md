@@ -116,13 +116,12 @@ Click [here](/job.md) for details.
 Rate Limiting
 ============
 
-The Integrator API is rate limited using a leaky bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
+The integrator.io API is rate limited using a leaky bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
 
 Headers
 ============
-@TODO - this section may be deleted. Waiting to hear back from devs on use of this header.
 
-The Integrator API supports the following custom HTTP headers to facilitate sending requests directly to a NetSuite RESTlet and to get back a response that has not been modfied.
+The integrator.io API supports the following custom HTTP headers to facilitate proxing requests directly to a NetSuite RESTlet.
 
 -    Integrator-NetSuite-ScriptId
 -    Integrator-NetSuite-DeployId
