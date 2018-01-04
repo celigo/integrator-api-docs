@@ -1,6 +1,6 @@
 Flow API
 ==========
->**Guidance**: this API is typically only needed for SmartConnector development (where you need to create flows in your installer, or dynamically configure flows based on settings that you expose in your app), or for Embedded Integration development (where you want to automate deploying integration flows via cloning from a master copy or dynamically creating them from scratch).
+>**Guidance**: this API is typically only needed for SmartConnector development (where you need to create flows in your installer, or dynamically configure flows based on settings that you expose in your app), or for Embedded Integration development (where you want to automate deploying your flows via cloning or dynamically creating them from scratch).
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
