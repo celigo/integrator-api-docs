@@ -1,6 +1,6 @@
 Flow API
 ==========
->**Guidance**: this API is typically only needed for SmartConnector development where you need to create flows in your installer, or you need to dynamically configure flows based on settings that you expose in your app.
+>**Guidance**: this API is typically only needed for SmartConnector development (where you need to create flows in your installer, or dynamically configure flows based on settings that you expose in your app), or for Embedded Integration development (where you want to automate deploying integration flows via cloning from a master copy or dynamically creating them from scratch)
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
@@ -10,6 +10,8 @@ Flow API
 |/flows|POST|201|Create a new flow.|
 |/flows/{_id}|PUT|200|Update a specific flow.|
 |/flows/{_id}|DELETE|204|Delete a specific flow.|
+|/flows/{_id}/clone|POST|201|Clone a specific flow.|
+
 
 ## Examples
 
