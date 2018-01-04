@@ -1,6 +1,6 @@
 Integration API
 ===========
->**Guidance**: this API is typically only needed for SmartConnector development where you need to work with the SmartConnector only fields listed below, or Embedded Integration development where you want to automate deploying your integration solutions (either via cloning a master copy, or dynamically creating everything from scratch).
+>**Guidance**: this API is typically only needed for SmartConnector development where you need to work with the SmartConnector only fields listed below, or Embedded Integration development where you want to automate deploying your integration solution (either via cloning or dynamically creating everything from scratch).
 
 
 ### Endpoints
