@@ -1,6 +1,7 @@
 Import API
 ==========
->**Guidance**: this API is typically only needed for SmartConnector development where you need to create imports in your installer, or you need to dynamically configure imports based on settings that you expose in your app.
+>**Guidance**: this API is typically only needed for SmartConnector development (where you need to create imports in your installer, or dynamically configure imports based on settings that you expose in your app), or for Embedded Integration development (where you want to automate deploying your imports via cloning or dynamically creating them from scratch).
+
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
@@ -10,6 +11,7 @@ Import API
 |/imports|POST|201|Create a new import.|
 |/imports/{_id}|PUT|200|Update a specific import.|
 |/imports/{_id}|DELETE|204|Delete a specific import.|
+|/imports/{_id}/clone|POST|201|Clone a specific import.|
 
 ## Examples
 
