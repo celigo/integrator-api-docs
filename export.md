@@ -1,6 +1,6 @@
 Export API
 ==========
->**Guidance**: this API is typically only needed for SmartConnector development where you need to create exports in your installer, or you need to dynamically configure exports based on settings that you expose in your app.
+>**Guidance**: this API is typically only needed for SmartConnector development (where you need to create exports in your installer, or dynamically configure exports based on settings that you expose in your app), or for Embedded Integration development (where you want to automate deploying your exports via cloning or dynamically creating them from scratch).
 
 ### Endpoints
 | Relative URI| Method | Success Code | Description|
@@ -12,6 +12,7 @@ Export API
 |/exports/{_id}|DELETE|204|Delete a specific export.|
 |/exports/:_id/distributed|GET|200|Get the distributed configuration for a specific export (i.e. the fields stored directly in the export application).  Note that this API is currently only needed for Salesforce and NetSuite real-time exports.|
 |/exports/:_id/distributed|PUT|200|Update the distributed configuration for a specific export (i.e. the fields stored directly in the export application).  Note that this API is currently only needed for Salesforce and NetSuite real-time exports.|
+|/exports/{_id}/clone|POST|201|Clone a specific export.|
 
 ## Examples
 
