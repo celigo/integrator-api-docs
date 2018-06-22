@@ -11,6 +11,7 @@ Flow API
 |/flows/{_id}|PUT|200|Update a specific flow.|
 |/flows/{_id}|DELETE|204|Delete a specific flow.|
 |/flows/{_id}/clone|POST|201|Clone a specific flow.|
+|/flows/{_id}/run|POST|201|Run a specific flow on-demand.|
 
 
 ## Examples
