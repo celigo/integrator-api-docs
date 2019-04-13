@@ -115,7 +115,7 @@ Click [here](/job.md) for details.
 Rate Limiting
 ============
 
-The integrator.io API is rate limited using a leaky bucket algorithm with a bucket size of 100 and a fill rate of 30 tokens every 1 second, which approximates to 108,000 requests allowed per hour.
+The integrator.io API is rate limited using a leaky bucket algorithm with a bucket size of 1000 and a fill rate of 300 tokens every 1 second, which approximates to 1,080,000 requests allowed per hour.
 
 Headers
 ============
