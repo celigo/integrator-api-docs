@@ -3,7 +3,7 @@ Introduction
 
 The integrator.io API is RESTful, uses JSON, and is secured by Bearer Tokens. The target audience for the API is developers that are interested in building one or more of the following.
 
-1. **SmartConnectors**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrator.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
+1. **Integration Apps**.  These are fully managed, pre-built integration apps listed in the [integrator.io marketplace](https://integrator.io/marketplace) that can be installed by any other integrator.io user.   These integration apps typically include an installer, uninstaller, licensing controls, settings pages, and receive on-going enhancements in functionality.
 
 2. **Embedded Integrations**.  These are fully managed integrations where integrator.io remains completely invisible to the end user.  These integrations are typically enabled and/or configured within an external application's UI, where that application's backend servers use the integrator.io API to dynamically deploy and customize integration functionality.
 
@@ -19,7 +19,7 @@ Authentication
 
 ### Bearer Tokens
 
-API tokens can be generated and accessed via 'Options' -> 'API Tokens' (within your integrator.io account).  Please note that only the owner of an integrator.io account can access the API tokens page.  API clients should transmit API tokens using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
+API tokens can be generated and accessed via 'Resources' -> 'API Tokens' (within your integrator.io account).  Please note that only the owner of an integrator.io account can access the API tokens page.  API clients should transmit API tokens using the "**Authorization**" request header field and the "**Bearer**" authentication scheme.
 
 Sample HTTP Request:
 
