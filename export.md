@@ -28,7 +28,7 @@ Sample Response:
 
 ```
 {
-    "_id": "55ea776bb751843c37b7b366",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-04-16T18:56:15.879Z",
     "name": "GitHub Event Listener",
     "type": "webhook",
@@ -53,7 +53,7 @@ Host: api.integrator.io
 Authorization: Bearer my_api_token
 
 {
-    "_id": "55ea776bb751843c37b7b366",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-04-16T18:56:15.879Z",
     "name": "GitHub Event Listener (updated!)",
     "type": "webhook",
@@ -74,7 +74,7 @@ Sample Response:
 
 ```
 {
-    "_id": "55ea776bb751843c37b7b366",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-11-28T19:37:04.180Z",
     "name": "GitHub Event Listener (updated!)",
     "type": "webhook",

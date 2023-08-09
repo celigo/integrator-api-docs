@@ -27,12 +27,12 @@ Sample Response:
 
 ```
 {
-    "_id": "594d5058c5a4c41a4ba4b662",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-11-28T18:38:19.851Z",
     "name": "Upload File to FTP Site",
-    "_connectionId": "56fd5ad09aa1825c4e43077d",
+    "_connectionId": "56fd5ad09aa1825c4e678aca76",
     "distributed": false,
-    "apiIdentifier": "ib8f75140f",
+    "apiIdentifier": "ib8f75411f4",
     "file": {
         "skipAggregation": false,
         "type": "csv",
@@ -88,12 +88,12 @@ Host: api.integrator.io
 Authorization: Bearer my_api_token
 
 {
-    "_id": "594d5058c5a4c41a4ba4b662",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-06-23T17:31:04.446Z",
     "name": "Upload File to FTP Site (updated!)",
-    "_connectionId": "56fd5ad09aa1825c4e43077d",
+    "_connectionId": "56fd5ad09aa1825c4e678aca76",
     "distributed": false,
-    "apiIdentifier": "ib8f75140f",
+    "apiIdentifier": "ib8f75411f4",
     "file": {
         "skipAggregation": false,
         "type": "csv",
@@ -146,12 +146,12 @@ Sample Response:
 
 ```
 {
-    "_id": "594d5058c5a4c41a4ba4b662",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-11-28T18:47:09.553Z",
     "name": "Upload File to FTP Site (updated!)",
-    "_connectionId": "56fd5ad09aa1825c4e43077d",
+    "_connectionId": "56fd5ad09aa1825c4e678aca76",
     "distributed": false,
-    "apiIdentifier": "ib8f75140f",
+    "apiIdentifier": "ib8f75411f4",
     "file": {
         "skipAggregation": false,
         "type": "csv",

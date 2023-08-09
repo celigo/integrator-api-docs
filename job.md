@@ -27,10 +27,10 @@ Sample Response:
 ```
 [
     {
-        "_id": "59ee8f9503785d04d846a88e",
+        "_id": "123ab456c789de1011fg12h13i",
         "type": "import",
-        "_importId": "537d1ff57ab1870200000002",
-        "_flowJobId": "59ee8f80e41d93365ef1b9a9",
+        "_importId": "55ea78c546cf5825294aca0b",
+        "_flowJobId": "59ee8f82c41g45g165ef1b9a9",
         "startedAt": "2017-10-24T00:55:49.128Z",
         "status": "running",
         "numError": 0,
@@ -69,8 +69,8 @@ Sample Response:
         "source": "integrator.io",
         "exportDataURI": "",
         "importDataURI": "",
-        "_retryId": "59ee8cb203785d04d8469919",
-        "_jobId": "59ee8cad03785d04d8469918"
+        "_retryId": "59ee8cb20df374sf469sd919",
+        "_jobId": "59ee8cad03784g7hd8469918"
     }
 ]
 ```

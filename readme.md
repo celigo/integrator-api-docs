@@ -35,7 +35,7 @@ Sample Response:
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 {
-  "_userId": "5e03061cda20740022300f09"
+  "_userId": "123ab456c789de1011fg12h13i"
 }
 ```
 
