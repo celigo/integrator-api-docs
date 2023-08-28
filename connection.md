@@ -103,7 +103,7 @@ Sample Response:
             "recType": "813",
             "Trial Start": "2017-09-15T14:02:00.000-07:00",
             "custrecord_license2_trial_end_date": "2017-10-19T07:00:00.000+00:00",
-            "custrecord_usage_diy_phone": "614-286-9031",
+            "custrecord_usage_diy_phone": "5555555555",
             "custrecord_usage_diy_ms": 65894782,
             "custrecord_usage_diy_year": 2017,
             "custrecord_usage_diy_company": "Doej1",
@@ -215,7 +215,7 @@ Authorization: Bearer my_api_token
         	"type": "search",
         	"searches": [{
               "recordType": "customRecord",
-              "savedSearchId": "131298"
+              "savedSearchId": "123456"
             }],
             "skipGrouping": true
     	}
