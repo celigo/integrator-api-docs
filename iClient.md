@@ -51,7 +51,7 @@ Sample Response:
 ```
 [
     {
-        "_id": "58c40879c13f547763bf2ffe",
+        "_id": "123ab456c789de1011fg12h13i",
         "name": "Amazon - North America",
         "lastModified": "2017-03-15T10:07:54.070Z",
         "provider": "amazonmws",
@@ -61,7 +61,7 @@ Sample Response:
         }
     },
     {
-        "_id": "58d91651a81cfe09ec94a996",
+        "_id": "123ab456c789de1011fg12h13i",
         "name": "eBay Sandbox",
         "lastModified": "2017-04-12T07:50:56.863Z",
         "provider": "ebay-xml",
@@ -73,7 +73,7 @@ Sample Response:
         }
     },
     {
-        "_id": "58d95676544a250f82e1e6a8",
+        "_id": "123ab456c789de1011fg12h13i",
         "name": "eBay",
         "lastModified": "2017-04-12T07:51:17.839Z",
         "provider": "ebay-xml",
@@ -85,7 +85,7 @@ Sample Response:
         }
     },
     {
-        "_id": "58f9dfc4a7d2ca9998e19c89",
+        "_id": "123ab456c789de1011fg12h13i",
         "name": "NetSuite",
         "lastModified": "2017-04-21T10:32:37.100Z",
         "provider": "netsuite",
@@ -95,7 +95,7 @@ Sample Response:
         }
     },
     {
-        "_id": "54fa0c93a7044f9252483038",
+        "_id": "123ab456c789de1011fg12h13i",
         "lastModified": "2015-12-09T11:17:23.235Z",
         "provider": "Shopify",
         "oauth2": {

@@ -32,7 +32,7 @@ Sample Response:
 
 ```
 {
-    "_id": "54fa0b38a7044f9252000036",
+    "_id": "123ab456c789de1011fg12h13i",
     "name": "Shopify - NetSuite Connector",
     "description": "Shopify - NetSuite Connector helps retailers combine the powerful Shopify eCommerce platform with the proven back-office features of NetSuite and keep the orders, customers, fulfillments, billings, items & inventory levels in sync.",
     "imageURL": "/images/company-logos/shopify-netsuite.png",
@@ -41,8 +41,8 @@ Sample Response:
     "handle": "sc4n",
     "published": true,
     "managed": true,
-    "_integrationId": "551c7be9accca83b3e00000c",
-    "_stackId": "5593228187085d362c000009",
+    "_integrationId": "123ab456c789de1011fg12acab",
+    "_stackId": "5593228187085d362c0444a455",
     "installerFunction": "installConnector",
     "updateFunction": "updateConnector",
     "preUninstallFunction": "preUninstallFunction",
@@ -55,7 +55,7 @@ Sample Response:
         {
             "_id": false,
             "_iClientIds": [
-                "58f9dfc4a7d2ca3238e19c89"
+                "123f9dfc4a7d2ca3238e19c123"
             ],
             "connection": {
                 "type": "netsuite"
@@ -67,7 +67,7 @@ Sample Response:
         "shopify"
     ],
     "oAuthServerFlow": {
-        "_iClientId": "54fa0c93a7044f9252000038"
+        "_iClientId": "123fa0c93a7044f9252000123"
     }
 }
 ```
@@ -85,7 +85,7 @@ Sample Response:
 ```
 [
     {
-        "_id": "59ef03a31ce1f53606837667",
+        "_id": "123ab456c789de1011fg12h13i",
         "expires": "2018-11-16T18:29:59.999Z",
         "created": "2017-10-24T09:10:59.408Z",
         "opts": {
@@ -103,13 +103,13 @@ Sample Response:
         },
         "user": {
             "email": "sathvika.dogiparthi@celigo.com",
-            "_id": "585222eb73409e646b7375ed",
+            "_id": "123ab456c789de1011fg12h13i",
             "name": "Sathvika Dogiparthi"
         },
-        "_integrationId": "59ef03c4b62d305b3c4534d5"
+        "_integrationId": "123ab456c789de1011fg12acab"
     },
     {
-        "_id": "59dc541a93d54c44a7840220",
+        "_id": "123ab456c789de1011fg12h13i",
         "expires": "2025-07-01T00:00:00.000Z",
         "created": "2017-10-10T05:01:14.178Z",
         "opts": {
@@ -126,7 +126,7 @@ Sample Response:
             "connectorEdition": "enterprise"
         },
         "user": {
-            "email": "ron.esguerra@celigo.com"
+            "email": "ron.doe@doe.doe.com"
         }
     }
 ]
@@ -163,7 +163,7 @@ Sample Response:
 
 ```
 {
-    "_id": "59ef68b384b38c7986d54549",
+    "_id": "123ab456c789de1011fg12h13i",
     "expires": "2017-11-01T18:29:59.999Z",
     "created": "2017-10-24T16:22:11.448Z",
     "opts": {
@@ -214,7 +214,7 @@ Sample Response:
 
 ```
 {
-    "_id": "59ef68b384b38c7986d54549",
+    "_id": "123ab456c789de1011fg12h13i",
     "expires": "2020-11-01T18:29:59.999Z",
     "created": "2017-10-24T16:22:11.448Z",
     "opts": {
@@ -232,10 +232,10 @@ Sample Response:
     },
     "user": {
         "email": "test@celigo.com",
-        "_id": "585222eb73409e646b7375ff",
+        "_id": "123ab456c789de1011fg12h13i",
         "name": "Celigo Tester"
     },
-    "_integrationId": "59ef03c4b62d305b3c45f4ee"
+    "_integrationId": "123ab456c789de1011fg12acab"
 }
 ```
 

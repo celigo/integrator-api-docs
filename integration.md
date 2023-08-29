@@ -37,7 +37,7 @@ Sample Response:
 
 ```
 {
-    "_id": "554155c853bb53af2900000b",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-08-07T18:34:07.786Z",
     "name": "Licensing and Usage",
     "readme": "This integration is mission critical and keeps the licensing data..."
@@ -57,10 +57,10 @@ Sample Response:
 
 ```
 {
-    "_id": "57974ed227a82a3475cecb15",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-09-15T10:55:15.675Z",
     "name": "BigCommerce - NetSuite Connector",
-    "_connectorId": "57179182e0a908200c2781d9",
+    "_connectorId": "56fd5ad0945g2345c4e678aca76",
     "install": [
         {
             "name": "NetSuite Connection",
@@ -69,7 +69,7 @@ Sample Response:
             "completed": false,
             "installerFunction": "verifyNetSuiteConnection",
             "uninstallerFunction": "deleteNetSuiteConnection",
-            "_connectionId": "57974ed21d2e4ab87ae46d99"
+            "_connectionId": "56fd5ad0945g2345c4e678aca76"
         },
         {
             "name": "BigCommerce Connection",
@@ -78,7 +78,7 @@ Sample Response:
             "completed": false,
             "installerFunction": "verifyBigCommerceConnection",
             "uninstallerFunction": "deleteBigCommerceConnection",
-            "_connectionId": "57974ed227a82a3475cecb17"
+            "_connectionId": "56fd5ad0945g2345c4e678aca76"
         },
         {
             "name": "Integrator Bundle",
@@ -108,8 +108,8 @@ Sample Response:
         ],
         "commonresources": {
             "genericExportApiIdentifier": "e7654358b7",
-            "bigcommerceConnectionId": "57974ed227a82a3475cec222",
-            "netsuiteConnectionId": "57464ed11d2e4ab87ae46d99"
+            "bigcommerceConnectionId": "56fd5ad09a67g564e678aca76",
+            "netsuiteConnectionId": "56fd5ad09a67g56412gh23a5"
         }
     },
     "version": "1.0.1"

@@ -28,14 +28,14 @@ Sample Response:
 
 ```
 {
-    "_id": "55ea78c6b751843c37b7b367",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-06-19T21:27:09.945Z",
     "name": "Send GitHub Events to Slack",
     "disabled": false,
     "timezone": "America/Los_Angeles",
-    "_exportId": "55ea776bb751843c37b7b366",
-    "_importId": "55ea78c546cf5825294bad14",
-    "_integrationId": "58f107a36b3bdd4f8723d1bc",
+    "_exportId": "55ea776bb751843c37b7ac6ab0",
+    "_importId": "55ea78c546cf5825294aca0b",
+    "_integrationId": "58f107a36b3bdd4f87aca76b",
     "skipRetries": false,
     "createdAt": "2017-06-19T21:27:09.900Z"
 }
@@ -53,18 +53,18 @@ Sample Response:
 
 ```
 {
-    "_id": "5980e7fedd9939649f8a5d9a",
+    "_id": "123ab456c789de1011fg12h13i",
     "lastModified": "2017-08-19T17:04:54.005Z",
     "name": "Update Usage Stats for all Trialers",
     "disabled": false,
     "schedule": "? 0 2 ? * *",
     "timezone": "America/Los_Angeles",
-    "_integrationId": "5937116e45696471856f874e",
+    "_integrationId": "58f107a36b3bdd4f87aca76b",
     "skipRetries": false,
     "pageProcessors": [
         {
             "type": "export",
-            "_exportId": "5980f1d5dd9939649f8a6428",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -77,7 +77,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598153787ed11d467c44dd32",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -90,7 +90,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598154724a260022fde4d6c6",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -103,7 +103,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598153484a260022fde4d638",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -116,7 +116,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598155a37ed11d467c44de0c",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -129,7 +129,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "59815b662207dd5f4fdb354b",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -142,7 +142,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598155c97ed11d467c44de22",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -155,7 +155,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598155e77ed11d467c44de29",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -168,7 +168,7 @@ Sample Response:
         },
         {
             "type": "export",
-            "_exportId": "598156037ed11d467c44de37",
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": [
@@ -181,7 +181,7 @@ Sample Response:
         },
         {
             "type": "import",
-            "_importId": "5980f529dd9939649f8a6615",
+            "_importId": "55ea776bb751843c37b7ac6ab0",
             "proceedOnFailure": true,
             "responseMapping": {
                 "lists": [],
@@ -190,7 +190,7 @@ Sample Response:
         },
         {
             "type": "import",
-            "_importId": "5981765d1b6e553ad2edd9f9",
+            "_importId": "55ea776bb751843c37b7ac6ab0",
             "responseMapping": {
                 "lists": [],
                 "fields": []
@@ -199,12 +199,12 @@ Sample Response:
     ],
     "pageGenerators": [
         {
-            "_exportId": "5980ece14a260022fde4a286",
-            "_id": "59986fb5833c1211526a7b36"
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
+            "_id": "123ab456c789de1011fg12h13i"
         },
         {
-            "_exportId": "5981fb4b849b2c1c8c3e36dd",
-            "_id": "59986fb5833c1211526a7b35"
+            "_exportId": "55ea776bb751843c37b7ac6ab0",
+            "_id": "123ab456c789de1011fg12h13i"
         }
     ],
     "createdAt": "2017-08-01T20:43:42.156Z"
